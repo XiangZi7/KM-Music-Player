@@ -1,6 +1,6 @@
 <script setup>
 import { songPlaylist, catlist } from "@/api/api";
-import { formatNumber } from "@/src/utils/formatTime";
+import { formatNumber } from "@/utils/formatTime";
 const state = reactive({
     songList: [],
     currentTabIndex: 0,

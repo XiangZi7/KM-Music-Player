@@ -1,7 +1,4 @@
 import { defineStore, createPinia } from "pinia";
-
-// PlayerStore
-import { getImageThemeColor } from "@/src/utils/ThemeColor";
 export const PlayerStore = defineStore({
     id: "PlayerState",
     state: () => ({

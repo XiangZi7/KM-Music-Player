@@ -1,5 +1,5 @@
 <script setup>
-import { formatTime } from "@/src/utils/formatTime";
+import { formatTime } from "@/utils/formatTime";
 import { GlobalStore } from "@/stores/index";
 import { PlayerStore } from "@/stores/modules/player";
 import { songUrl, cloudsearch } from "@/api/api";

@@ -17,7 +17,7 @@ export default defineConfig(({ mode, command }) => {
           'vue',
           'uni-app',
         ],
-        dts: 'typings/auto-imports.d.ts',
+        dts: '/src/typings/auto-imports.d.ts',
       })
     ],
     server: {

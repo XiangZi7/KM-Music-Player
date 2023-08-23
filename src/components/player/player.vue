@@ -1,6 +1,6 @@
 <script setup>
 import { PlayerStore } from "@/stores/modules/player";
-import { getImageThemeColor } from "@/src/utils/ThemeColor";
+import { getImageThemeColor } from "@/utils/ThemeColor";
 import { lyric } from "@/api/api";
 import comments from "./comments.vue";
 const playerstore = PlayerStore()

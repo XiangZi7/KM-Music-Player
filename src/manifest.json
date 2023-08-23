@@ -1,6 +1,6 @@
 {
-    "name" : "towMusic",
-    "appid" : "__UNI__29C52EA",
+    "name" : "",
+    "appid" : "",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -41,13 +41,9 @@
                 ]
             },
             /* ios打包配置 */
-            "ios" : {
-                "dSYMs" : false
-            },
+            "ios" : {},
             /* SDK配置 */
-            "sdkConfigs" : {
-                "ad" : {}
-            }
+            "sdkConfigs" : {}
         }
     },
     /* 快应用特有相关 */
@@ -69,8 +65,8 @@
     "mp-toutiao" : {
         "usingComponents" : true
     },
-    "uniStatistics" : {
-        "enable" : false
+    "uniStatistics": {  
+        "enable": false
     },
     "vueVersion" : "3"
 }
