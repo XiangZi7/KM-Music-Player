@@ -12,32 +12,37 @@ onLoad(({ id }) => {
     })
 })
 
+function toRouter(id) {
+    uni.navigateTo({
+        url: `/pages/animation/player?id=${id}`
+    })
+}
 </script>
 <template>
     <div class="detail-page">
         <div class="info">
             <div class="detail-info">
-                <div class="cover">
+                <div class="cover tn-shadow-blur">
                     <img :src="list.cover" mode="aspectFill" />
                 </div>
                 <div class="detail-title">
                     <h2 class="title">{{ list.title }}</h2>
-                    <p class="description">{{ list.descs }}</p>
+                    <p class="item"><span class="label">地区：</span>{{ list.region }}</p>
+                    <p class="item"><span class="label">上映时间：</span>{{ list.releaseTime }}</p>
+                    <p class="item"><span class="label">视频分类：</span>{{ list.videoType }}</p>
                 </div>
 
             </div>
 
             <div class="details">
-                <p class="item"><span class="label">导演：</span>{{ list.director }}</p>
-                <p class="item"><span class="label">声优：</span>{{ list.actor }}</p>
-                <p class="item"><span class="label">地区：</span>{{ list.region }}</p>
-                <p class="item"><span class="label">上映时间：</span>{{ list.releaseTime }}</p>
-                <p class="item"><span class="label">视频分类：</span>{{ list.videoType }}</p>
+                <p class="description">{{ list.descs }}</p>
+                <p class="item description"><span class="label">导演：</span>{{ list.director }}</p>
+                <p class="item description"><span class="label">声优：</span>{{ list.actor }}</p>
             </div>
             <div class="episodes">
                 <h3 class="section-title">集数</h3>
                 <ul class="episode-list">
-                    <li v-for="episode in list.chapterList" :key="episode" class="episode">{{ episode.title }}</li>
+                    <li @click="toRouter(episode.chapterPath)" v-for="episode in list.chapterList" :key="episode" class="episode">{{ episode.title }}</li>
                 </ul>
             </div>
         </div>
@@ -67,6 +72,7 @@ onLoad(({ id }) => {
     width: 200rpx;
     height: 300rpx;
     object-fit: cover;
+    border-radius: 10rpx;
 }
 
 .title {
@@ -81,7 +87,8 @@ onLoad(({ id }) => {
 }
 
 .details {
-    margin-bottom: 20px;
+    margin-bottom: 20rpx;
+    margin-top: 20rpx;
 }
 
 .item {
@@ -93,11 +100,17 @@ onLoad(({ id }) => {
 }
 
 .episode-list {
+    display: flex;
+    flex-wrap: wrap;
     list-style: none;
     padding: 0;
+
 }
 
 .episode {
-    margin-bottom: 5px;
+   margin: 10rpx;
+    padding: 10rpx 30rpx;
+    background-color: #F1F2F4;
+    border-radius: 10rpx;
 }
 </style>

@@ -9,6 +9,24 @@
   color: #fff;
 }
 
+.head {
+  width: 100%;
+  padding-top: var(--status-bar-height);
+
+  .btn {
+    z-index: 99;
+    background-color: #fff;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(0.625rem);
+    margin: 0 10px;
+  }
+}
+
 .mv-logo {
   font-size: 24px;
   font-weight: bold;
@@ -25,13 +43,13 @@
 
 .search-input {
   margin: 10px;
-  background-color: #F0F0FE !important;
+  background-color: #fff !important;
 }
 
 .banner {
   background-image: url('@/static/sc2.png');
   background-size: cover;
-  background-position: center;
+  background-position: 50% 30%;
   padding: 20px;
   color: #fff;
   height: 220rpx;
@@ -47,9 +65,6 @@
   font-size: 16px;
 }
 
-.mv-list {
-  
-}
 
 .mv-item {
   display: flex;
@@ -60,7 +75,7 @@
 
 .mv-cover {
   width: 270rpx;
-  height: 150rpx;
+  height: 250rpx;
   object-fit: cover;
   margin-right: 10px;
   border-radius: 10rpx;

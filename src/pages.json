@@ -35,6 +35,9 @@
 		},
 		{
 			"path": "pages/animation/animedeta"
+		},
+		{
+			"path": "pages/animation/player"
 		}
 	],
 	"globalStyle": {

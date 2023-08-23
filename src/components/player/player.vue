@@ -198,19 +198,17 @@ function leftClick() {
         :style="{ 'background': `linear-gradient(${playerstore.songs[playerstore.currentIndex].coverThemeColor} 0%,#EEF2F8 50%, #EDF4FC 100%` }">
         <!-- 规避头部的距离 -->
         <div style=" padding-top: var(--status-bar-height);"></div>
-        <canvas id="getImageThemeColorCanvas" canvas-id="getImageThemeColorCanvas" style="position: absolute;
-  left: -9999px;
-  top: -9999px;"></canvas>
+        <canvas id="getImageThemeColorCanvas" canvas-id="getImageThemeColorCanvas" class="offsetcan"></canvas>
         <!-- 头部 -->
         <div class="header">
-            <div class="by" style="background-color: #fff;width: 3em;height: 3em;">
+            <div class="by tion">
                 <tn-icon size="45" name="down" @click="leftClick" />
             </div>
             <div class="header-title">
                 <text class="title">{{ playerstore.songs[playerstore.currentIndex].title }}</text>
                 <text class="des" style="color: #000;">{{ playerstore.songs[playerstore.currentIndex].singer }}</text>
             </div>
-            <div class="by" style="background-color: #fff;width: 3em;height: 3em;">
+            <div class="by tion">
                 <tn-icon size="45" name="share" />
             </div>
         </div>
@@ -241,7 +239,7 @@ function leftClick() {
                     <div class="by">
                         <tn-icon size="49" name="previous-song-fill" @click="playNext" />
                     </div>
-                    <div class="by" style="width: 5em;height: 5em;">
+                    <div class="by player">
                         <tn-icon size="60" :name="playerstore.isPlaying ? 'stop' : 'play-fill'" @click="togglePlay" />
                     </div>
                     <div class="by">

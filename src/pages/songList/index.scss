@@ -56,6 +56,50 @@
     font-size: 12px;
 }
 
+.header {
+    padding-top: var(--status-bar-height);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    // background-color: #333;
+    color: #fff;
+}
+
+.mv-logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: auto;
+    color: #000;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.banner {
+    background-image: url('@/static/sc2.png');
+    background-size: cover;
+    background-position: 50% 30%;
+    padding: 20px;
+    color: #fff;
+    height: 220rpx;
+    margin-top: 20rpx;
+}
+
+.banner-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.banner-description {
+    font-size: 16px;
+}
 
 .song-cover {
     width: 100%;

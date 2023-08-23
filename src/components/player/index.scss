@@ -146,3 +146,20 @@
         transition: all 0.3s ease-out;
         color: var(--text-color-placeholder);
     }
+
+    .offsetcan {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+    }
+
+    .header .tion {
+        background-color: #fff;
+        width: 3em;
+        height: 3em;
+    }
+
+    .player {
+        width: 5em;
+        height: 5em;
+    }

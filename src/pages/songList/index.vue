@@ -67,9 +67,15 @@ function navigate(params, value) {
                 <tn-icon size="30" name="left" @click="gtback" />
             </div>
             <div class="btn">
-                <tn-icon size="30" name="share" />
+                <img class="user-avatar" src="https://resource.tuniaokj.com/images/avatar/test_avatar.jpg" alt="User Avatar">
             </div>
         </div>
+        <div class="banner tn-shadow-blur">
+            <div class="banner-title">Banner Title</div>
+            <div class="banner-description">Banner Description</div>
+        </div>
+
+
         <tn-tabs @change="tabsChange" bg-color="" v-model="currentTabIndex" class="yxbr-10 tn-mt-sm tn-mb-sm">
             <tn-tabs-item v-for="(item, index) in tabsData" :key="index" :title="item.name" />
         </tn-tabs>
