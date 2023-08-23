@@ -1,0 +1,142 @@
+@use '../mixins//mixins.scss' as *;
+
+// 辅助元素的占位尺寸
+$auxiliary-element-size: 12px;
+
+@include b(bubble-box) {
+  position: relative;
+
+  /* 内容区域 start */
+  @include e(content) {
+    position: relative;
+  }
+  /* 内容区域 end */
+
+  /* 选项区域 start */
+  @include e(options) {
+    position: absolute;
+    width: fit-content;
+    border-radius: 15rpx;
+    transition-duration: 0.3s;
+    transition-timing-function: linear;
+    transition-property: opacity, transform;
+    opacity: 0;
+    visibility: hidden;
+
+    .scroll-view {
+      height: 100%;
+    }
+
+    .options-content {
+      height: fit-content;
+    }
+
+    /* 辅助元素 start */
+    .auxiliary-element {
+      width: 0rpx;
+      height: 0rpx;
+      position: absolute;
+      z-index: inherit;
+      border-width: 18rpx;
+      border-style: solid;
+    }
+    /* 辅助元素 end */
+
+    /* 气泡弹框的位置 start */
+    @include m(top) {
+      box-shadow: 0rpx 10rpx 20rpx -2rpx rgba(0, 0, 0, 0.06),
+        0rpx 0rpx 10rpx -4rpx rgba(0, 0, 0, 0.1);
+      top: 0px;
+      left: 50%;
+      transform: translate(-50%, calc(-100% - $auxiliary-element-size));
+      .auxiliary-element {
+        left: 50%;
+        bottom: 2rpx;
+        transform: translate(-50%, 100%);
+      }
+    }
+    @include m(right) {
+      box-shadow: -10rpx 0rpx 20rpx -2rpx rgba(0, 0, 0, 0.06),
+        0rpx 0rpx 10rpx -4rpx rgba(0, 0, 0, 0.1);
+      left: calc(100% + $auxiliary-element-size);
+      top: 50%;
+      transform: translateY(-50%);
+      .auxiliary-element {
+        left: 2rpx;
+        top: 50%;
+        transform: translate(-100%, -50%);
+      }
+    }
+    @include m(bottom) {
+      box-shadow: 0rpx -10rpx 20rpx -2rpx rgba(0, 0, 0, 0.06),
+        0rpx 0rpx 10rpx -4rpx rgba(0, 0, 0, 0.1);
+      top: calc(100% + $auxiliary-element-size);
+      left: 50%;
+      transform: translateX(-50%);
+      .auxiliary-element {
+        left: 50%;
+        top: 2rpx;
+        transform: translate(-50%, -100%);
+      }
+    }
+    @include m(left) {
+      box-shadow: 10rpx 0rpx 20rpx -2rpx rgba(0, 0, 0, 0.06),
+        0rpx 0rpx 10rpx -4rpx rgba(0, 0, 0, 0.1);
+      top: 50%;
+      left: calc(-100% + $auxiliary-element-size);
+      transform: translate(-50%, -50%);
+      .auxiliary-element {
+        right: 2rpx;
+        top: 50%;
+        transform: translate(100%, -50%);
+      }
+    }
+    /* 气泡弹框的位置 end */
+
+    /* 显示弹框 */
+    @include when(show) {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  @include e(option-item) {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20rpx 38rpx;
+
+    .icon {
+      margin-right: 10rpx;
+    }
+
+    .text {
+      width: fit-content;
+      white-space: nowrap;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 90%;
+      height: 1rpx;
+      background-color: var(--tn-color-gray-light);
+      transform: translate(-50%, -50%);
+    }
+
+    &:last-of-type {
+      &::after {
+        display: none;
+      }
+    }
+
+    /* 禁止点击 start */
+    @include when(disabled) {
+      opacity: 0.4;
+    }
+    /* 禁止点击 end */
+  }
+  /* 选项区域 end */
+}

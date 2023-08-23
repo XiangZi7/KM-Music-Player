@@ -1,0 +1,75 @@
+@use 'sass:map';
+
+@use '../mixins/mixins.scss' as *;
+@use '../var/size.scss' as *;
+
+$rate-sizes: () !default;
+$rate-sizes: map-merge(
+  (
+    'sm': (
+      'font-size': 32rpx,
+      'gutter': 8rpx,
+    ),
+    '': (
+      'font-size': 38rpx,
+      'gutter': 8rpx,
+    ),
+    'lg': (
+      'font-size': 46rpx,
+      'gutter': 8rpx,
+    ),
+    'xl': (
+      'font-size': 52rpx,
+      'gutter': 8rpx,
+    ),
+  ),
+  $rate-sizes
+);
+
+@include b(rate) {
+  position: relative;
+  width: fit-content;
+
+  /* 内容容器 start */
+  @include e(container) {
+    display: flex;
+    align-items: center;
+    font-size: map-get(map-get($rate-sizes, ''), 'font-size');
+    line-height: 1;
+  }
+  @include e(active-container) {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    overflow: hidden;
+  }
+  /* 内容容器 end */
+
+  /* item样式 start */
+  @include e(item) {
+    padding: 0rpx calc(map-get(map-get($rate-sizes, ''), 'gutter') / 2);
+  }
+  /* item样式 end */
+
+  /* 尺寸 start */
+  @each $size in $tn-inner-sizes {
+    @include m($size) {
+      @include e(container) {
+        font-size: map-get(map-get($rate-sizes, $size), 'font-size');
+      }
+      @include e(item) {
+        padding: 0rpx calc(map-get(map-get($rate-sizes, $size), 'gutter') / 2);
+      }
+    }
+  }
+  /* 尺寸 end */
+
+  /* 禁止点击 start */
+  @include when(readonly) {
+    // opacity: 0.4;
+  }
+  /* 禁止点击 end */
+}

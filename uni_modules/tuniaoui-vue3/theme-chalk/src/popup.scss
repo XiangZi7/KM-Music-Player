@@ -1,0 +1,110 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(popup) {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  visibility: hidden;
+
+  /* 弹出层内容 start */
+  @include e(content) {
+    position: absolute;
+    // overflow: hidden;
+    opacity: 0;
+    transition-property: transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+    /* 弹出层位置 start */
+    @include m(center) {
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transform-origin: center center;
+    }
+    @include m(top) {
+      left: 0;
+      top: 0;
+      width: 100%;
+      transform: scaleY(0);
+      transform-origin: top center;
+    }
+    @include m(left) {
+      left: 0;
+      top: 0;
+      height: 100%;
+      transform: scaleX(0);
+      transform-origin: left center;
+    }
+    @include m(right) {
+      right: 0;
+      top: 0;
+      height: 100%;
+      transform: scaleX(0);
+      transform-origin: right center;
+    }
+    @include m(bottom) {
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      transform: scaleY(0);
+      transform-origin: bottom center;
+    }
+    /* 弹出层位置 end */
+  }
+  /* 弹出层内容 end */
+
+  /* 关闭按钮 start */
+  @include e(close-btn) {
+    position: absolute;
+    padding: 18rpx;
+    font-size: 32rpx;
+    line-height: 1;
+    color: var(--tn-color-gray);
+
+    @include m(right-top) {
+      right: 0rpx;
+      top: 0rpx;
+    }
+    @include m(left-top) {
+      left: 0rpx;
+      top: 0rpx;
+    }
+    @include m(right-bottom) {
+      right: 0rpx;
+      bottom: 0rpx;
+    }
+    @include m(left-bottom) {
+      left: 0rpx;
+      bottom: 0rpx;
+    }
+  }
+  /* 关闭按钮 end */
+
+  // 弹出弹框
+  @include when(show) {
+    @include e(content) {
+      opacity: 1;
+      @include m(center) {
+        transform: translate(-50%, -50%) scale(1);
+      }
+      @include m(top) {
+        transform: scaleY(1);
+      }
+      @include m(left) {
+        transform: scaleX(1);
+      }
+      @include m(right) {
+        transform: scaleX(1);
+      }
+      @include m(bottom) {
+        transform: scaleY(1);
+      }
+    }
+  }
+  @include when(visible) {
+    visibility: visible;
+  }
+}

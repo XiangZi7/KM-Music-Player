@@ -1,0 +1,10 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(steps) {
+  position: relative;
+
+  width: 100%;
+
+  display: flex;
+  flex-wrap: nowrap;
+}

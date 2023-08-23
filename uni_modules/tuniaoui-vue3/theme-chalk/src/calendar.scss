@@ -1,0 +1,182 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(calendar) {
+  position: relative;
+  width: 100%;
+  background-color: var(--tn-color-white);
+  color: var(--tn-text-color-primary);
+
+  /* 顶部操作区域 start */
+  @include e(operation) {
+    position: relative;
+    width: 100%;
+    padding: 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // 年切换按钮
+    &__year-btn {
+      font-size: 34rpx;
+      line-height: 1;
+      color: var(--tn-color-gray);
+    }
+
+    // 内容
+    &__value {
+      margin: 0 20rpx;
+    }
+  }
+  /* 顶部操作区域 end */
+
+  /* 星期提示文字 start */
+  @include e(week-text) {
+    position: relative;
+    width: 100%;
+
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 10rpx 30rpx;
+
+    &__item {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  /* 星期提示文字 end */
+
+  /* 日期数据 start */
+  @include e(data) {
+    position: relative;
+    width: 100%;
+    background-color: var(--tn-color-gray-light);
+    overflow: hidden;
+    padding: 0rpx 30rpx;
+
+    transition: height 0.3s linear;
+
+    /* 月份背景 start */
+    &__month-bg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 200rpx;
+      line-height: 1;
+      color: var(--tn-color-gray-disabled);
+    }
+    /* 月份背景 end */
+
+    /* 月份切换按钮 start */
+    &__month-btn {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 30rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38rpx;
+      font-weight: bold;
+      overflow: hidden;
+      color: var(--tn-color-gray);
+
+      &.left {
+        left: 0rpx;
+      }
+      &.right {
+        right: 0rpx;
+      }
+    }
+    /* 月份切换按钮 end */
+
+    /* 轮播 样式 start */
+    &__swiper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    &__swiper-item {
+      /* #ifndef MP-ALIPAY */
+      position: relative;
+      /* #endif */
+      width: 100%;
+      height: 100%;
+    }
+    /* 轮播 样式 end */
+
+    &__dates {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    /* 每个日期的样式 start */
+    &__date {
+      position: relative;
+      width: calc(100% / 7 - 12rpx);
+      height: 0;
+      padding-bottom: calc(100% / 7 - 12rpx);
+      border-radius: 50%;
+      margin: 6rpx;
+
+      &__content {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+
+        .desc {
+          font-size: 22rpx;
+          color: var(--tn-color-gray);
+          margin-top: 6rpx;
+        }
+      }
+
+      // 已选中日期
+      &.is-active {
+        .desc {
+          color: inherit;
+        }
+      }
+
+      // 禁止的日期
+      &.is-disabled {
+        .date {
+          color: var(--tn-color-gray);
+        }
+      }
+
+      // 选区中的日期
+      &.is-range {
+        opacity: 0.7;
+      }
+    }
+    /* 每个日期的样式 end */
+  }
+  /* 日期数据 end */
+
+  /* 日期选择模式 start */
+  @include m(range) {
+    @include e(data) {
+      &__date {
+        width: calc(100% / 7);
+        padding-bottom: calc(100% / 7);
+        border-radius: 0rpx;
+        margin: 0;
+      }
+    }
+  }
+  /* 日期选择模式 end */
+}

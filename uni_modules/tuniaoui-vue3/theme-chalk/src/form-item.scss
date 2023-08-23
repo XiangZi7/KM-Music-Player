@@ -1,0 +1,107 @@
+@use 'sass:map';
+
+@use '../mixins/mixins.scss' as *;
+@use '../var/size.scss' as *;
+
+$label-position: left, right, top;
+
+$tn-form-font-sizes: () !default;
+$tn-form-font-sizes: map-merge(
+  (
+    'sm': 22rpx,
+    'lg': 34rpx,
+  ),
+  $tn-form-font-sizes
+);
+
+@include b(form-item) {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin-bottom: 26rpx;
+
+  /* 错误信息 start */
+  @include e(error-message) {
+    width: 100%;
+    margin-top: 4rpx;
+  }
+  /* 错误信息 end */
+
+  /* formItem-wrapper start */
+  @include e(wrapper) {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  /* formItem-wrapper end */
+
+  /* formItem-label start */
+  @include e(label) {
+    flex-shrink: 0;
+    padding: 0rpx 16rpx 0rpx 0rpx;
+    /* 必选项星号 start */
+    @include m(asterisk-left) {
+      &::before {
+        content: '*';
+        color: var(--tn-color-red);
+        margin-right: 4rpx;
+      }
+    }
+    @include m(asterisk-right) {
+      &::after {
+        content: '*';
+        color: var(--tn-color-red);
+        margin-left: 4rpx;
+      }
+    }
+    /* 必选项星号 end */
+  }
+  /* formItem-label end */
+
+  /* formItem-content start */
+  @include e(content) {
+    flex-grow: 1;
+  }
+  /* formItem-content end */
+
+  /* 标签的位置 start */
+  @include m(label-top) {
+    @include e(wrapper) {
+      display: block;
+    }
+
+    @include e(label) {
+      width: 100%;
+      padding-bottom: 10rpx;
+    }
+    @include e(content) {
+      width: 100%;
+    }
+  }
+
+  @include m(label-right) {
+    @include e(label) {
+      text-align: right;
+    }
+  }
+
+  @include m(label-left) {
+    @include e(label) {
+      text-align: left;
+    }
+  }
+  /* 标签的位置 end */
+
+  /* form-item 尺寸 start */
+  @each $size in $tn-form-sizes {
+    @include m($size) {
+      @include e(label) {
+        font-size: map-get($tn-form-font-sizes, $size);
+      }
+      @include e(error-message) {
+        font-size: map-get($tn-form-font-sizes, $size);
+      }
+    }
+  }
+  /* form-item 尺寸 end */
+}

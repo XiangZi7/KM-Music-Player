@@ -1,0 +1,6 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(collapse) {
+  position: relative;
+  width: 100%;
+}

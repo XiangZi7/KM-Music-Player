@@ -1,0 +1,65 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(line-progress) {
+  position: relative;
+  width: 100%;
+
+  border-radius: 2000rpx;
+  overflow: hidden;
+
+  /* 进度 start */
+  @include e(active) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    border-radius: inherit;
+    transition-property: width;
+    transition-timing-function: ease-out;
+
+    /* 条纹 start */
+    @include m(stripe) {
+      background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.15) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.15) 75%,
+        transparent 75%,
+        transparent
+      );
+      background-size: 1rem 1rem;
+
+      &--animation {
+        animation: stripeAnimation 2s linear infinite;
+      }
+    }
+    /* 条纹 end */
+  }
+  /* 进度 end */
+
+  /* 百分比的值 start */
+  @include e(percent-value) {
+    position: absolute;
+    width: fit-content;
+    max-width: 100%;
+
+    top: 50%;
+    right: 0rpx;
+    transform: translate(0, -50%) scale(0.6);
+    color: #fff;
+    line-height: 1;
+  }
+  /* 百分比的值 end */
+}
+
+@keyframes stripeAnimation {
+  0% {
+    background-position: 1rem 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}

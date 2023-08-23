@@ -1,0 +1,13 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(checkbox-group) {
+  position: relative;
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  @include when(wrap) {
+    display: block;
+  }
+}

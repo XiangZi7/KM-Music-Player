@@ -1,0 +1,52 @@
+@use 'sass:map';
+
+@use '../mixins/mixins.scss' as *;
+@use '../var/size.scss' as *;
+
+$count-down-sizes: () !default;
+$count-down-sizes: map-merge(
+  (
+    'sm': 24rpx,
+    '': 28rpx,
+    'lg': 32rpx,
+    'xl': 36rpx,
+  ),
+  $count-down-sizes
+);
+
+@include b(count-down) {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+
+  line-height: 1;
+
+  /* 分割符 start */
+  @include e(separator) {
+    margin: 0 4rpx;
+
+    @include m(en) {
+      margin-top: -3%;
+    }
+  }
+  /* 分割符 end */
+
+  /* 内容 start */
+  @include e(text) {
+    @include when(border) {
+      border-radius: 8rpx;
+      border-width: 1rpx;
+      border-style: solid;
+      padding: 4rpx;
+    }
+  }
+  /* 内容 end */
+
+  /* 尺寸设置 start */
+  @each $size in $tn-inner-sizes {
+    @include m($size) {
+      font-size: map-get($count-down-sizes, $size);
+    }
+  }
+  /* 尺寸设置 end */
+}

@@ -1,0 +1,5 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(count-to) {
+  display: inline-block;
+}

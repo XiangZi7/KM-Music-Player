@@ -1,0 +1,102 @@
+@use 'sass:map';
+
+@use '../mixins/mixins.scss' as *;
+@use '../var/size.scss' as *;
+
+$number-box-sizes: () !default;
+$number-box-sizes: map-merge(
+  (
+    'sm': (
+      width: 150rpx,
+      height: 40rpx,
+      font-size: 22rpx,
+    ),
+    '': (
+      width: 180rpx,
+      height: 50rpx,
+      font-size: 28rpx,
+    ),
+    'lg': (
+      width: 220rpx,
+      height: 60rpx,
+      font-size: 36rpx,
+    ),
+  ),
+  $number-box-sizes
+);
+
+@include b(number-box) {
+  display: inline-flex;
+
+  position: relative;
+  width: map-get(map-get($number-box-sizes, ''), width);
+  height: map-get(map-get($number-box-sizes, ''), height);
+  font-size: map-get(map-get($number-box-sizes, ''), font-size);
+
+  /* 操作按钮 start */
+  @include e(operation-btn) {
+    flex-grow: 0;
+    flex-shrink: 0;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+
+    width: map-get(map-get($number-box-sizes, ''), height);
+    height: map-get(map-get($number-box-sizes, ''), height);
+    font-size: calc(map-get(map-get($number-box-sizes, ''), font-size) * 1.2);
+
+    @include when(disabled) {
+      opacity: 0.3;
+    }
+  }
+  /* 操作按钮 end */
+
+  /* 输入框 start */
+  @include e(input) {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: 0rpx 4rpx;
+
+    width: 100%;
+    height: 100%;
+    padding: 0rpx;
+
+    input {
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      color: inherit;
+      font-size: inherit;
+      padding: 0rpx 4rpx;
+      text-align: center;
+    }
+  }
+  /* 输入框 end */
+
+  /* 尺寸 start */
+  @each $size in $tn-form-sizes {
+    @include m($size) {
+      width: map-get(map-get($number-box-sizes, $size), width);
+      height: map-get(map-get($number-box-sizes, $size), height);
+      font-size: map-get(map-get($number-box-sizes, $size), font-size);
+
+      @include e(operation-btn) {
+        width: map-get(map-get($number-box-sizes, $size), height);
+        height: map-get(map-get($number-box-sizes, $size), height);
+        font-size: calc(
+          map-get(map-get($number-box-sizes, $size), font-size) * 1.2
+        );
+      }
+    }
+  }
+  /* 尺寸 end */
+
+  /* 禁止操作 start */
+  @include m(disabled) {
+    opacity: 0.4;
+  }
+  /* 禁止操作 end */
+}

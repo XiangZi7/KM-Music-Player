@@ -1,0 +1,127 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(week-calendar) {
+  position: relative;
+  width: 100%;
+  background-color: var(--tn-color-white);
+  color: var(--tn-text-color-primary);
+
+  /* 星期展示 start */
+  @include e(weeks) {
+    position: relative;
+    width: 100%;
+    padding: 20rpx 30rpx;
+
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  @include e(week) {
+    flex-grow: 1;
+    flex-shrink: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* 星期展示 end */
+
+  /* 周日历数据 start */
+  @include e(data) {
+    position: relative;
+    width: 100%;
+    padding: 0rpx 30rpx;
+    background-color: var(--tn-color-gray-light);
+
+    /* 星期切换按钮 start */
+    &__week-btn {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 30rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38rpx;
+      font-weight: bold;
+      overflow: hidden;
+      color: var(--tn-color-gray);
+
+      &.left {
+        left: 0rpx;
+      }
+      &.right {
+        right: 0rpx;
+      }
+    }
+    /* 星期切换按钮 end */
+
+    /* 轮播 start */
+    &__swiper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    &__swiper-item {
+      /* #ifndef MP-ALIPAY */
+      position: relative;
+      /* #endif */
+      width: 100%;
+      height: 100%;
+    }
+    /* 轮播 end */
+
+    /* 日期容器数据 start */
+    &__dates {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+    }
+    &__date {
+      position: relative;
+      width: calc(100% / 7);
+      height: 0;
+      padding-bottom: calc(100% / 7);
+      margin: 0rpx;
+
+      .date {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 100%;
+        border-radius: 50%;
+
+        .date-value {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          line-height: 1;
+
+          .value {
+            font-size: 32rpx;
+          }
+          .desc {
+            font-size: 20rpx;
+            margin-top: 4rpx;
+          }
+        }
+
+        // 禁止的日期
+        &.is-disabled {
+          .date-value {
+            color: var(--tn-color-gray);
+          }
+        }
+      }
+    }
+    /* 日期容器数据 end */
+  }
+  /* 周日历数据 end */
+}

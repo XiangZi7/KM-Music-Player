@@ -1,0 +1,68 @@
+@use 'sass:map';
+
+@use '../mixins/mixins.scss' as *;
+@use '../var/size.scss' as *;
+
+$subsection-sizes: () !default;
+$subsection-sizes: map.merge(
+  (
+    'sm': 24rpx,
+    '': 28rpx,
+    'lg': 32rpx,
+    'xl': 36rpx,
+  ),
+  $subsection-sizes
+);
+
+@include b(subsection) {
+  position: relative;
+  width: 100%;
+
+  font-size: map-get($subsection-sizes, '');
+
+  overflow: hidden;
+
+  /* 内容 start */
+  @include e(content) {
+    position: relative;
+    width: 100%;
+    display: flex;
+    color: var(--tn-text-color-primary);
+  }
+  /* 内容 end */
+
+  /* 滑块 start */
+  @include e(slider) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+
+    transition-property: left, width, background-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+  }
+  /* 滑块 end */
+
+  /* 模式设置 start */
+  @include m(default) {
+    border-width: 1rpx;
+    border-style: solid;
+  }
+  @include m(button) {
+    @include e(slider) {
+      transform-origin: center center;
+      transform: scale(0.85);
+      border-radius: 10rpx;
+    }
+  }
+  /* 模式设置 end */
+
+  /* 尺寸 start */
+  @each $size in $tn-inner-sizes {
+    @include m($size) {
+      font-size: map-get($subsection-sizes, $size);
+    }
+  }
+  /* 尺寸 end */
+}

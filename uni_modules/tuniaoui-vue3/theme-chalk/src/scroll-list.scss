@@ -1,0 +1,41 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(scroll-list) {
+  position: relative;
+  width: 100%;
+
+  /* 内容区域 start */
+  @include e(content) {
+    width: 100%;
+
+    .data {
+      position: relative;
+      width: fit-content;
+    }
+  }
+  @include e(scroll-view) {
+    width: 100%;
+  }
+  /* 内容区域 end */
+
+  /* 指示器 start */
+  @include when(indicator) {
+    padding-bottom: 50rpx;
+  }
+  @include e(indicator) {
+    position: absolute;
+    left: 50%;
+    bottom: 20rpx;
+    height: 8rpx;
+    border-radius: 1000rpx;
+    transform: translate(-50%, 0);
+  }
+  @include e(indicator-block) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    border-radius: inherit;
+  }
+  /* 指示器 end */
+}

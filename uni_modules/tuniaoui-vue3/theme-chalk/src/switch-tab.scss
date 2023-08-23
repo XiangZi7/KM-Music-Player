@@ -1,0 +1,67 @@
+@use '../mixins/mixins.scss' as *;
+
+$switch-tab-border-radius: 15rpx;
+
+@include b(switch-tab) {
+  position: relative;
+  width: 100%;
+  border-radius: $switch-tab-border-radius;
+
+  /* 标签 start */
+  @include e(tabs) {
+    position: relative;
+    width: 100%;
+    display: flex;
+  }
+  @include e(tab) {
+    position: relative;
+    flex: 1;
+    height: 70rpx;
+
+    /* tab内部内容 start */
+    .tab-item {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: inherit;
+      border-radius: inherit;
+      transition-property: height, border-top-left-radius,
+        border-top-right-radius, border-bottom-left-radius,
+        border-bottom-right-radius, background-color, color;
+      transition-duration: 0.15s;
+      transition-timing-function: linear;
+
+      &.bg {
+        transform-origin: center bottom;
+        background-color: inherit;
+      }
+
+      &.text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+      }
+    }
+    /* tab内部内容 end */
+
+    &:nth-of-type(1) {
+      border-top-left-radius: $switch-tab-border-radius;
+    }
+    &:nth-last-of-type(1) {
+      border-top-right-radius: $switch-tab-border-radius;
+    }
+
+    /* 激活状态 start */
+    @include when(active) {
+      .tab-item {
+        border-top-left-radius: $switch-tab-border-radius;
+        border-top-right-radius: $switch-tab-border-radius;
+        height: 90rpx;
+      }
+    }
+    /* 激活状态 end */
+  }
+  /* 标签 end */
+}

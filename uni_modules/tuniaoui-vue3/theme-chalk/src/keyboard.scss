@@ -1,0 +1,157 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(keyboard) {
+  position: relative;
+  width: 100%;
+  box-shadow: 0rpx -6rpx 30rpx 0rpx rgba(0, 0, 0, 0.05);
+  background-color: var(--tn-color-white);
+  display: flex;
+
+  /* 普通键盘 start */
+  @include e(normal-container) {
+    padding: 10rpx 10rpx 20rpx 10rpx;
+
+    &.left {
+      width: 76%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    &.right {
+      width: 24%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .normal-item {
+      width: calc(100% / 3 - 20rpx);
+      margin: 10rpx;
+      box-shadow: 0rpx 0rpx 20rpx 2rpx rgba(0, 0, 0, 0.06);
+      background-color: var(--tn-color-white);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28rpx 0rpx;
+      border-radius: 8rpx;
+
+      font-size: 32rpx;
+      line-height: 1;
+
+      /* 全部占满 start */
+      &.full {
+        width: calc(100% - 20rpx);
+      }
+      /* 全部占满 end */
+
+      /* 铺满 start */
+      &.fill {
+        width: calc(100% * 2 / 3 - 20rpx);
+      }
+      /* 铺满 end */
+
+      /* 禁止操作 start */
+      &.disabled {
+        opacity: 0.3;
+      }
+      /* 禁止操作 end */
+
+      /* 删除按钮 start */
+      &.delete {
+        width: calc(100% - 10rpx);
+        height: fit-content;
+        font-size: 40rpx;
+        margin-left: 0rpx;
+        padding: 24rpx 0rpx;
+      }
+      /* 删除按钮 end */
+
+      /* 确认按钮 start */
+      &.confirm {
+        flex-grow: 1;
+        width: calc(100% - 10rpx);
+        margin-left: 0rpx;
+        background-color: var(--tn-color-primary);
+        color: var(--tn-color-white);
+      }
+      /* 确认按钮 end */
+    }
+  }
+  /* 普通键盘 end */
+
+  /* 车牌键盘 start */
+  @include e(car) {
+    display: block;
+  }
+  @include e(car-top-operation-bar) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1rpx solid var(--tn-color-gray-light);
+
+    .operation-btn {
+      font-size: 30rpx;
+      padding: 14rpx 30rpx;
+
+      &.cancel {
+        color: var(--tn-color-danger);
+      }
+      &.confirm {
+        color: var(--tn-color-primary);
+      }
+    }
+  }
+  @include e(car-container) {
+    width: 100%;
+    padding: 10rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* 行数据 start */
+    .column-data {
+      width: 100%;
+      display: flex;
+      margin: 10rpx 0rpx;
+    }
+    /* 行数据 end */
+
+    /* 列数据 */
+    .car-item {
+      flex: 1;
+      padding: 24rpx 0rpx;
+      margin: 0rpx 10rpx;
+      border-radius: 8rpx;
+      box-shadow: 0rpx 0rpx 20rpx 2rpx rgba(0, 0, 0, 0.06);
+      background-color: var(--tn-color-white);
+      line-height: 1;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      /* 禁止操作 start */
+      &.disabled {
+        opacity: 0.3;
+      }
+      /* 禁止操作 end */
+
+      /* 切换按钮 start */
+      &.switch-mode {
+        padding-left: 12rpx;
+        padding-right: 12rpx;
+      }
+      /* 切换按钮 end */
+
+      /* 删除按钮 start */
+      &.delete {
+        font-size: 32rpx;
+        padding-left: 14rpx;
+        padding-right: 14rpx;
+      }
+      /* 删除按钮 end */
+    }
+  }
+  /* 车牌键盘 end */
+}

@@ -1,0 +1,147 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(navbar) {
+  position: relative;
+
+  width: 100%;
+
+  /* wrapper start */
+  @include e(wrapper) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+  /* wrapper end */
+
+  /* 导航栏内容 start */
+  @include e(content) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    /* 居中显示 */
+    @include m(center) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  /* 导航栏内容 end */
+
+  /* 固定在顶部 start */
+  @include m(fixed) {
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
+  /* 固定在顶部 end */
+
+  /* 背景颜色 start */
+  @include e(bg) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    /* #ifndef MP-ALIPAY */
+    /* 设置毛玻璃效果 */
+    @include m(frosted) {
+      backdrop-filter: blur(20rpx);
+      -webkit-backdrop-filter: blur(20rpx);
+    }
+    /* #endif */
+  }
+  /* 背景颜色 end */
+
+  /* 填充空白内容 start */
+  @include e(placeholder) {
+    position: relative;
+    left: 0;
+    top: 0;
+    background-color: transparent;
+  }
+  /* 填充空白内容 end */
+}
+
+/* 返回按钮区域 */
+@include b(navbar-back) {
+  position: absolute;
+  left: 15rpx;
+  top: 50%;
+  transform: translateY(-50%);
+
+  /* 多图标返回按钮 start */
+  @include e(multi) {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1rpx solid rgba(255, 255, 255, 0.4);
+    border-radius: 1000rpx;
+    background-color: rgba(0, 0, 0, 0.15);
+    color: #fff;
+    font-size: 36rpx;
+
+    &__item {
+      flex-grow: 1;
+      flex-shrink: 0;
+      width: 50%;
+      height: 100%;
+      line-height: 1;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1rpx;
+      height: 60%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      opacity: 0.2;
+    }
+  }
+  /* 多图标返回按钮 end */
+
+  /* 单图标 start */
+  @include e(single) {
+    position: relative;
+    width: 70%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1rpx solid rgba(255, 255, 255, 0.4);
+    border-radius: 1000rpx;
+    background-color: rgba(0, 0, 0, 0.15);
+    color: #fff;
+    font-size: 36rpx;
+  }
+  /* 单图标 end */
+
+  /* 返回文字 start */
+  @include e(text) {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 30rpx;
+
+    &__value {
+      margin-left: 8rpx;
+    }
+  }
+  /* 返回文字 end */
+}

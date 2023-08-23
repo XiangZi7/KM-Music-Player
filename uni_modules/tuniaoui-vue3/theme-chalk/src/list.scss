@@ -1,0 +1,48 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(list-item) {
+  position: relative;
+
+  width: 100%;
+  height: auto;
+  padding: 30rpx;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  // 内容
+  @include e(content) {
+    flex: 1;
+  }
+
+  // 右图标
+  @include e(right-icon) {
+    width: 30rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // 圆角
+  @include m(radius) {
+    border-radius: 15rpx;
+    overflow: hidden;
+  }
+
+  /* 底部边框 start */
+  @include e('bottom-border') {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 100%;
+    height: 1rpx;
+    transform: translateX(-50%);
+    background-color: var(--tn-color-gray-light);
+
+    @include when(indent) {
+      width: 95%;
+    }
+  }
+  /* 底部边框 end */
+}

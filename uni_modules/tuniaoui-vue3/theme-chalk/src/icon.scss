@@ -1,0 +1,64 @@
+@use 'sass:map';
+
+@use '../mixins//mixins' as *;
+
+$sizes: sm, lg, xl;
+
+$icon-font-size: () !default;
+$icon-font-size: map.merge(
+  (
+    'sm': 24rpx,
+    'lg': 34rpx,
+    'xl': 40rpx,
+  ),
+  $icon-font-size
+);
+
+$icon-image-size: () !default;
+$icon-image-size: map.merge(
+  (
+    'sm': 30rpx,
+    '': 36rpx,
+    'lg': 42rpx,
+    'xl': 48rpx,
+  ),
+  $icon-image-size
+);
+
+@include b(icon) {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: inherit;
+  border-radius: inherit;
+
+  /* 尺寸 start */
+  @each $size in $sizes {
+    @include m($size) {
+      font-size: map-get($icon-font-size, $size);
+    }
+  }
+  /* 尺寸 end */
+
+  /* 图片类型 start */
+  @include m(image) {
+    display: inline-block;
+    width: map-get($icon-image-size, '');
+    height: map-get($icon-image-size, '');
+    .image {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      will-change: transform;
+    }
+
+    @each $size in sm, lg, xl {
+      @include spec-selector('', false, $size) {
+        width: map-get($icon-image-size, $size);
+        height: map-get($icon-image-size, $size);
+      }
+    }
+  }
+  /* 图片类型 end */
+}

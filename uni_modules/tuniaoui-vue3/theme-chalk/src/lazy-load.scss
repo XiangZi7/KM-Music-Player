@@ -1,0 +1,94 @@
+@use '../mixins/mixins.scss' as *;
+
+@mixin full-style {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+@include b(lazy-load) {
+  position: relative;
+
+  @include full-style;
+  // 保证组件被加载时有高度
+  min-height: 1rpx;
+
+  background-color: var(--tn-color-gray-light);
+  color: var(--tn-color-gray);
+
+  /* 正常显示图片 start */
+  @include when(show-image) {
+    background-color: transparent;
+    color: transparent;
+  }
+  /* 正常显示图片 end */
+
+  /* 内容容器 start */
+  @include e(container) {
+    @include full-style;
+  }
+  /* 内容容器 end */
+
+  /* 正在加载 start */
+  @include e(loading) {
+    @include full-style;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__icon {
+      font-size: 90rpx;
+      animation: loading-icon-animation 3s linear infinite;
+    }
+  }
+  /* 正在加载 end */
+
+  /* 图片加载失败 start */
+  @include e(error) {
+    @include full-style;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 100rpx;
+  }
+  /* 图片加载失败 end */
+
+  /* 图片 start */
+  @include e(image) {
+    // 消除图片底部空白
+    display: block;
+    @include full-style;
+    opacity: 0;
+
+    /* 没有动画效果 */
+    @include when(no-animation) {
+      opacity: 1;
+    }
+
+    /* 有加载动画 */
+    @include when(animation) {
+      animation: show-image-animation 0.25s ease both;
+    }
+  }
+  /* 图片 end */
+}
+
+@keyframes loading-icon-animation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes show-image-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,82 @@
+@use 'sass:map';
+
+@use '../mixins/mixins.scss' as *;
+@use '../var/size.scss' as *;
+
+$slider-sizes: () !default;
+$slider-sizes: map-merge(
+  (
+    'sm': (
+      'height': 12rpx,
+      'bar-size': 26rpx,
+    ),
+    '': (
+      'height': 16rpx,
+      'bar-size': 34rpx,
+    ),
+    'lg': (
+      'height': 20rpx,
+      'bar-size': 40rpx,
+    ),
+  ),
+  $slider-sizes
+);
+
+@include b(slider) {
+  position: relative;
+
+  width: 100%;
+  height: map-get(map-get($slider-sizes, ''), 'height');
+  border-radius: 1000rpx;
+
+  /* 滑块 start */
+  @include e(bar) {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: map-get(map-get($slider-sizes, ''), 'bar-size');
+    height: map-get(map-get($slider-sizes, ''), 'bar-size');
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0rpx 0rpx 20rpx 0rpx rgba(0, 0, 0, 0.1);
+
+    transform: translate(-50%, -50%);
+  }
+  /* 滑块 end */
+
+  /* 激活时滑动条 start */
+  @include e(active) {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    border-radius: inherit;
+  }
+  /* 激活时滑动条 end */
+
+  /* 尺寸start */
+  @each $size in $tn-form-sizes {
+    @include m($size) {
+      height: map-get(map-get($slider-sizes, $size), 'height');
+
+      @include e(bar) {
+        width: map-get(map-get($slider-sizes, $size), 'bar-size');
+        height: map-get(map-get($slider-sizes, $size), 'bar-size');
+      }
+    }
+  }
+  /* 尺寸end */
+
+  /* 禁用 start */
+  @include m(disabled) {
+    opacity: 0.4;
+  }
+  /* 禁用 end */
+
+  // 是否搭配formItem一起使用
+  @include when(form-item) {
+    margin-left: 10rpx;
+  }
+}

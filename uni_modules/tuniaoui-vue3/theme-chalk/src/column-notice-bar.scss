@@ -1,0 +1,21 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(column-notice-bar) {
+  position: relative;
+
+  width: 100%;
+  height: auto;
+
+  @include e(swiper) {
+    position: relative;
+    width: 100%;
+    height: 1.2rem;
+  }
+
+  @include e(swiper-item) {
+    position: relative;
+    width: 100%;
+    vertical-align: middle;
+    margin-top: -2rpx;
+  }
+}

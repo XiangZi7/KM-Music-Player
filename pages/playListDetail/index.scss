@@ -1,0 +1,126 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: #EEF2F8;
+    overflow: auto;
+}
+
+
+.head {
+    padding-top: var(--status-bar-height);
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    .btn {
+        z-index: 99;
+        background-color: #fff;
+        width: 2em;
+        height: 2em;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(0.625rem);
+        margin: 0 10px;
+    }
+}
+
+.main {
+    padding: 0 10px;
+}
+
+.card {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        filter: blur(8px);
+    }
+
+    .card-content {
+        position: relative;
+        z-index: 1;
+        padding: 20px;
+        color: #fff;
+        margin-top: 80px;
+
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+
+            .avatar {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+
+            .username {
+                font-size: 16px;
+            }
+        }
+
+        .description {
+            font-size: 14px;
+        }
+    }
+}
+
+.play {
+    &-all {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        justify-content: space-between;
+    }
+
+    &-item {
+        display: flex;
+        align-items: center;
+    }
+
+    &-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #FF5353;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    &-text {
+        font-size: var(--font-size-md);
+    }
+
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+}

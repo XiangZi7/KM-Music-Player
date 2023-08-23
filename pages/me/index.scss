@@ -1,0 +1,121 @@
+.app {
+    padding: 10px;
+}
+
+
+.bg {
+    background-image: url("@/static/user_bg.jpeg");
+    background-size: cover;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #f2f2f2;
+}
+
+.button-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    // margin-bottom: 10px;
+}
+
+.username {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    margin-left: 10px;
+}
+
+.section-title {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #838383;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    // margin-top: 20px;
+}
+
+.grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grid-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.grid-label {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 7px;
+}
+
+.song-list {
+    margin-top: 20px;
+}
+
+.song-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.song-cover {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.song-info {
+    flex: 1;
+}
+
+.song-title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.song-artist {
+    font-size: 12px;
+    color: #888;
+}

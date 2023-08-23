@@ -1,0 +1,45 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(tag) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  line-height: 1;
+  white-space: nowrap;
+  width: fit-content;
+  font-size: var(--tn-font-size);
+  padding: 6rpx 16rpx;
+
+  font-size: var(--tn-font-size);
+
+  /* size尺寸 satrt */
+  @include m(sm) {
+    font-size: calc(var(--tn-font-size) * 1.5);
+  }
+  @include m(lg) {
+    font-size: calc(var(--tn-font-size) * 2);
+  }
+  @include m(xl) {
+    font-size: calc(var(--tn-font-size) * 2.5);
+  }
+  /* size尺寸 end */
+
+  /* shape形状 start */
+  @include m(circle) {
+    border-radius: 100rpx;
+  }
+  @include m(round) {
+    border-radius: 10rpx;
+  }
+  @include m(circleLeft) {
+    border-top-left-radius: 50rpx;
+    border-bottom-left-radius: 50rpx;
+  }
+  @include m(circleRight) {
+    border-top-right-radius: 50rpx;
+    border-bottom-right-radius: 50rpx;
+  }
+  /* shape形状 end */
+}

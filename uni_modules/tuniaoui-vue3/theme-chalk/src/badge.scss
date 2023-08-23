@@ -1,0 +1,126 @@
+@use 'sass:map';
+
+@use '../mixins/mixins.scss' as *;
+@use '../var/size.scss' as *;
+
+$tn-inner-sizes: 'lg', 'xl';
+
+$badge-sizes: () !default;
+$badge-sizes: map.merge(
+  (
+    '': (
+      font-size: 20rpx,
+      icon-size: 22rpx,
+      padding: 4rpx 8rpx,
+      size: 26rpx,
+    ),
+    'lg': (
+      font-size: 26rpx,
+      icon-size: 28rpx,
+      padding: 4rpx 10rpx,
+      size: 32rpx,
+    ),
+    'xl': (
+      font-size: 30rpx,
+      icon-size: 32rpx,
+      padding: 4rpx 12rpx,
+      size: 40rpx,
+    ),
+  ),
+  $badge-sizes
+);
+
+/* 绝对定位 */
+@mixin absolute-style {
+  @at-root {
+    &__absolute {
+      position: absolute;
+      top: 0;
+      right: 0;
+      &--center {
+        transform: translate(50%, -50%);
+      }
+    }
+  }
+}
+
+@include b(badge) {
+  display: inline-block;
+
+  position: relative;
+  z-index: 1;
+  /* 绝对定位 start */
+  @include absolute-style;
+  /* 绝对定位 end */
+}
+
+/* 徽标内容 start */
+@include b(badge-content) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  width: fit-content;
+  height: auto;
+  border-radius: 1000rpx;
+  transform-origin: center center;
+
+  font-size: map-get(map-get($badge-sizes, ''), font-size);
+  padding: map-get(map-get($badge-sizes, ''), padding);
+
+  /* 绝对定位 start */
+  @include absolute-style;
+  /* 绝对定位 end */
+
+  /* 数据内容 start */
+  @include e(data) {
+    line-height: 1;
+    text-align: center;
+    vertical-align: middle;
+  }
+  /* 数据内容 end */
+
+  /* 尺寸 start */
+  @each $size in $tn-inner-sizes {
+    @include m($size) {
+      font-size: map-get(map-get($badge-sizes, $size), font-size);
+      padding: map-get(map-get($badge-sizes, $size), padding);
+    }
+  }
+  /* 尺寸 end */
+
+  /* 点徽标 start */
+  @include m(dot) {
+    width: map-get(map-get($badge-sizes, ''), size);
+    height: map-get(map-get($badge-sizes, ''), size);
+    border-radius: 50%;
+    padding: 0;
+
+    @each $size in $tn-inner-sizes {
+      @include spec-selector('', false, $size) {
+        width: map-get(map-get($badge-sizes, $size), size);
+        height: map-get(map-get($badge-sizes, $size), size);
+      }
+    }
+  }
+  /* 点徽标 end */
+
+  /* 图标徽标 start */
+  @include m(icon) {
+    font-size: map-get(map-get($badge-sizes, ''), icon-size);
+    width: calc(map-get(map-get($badge-sizes, ''), icon-size) + 8rpx);
+    height: calc(map-get(map-get($badge-sizes, ''), icon-size) + 8rpx);
+    padding: 0;
+    @each $size in $tn-inner-sizes {
+      @include spec-selector('', false, $size) {
+        font-size: map-get(map-get($badge-sizes, $size), icon-size);
+        width: calc(map-get(map-get($badge-sizes, $size), icon-size) + 8rpx);
+        height: calc(map-get(map-get($badge-sizes, $size), icon-size) + 8rpx);
+      }
+    }
+  }
+  /* 图标徽标 end */
+}
+/* 徽标内容 end */

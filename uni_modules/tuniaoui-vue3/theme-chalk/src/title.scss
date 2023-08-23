@@ -1,0 +1,105 @@
+@use 'sass:map';
+
+@use '../mixins/mixins.scss' as *;
+@use '../var/size.scss' as *;
+
+$title-sizes: () !default;
+$title-sizes: map-merge(
+  (
+    'sm': (
+      'font-size': 24rpx,
+    ),
+    '': (
+      'font-size': 28rpx,
+    ),
+    'lg': (
+      'font-size': 32rpx,
+    ),
+    'xl': (
+      'font-size': 38rpx,
+    ),
+  ),
+  $title-sizes
+);
+
+@include b(title) {
+  position: relative;
+  // width: 100%;
+  height: fit-content;
+
+  /* 标题内容 start */
+  @include e(title) {
+    position: relative;
+    width: fit-content;
+    font-size: map-get(map-get($title-sizes, ''), 'font-size');
+    /* 尺寸 start */
+    @each $size in $tn-inner-sizes {
+      @include m($size) {
+        font-size: map-get(map-get($title-sizes, $size), 'font-size');
+      }
+    }
+    /* 尺寸 end */
+
+    // 左边垂直竖线
+    @include m(vLine) {
+      padding-left: 18rpx;
+    }
+    // 左边点
+    @include m(dot) {
+      padding-left: 20rpx;
+    }
+    // 底部横线
+    @include m(hLine) {
+      padding-bottom: 10rpx;
+    }
+    // 子标题
+    @include m(subTitle) {
+      width: 100%;
+      z-index: 1;
+      padding-bottom: 10rpx;
+    }
+  }
+  /* 标题内容 end */
+
+  /* 辅助元素 start */
+  // 左边垂直竖线
+  @include e(vLine) {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 8rpx;
+    height: 92%;
+    border-radius: 30rpx;
+    transform: translateY(-50%);
+  }
+  // 左边点
+  @include e(dot) {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 14rpx;
+    height: 14rpx;
+    border-radius: 50%;
+    transform: translateY(-50%);
+  }
+  // 底部横线
+  @include e(hLine) {
+    position: absolute;
+    left: 8rpx;
+    bottom: 0;
+    width: 40%;
+    max-width: 40rpx;
+    height: 8rpx;
+    border-radius: 40rpx;
+  }
+  // 子标题
+  @include e(subTitle) {
+    position: absolute;
+    left: 8rpx;
+    top: 20%;
+    z-index: -1;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  /* 辅助元素 end */
+}

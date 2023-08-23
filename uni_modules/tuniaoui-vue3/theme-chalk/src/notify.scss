@@ -1,0 +1,62 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(notify) {
+  position: fixed;
+
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  /* 顶部弹出 start */
+  @include m(top) {
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    padding: 10rpx 0rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-100%);
+
+    @include when(active) {
+      transform: translateY(0);
+    }
+  }
+  /* 顶部弹出 end */
+
+  /* 居中弹出 start */
+  @include m(center) {
+    left: 50%;
+    top: 50%;
+    padding: 15rpx;
+    border-radius: 8rpx;
+    transform-origin: center center;
+    transform: translate(-50%, -50%) scale(0);
+
+    @include when(active) {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+  /* 居中弹出 end */
+
+  /* 底部弹出 start */
+  @include m(bottom) {
+    left: 50%;
+    bottom: 13%;
+    padding: 15rpx;
+    border-radius: 8rpx;
+    transform-origin: center center;
+    transform: translate(-50%, -50%) scale(0);
+
+    @include when(active) {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+  /* 底部弹出 end */
+
+  /* 弹出激活 状态 start */
+  @include when(active) {
+    opacity: 1;
+  }
+  /* 弹出激活 状态 end */
+}

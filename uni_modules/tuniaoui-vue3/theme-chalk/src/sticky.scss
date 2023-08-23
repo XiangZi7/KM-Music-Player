@@ -1,0 +1,12 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(sticky) {
+  /* #ifdef APP-VUE || MP-WEIXIN */
+  position: sticky;
+  /* #endif */
+
+  @include e(content) {
+    width: 100%;
+    z-index: inherit;
+  }
+}

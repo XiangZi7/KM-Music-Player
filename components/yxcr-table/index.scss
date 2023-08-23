@@ -1,0 +1,30 @@
+.popular {
+    margin-top: 20px;
+  
+    &-item {
+      width: 100%;
+      height: 70px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+    }
+  
+    &-title {
+      padding-bottom: 10px;
+      display: block;
+    }
+  
+    .info {
+      margin-left: 10px;
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      height: 100%;
+  
+      .des {
+        font-size: var(--font-size-xs);
+        color: var(--text-color-placeholder);
+      }
+    }
+  }

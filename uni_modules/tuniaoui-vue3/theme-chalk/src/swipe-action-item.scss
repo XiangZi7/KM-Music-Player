@@ -1,0 +1,72 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(swipe-action-item) {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  /* 内容 start */
+  @include e(content) {
+    position: relative;
+    width: 100%;
+    background-color: var(--tn-color-white);
+    z-index: 1;
+    transition-property: right;
+    transition-timing-function: ease;
+  }
+  /* 内容 end */
+
+  /* 操作选项 start */
+  @include e(options) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    transition-property: right;
+    transition-timing-function: ease;
+  }
+  @include e(option-item) {
+    position: relative;
+    height: 100%;
+
+    /* 禁止选中 start */
+    @include when(disabled) {
+      opacity: 0.4;
+    }
+    /* 禁止选中 end */
+
+    /* 圆形按钮 start */
+    @include when(round) {
+      width: 90rpx;
+      height: 90rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include e(option-item-content) {
+        width: 70rpx;
+        height: 70rpx;
+        padding: 0rpx;
+        justify-content: center;
+        border-radius: 50%;
+      }
+    }
+    /* 圆形按钮 end */
+  }
+  @include e(option-item-content) {
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0rpx 24rpx;
+
+    .text {
+      margin-left: 8rpx;
+    }
+  }
+  /* 操作选项 end */
+}

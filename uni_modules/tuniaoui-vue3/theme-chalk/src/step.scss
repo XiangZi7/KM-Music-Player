@@ -1,0 +1,225 @@
+@use '../mixins/mixins.scss' as *;
+
+$mode-item-size: 50rpx;
+
+@include b(step) {
+  flex: 1;
+  position: relative;
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+
+  /* 内容容器 start */
+  @include e(container) {
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  /* 内容容器 end */
+
+  /* 模式内容 start */
+  @include e(mode-item) {
+    position: relative;
+
+    width: $mode-item-size;
+    height: $mode-item-size;
+    // background-color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+  /* 模式内容 end */
+
+  /* 内容文字 start */
+  @include e(mode-title) {
+    transition: color 0.3s ease;
+    margin-top: 6rpx;
+  }
+  /* 内容文字 end */
+
+  /* 点模式 start */
+  @include e(mode-dot) {
+    width: 20rpx;
+    height: 20rpx;
+
+    border-radius: 50%;
+
+    transition: background-color 0.3s ease;
+  }
+  /* 点模式 end */
+
+  /* 数字模式 start */
+  @include e(mode-number) {
+    position: relative;
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    border: 1rpx solid var(--tn-color-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    // background-color: transparent;
+
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      line-height: 1;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .icon {
+      line-height: 1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+  }
+  /* 数字模式 end */
+
+  /* 点图标模式 start */
+  @include e(mode-dotIcon) {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .dot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+
+      width: 20rpx;
+      height: 20rpx;
+
+      border-radius: 50%;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      transform-origin: center center;
+
+      transition: background-color 0.3s ease, opacity 0.3s ease,
+        transform 0.3s ease;
+    }
+    .icon {
+      font-size: 42rpx;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transform-origin: center center;
+      // color: transparent;
+
+      opacity: 0;
+
+      transition: color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+    }
+  }
+  /* 点图标模式 end */
+
+  /* 图标模式 start */
+  @include e(mode-icon) {
+    font-size: 42rpx;
+    .icon {
+      transition: color 0.3s ease;
+      transform-origin: center center;
+    }
+  }
+  /* 图标模式 end */
+
+  /* 横线 start */
+  @include e(line) {
+    position: absolute;
+    right: calc(#{$mode-item-size} * 1.35);
+    top: calc(#{$mode-item-size} / 2 - 2rpx);
+    width: calc(100% - #{$mode-item-size});
+    height: 4rpx;
+
+    z-index: 1;
+
+    transition: background-color 0.3s ease;
+
+    @include when(no-title) {
+      right: calc(#{$mode-item-size});
+    }
+  }
+  /* 横线 end */
+
+  /* 激活状态 start */
+  @include when(active) {
+    // 数字模式
+    @include e(mode-number) {
+      border-color: transparent;
+
+      &::before {
+        opacity: 0;
+      }
+
+      .icon {
+        opacity: 1;
+      }
+    }
+    // 点图标模式
+    @include e(mode-dotIcon) {
+      .dot {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2);
+      }
+      .icon {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+    // 图标模式
+    @include e(mode-icon) {
+      .icon {
+        animation: icon-mode-switch-animation 0.3s ease;
+      }
+    }
+  }
+  /* 激活状态 end */
+
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      @include e(mode-number) {
+        &::before {
+          content: '#{$i}';
+        }
+      }
+    }
+  }
+
+  /* 最后一个元素 start */
+  &:first-of-type {
+    flex: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: fit-content;
+    max-width: fit-content;
+
+    @include e(line) {
+      display: none;
+    }
+  }
+  /* 最后一个元素 end */
+}
+
+/* 图标模式下切换动画 */
+@keyframes icon-mode-switch-animation {
+  from {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

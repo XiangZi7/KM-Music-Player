@@ -1,0 +1,105 @@
+@use 'config';
+
+// BEM support Func
+// 块（Block）：代表一个独立的组件或页面中的一个大型部分。块可以看作是一个命名空间，用于包含相关元素和修饰符。例如，一个导航栏可以被视为一个块。
+// 元素（Element）：代表块的一部分，但不能独立存在。元素总是属于一个块，并且与该块紧密相关。元素由块名称和元素名称组成，中间由双下划线（__）连接。例如，一个导航栏可以包含多个链接，链接可以被视为导航栏块的元素。
+// 修饰符（Modifier）：代表块或元素的变体或状态。修饰符用于修改块或元素的外观或行为。修饰符由块名称或元素名称，连字符（-）和修饰符名称组成。例如，一个导航栏可以具有活动状态或浅色主题，这些状态可以通过添加修饰符类进行实现。
+
+@function selectorToString($selector) {
+  $selector: inspect($selector);
+  $selector: str-slice($selector, 2, -2);
+  @return $selector;
+}
+
+@function containsModifier($selector) {
+  $selector: selectorToString($selector);
+
+  @if str_index($selector, config.$modifier-separator) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+@function containWhenFlag($selector) {
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, '.' + config.$state-prefix) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+@function containPseudoClass($selector) {
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, ':') {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+@function hitAllSpecialNestRule($selector) {
+  @return containsModifier($selector) or containWhenFlag($selector) or
+    containPseudoClass($selector);
+}
+
+// join var name
+// joinVarName(('button', 'text-color')) => '--tn-button-text-color'
+@function joinVarName($list) {
+  $name: '--' + config.$namespace;
+  @each $item in $list {
+    @if $item != '' {
+      $name: $name + '-' + $item;
+    }
+  }
+  @return $name;
+}
+
+// getCssVarName('button', 'text-color') => '--tn-button-text-color'
+@function getCssVarName($args...) {
+  @return joinVarName($args);
+}
+
+// getCssVar('button', 'text-color') => var(--tn-button-text-color)
+@function getCssVar($args...) {
+  @return var(#{joinVarName($args)});
+}
+
+// getCssVarWithDefault('button', 'text-color', 'red') => var(--tn-button-text-color, red)
+@function getCssVarWithDefault($args, $default) {
+  @return var(#{joinVarName($args)}, #{$default});
+}
+
+// bem('block', 'element', ''modifier) => 'tn-block__element--modifier'
+@function bem($block, $element: '', $modifier: '') {
+  $name: config.$namespace + config.$common-separator + $block;
+
+  @if $element != '' {
+    $name: $name + config.$element-separator + $element;
+  }
+
+  @if $modifier != '' {
+    $name: $name + config.$modifier-separator + $modifier;
+  }
+
+  @return $name;
+}
+
+// 字符串替换
+@function str-replace($string, $search, $replace) {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      );
+  }
+
+  @return $string;
+}

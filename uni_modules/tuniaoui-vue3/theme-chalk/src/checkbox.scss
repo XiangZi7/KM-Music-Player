@@ -1,0 +1,135 @@
+@use 'sass:map';
+
+@use '../mixins/mixins.scss' as *;
+@use '../var/size.scss' as *;
+
+$checkbox-sizes: () !default;
+$checkbox-sizes: map.merge(
+  (
+    'sm': (
+      'padding': 8rpx 14rpx,
+      'font-size': 24rpx,
+      'box': 24rpx,
+    ),
+    '': (
+      'padding': 10rpx 20rpx,
+      'font-size': 28rpx,
+      'box': 30rpx,
+    ),
+    'lg': (
+      'padding': 12rpx 24rpx,
+      'font-size': 32rpx,
+      'box': 36rpx,
+    ),
+  ),
+  $checkbox-sizes
+);
+
+@include b(checkbox) {
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+
+  padding: map-get(map-get($checkbox-sizes, ''), 'padding');
+  font-size: map-get(map-get($checkbox-sizes, ''), 'font-size');
+  border-radius: 10rpx;
+
+  transition: all 0.3s ease-in-out;
+
+  /* 单选框组中的单选框之间有10rpx的边距 */
+  @include m(group) {
+    margin: 10rpx;
+  }
+
+  /* 复选框选择框 start */
+  @include e(checked-box) {
+    flex-shrink: 0;
+    position: relative;
+    width: map-get(map-get($checkbox-sizes, ''), 'box');
+    height: map-get(map-get($checkbox-sizes, ''), 'box');
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: transparent;
+
+    /* 不确定状态 start */
+    @include m(indeterminate) {
+      &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 50%;
+        height: 2rpx;
+        background-color: #fff;
+        transform: translate(-50%, -50%);
+      }
+    }
+    /* 不确定状态 end */
+
+    /* 选框的形状 start */
+    @include m(square) {
+      border-radius: 4rpx;
+      font-size: map-get(map-get($checkbox-sizes, ''), 'font-size');
+    }
+    @include m(circle) {
+      border-radius: 50%;
+      font-size: calc(
+        map-get(map-get($checkbox-sizes, ''), 'font-size') * 0.85
+      );
+    }
+    /* 选框的形状 end */
+  }
+  /* 复选框选择框 end */
+
+  /* 内容 start */
+  @include e(content) {
+    @include m(left) {
+      margin-right: 14rpx;
+    }
+    @include m(right) {
+      margin-left: 14rpx;
+    }
+  }
+  /* 内容 end */
+
+  /* 尺寸 start */
+  @each $size in $tn-form-sizes {
+    @include m(#{$size}) {
+      padding: map-get(map-get($checkbox-sizes, $size), 'padding');
+      font-size: map-get(map-get($checkbox-sizes, $size), 'font-size');
+
+      @include e(checked-box) {
+        width: map-get(map-get($checkbox-sizes, $size), 'box');
+        height: map-get(map-get($checkbox-sizes, $size), 'box');
+        @include m(square) {
+          font-size: map-get(map-get($checkbox-sizes, $size), 'font-size');
+        }
+        @include m(circle) {
+          font-size: calc(
+            map-get(map-get($checkbox-sizes, $size), 'font-size') * 0.85
+          );
+        }
+      }
+    }
+  }
+  /* 尺寸 end */
+
+  /* 选中效果 start */
+  @include m(selected) {
+    @include e(checked-box) {
+      color: #fff;
+    }
+  }
+  /* 选中效果 end */
+
+  /* 禁止效果 start */
+  @include m(disabled) {
+    opacity: 0.4;
+  }
+  /* 禁止效果 end */
+}

@@ -1,0 +1,18 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(overlay) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition-property: all;
+  transition-timing-function: ease;
+  visibility: hidden;
+  opacity: 0;
+
+  @include m(show) {
+    opacity: 1;
+    visibility: visible;
+  }
+}

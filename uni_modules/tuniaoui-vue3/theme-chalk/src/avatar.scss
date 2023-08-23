@@ -1,0 +1,98 @@
+@use 'sass:map';
+
+@use '../mixins/mixins' as *;
+@use '../var/size.scss' as *;
+
+$avatar-sizes: () !default;
+$avatar-sizes: map.merge(
+  (
+    'sm': 50rpx,
+    '': 70rpx,
+    'lg': 90rpx,
+    'xl': 120rpx,
+  ),
+  $avatar-sizes
+);
+
+$avatar-icon-sizes: () !default;
+$avatar-icon-sizes: map.merge(
+  (
+    'sm': 28rpx,
+    '': 40rpx,
+    'lg': 50rpx,
+    'xl': 70rpx,
+  ),
+  $avatar-icon-sizes
+);
+
+@include b(avatar) {
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  transition: margin-left 0.25s linear;
+  width: map-get($avatar-sizes, '');
+  height: map-get($avatar-sizes, '');
+
+  /* 头像类型 start */
+  @include e(image) {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+
+    .image {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      will-change: transform;
+    }
+  }
+  @include e(icon) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+    font-size: map-get($avatar-icon-sizes, '');
+  }
+  @include e(custom) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+    font-size: map-get($avatar-icon-sizes, '');
+  }
+  /* 头像类型 end */
+
+  /* 头像形状 start */
+  @include m('circle') {
+    border-radius: 50%;
+    // overflow: hidden;
+  }
+  @include m('square') {
+    border-radius: 12rpx;
+  }
+  /* 头像形状 end */
+
+  /* 尺寸 start */
+  @each $size in $tn-inner-sizes {
+    @include m($size) {
+      width: map-get($avatar-sizes, $size);
+      height: map-get($avatar-sizes, $size);
+
+      /* 当为图标头像时对应的尺寸 start */
+      @include e(icon) {
+        font-size: map-get($avatar-icon-sizes, $size);
+      }
+      @include e(custom) {
+        font-size: map-get($avatar-icon-sizes, $size);
+      }
+      /* 当为图标头像时对应的尺寸 end */
+    }
+  }
+  /* 尺寸 end */
+}

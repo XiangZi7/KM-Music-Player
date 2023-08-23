@@ -1,0 +1,75 @@
+@use 'sass:map';
+
+@use '../mixins/mixins.scss' as *;
+@use '../var/size.scss' as *;
+
+$empty-sizes: () !default;
+$empty-sizes: map-merge(
+  (
+    'sm': (
+      'icon': 60rpx,
+      'tips': 24rpx,
+    ),
+    '': (
+      'icon': 80rpx,
+      'tips': 28rpx,
+    ),
+    'lg': (
+      'icon': 100rpx,
+      'tips': 32rpx,
+    ),
+    'xl': (
+      'icon': 120rpx,
+      'tips': 38rpx,
+    ),
+  ),
+  $empty-sizes
+);
+
+@include b(empty) {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+
+  @include e(icon) {
+    font-size: map-get(map-get($empty-sizes, ''), 'icon');
+    width: map-get(map-get($empty-sizes, ''), 'icon');
+    height: map-get(map-get($empty-sizes, ''), 'icon');
+
+    @include when(custom) {
+      font-size: inherit;
+      width: auto;
+      height: auto;
+    }
+  }
+
+  @include e(tips) {
+    margin-top: 8rpx;
+    font-size: map-get(map-get($empty-sizes, ''), 'tips');
+
+    @include when(custom) {
+      font-size: inherit;
+    }
+  }
+
+  /* 尺寸 start */
+  @each $size in $tn-inner-sizes {
+    @include m($size) {
+      @include e(icon) {
+        font-size: map-get(map-get($empty-sizes, $size), 'icon');
+        width: map-get(map-get($empty-sizes, $size), 'icon');
+        height: map-get(map-get($empty-sizes, $size), 'icon');
+      }
+      @include e(tips) {
+        font-size: map-get(map-get($empty-sizes, $size), 'tips');
+      }
+    }
+  }
+  /* 尺寸 end */
+}

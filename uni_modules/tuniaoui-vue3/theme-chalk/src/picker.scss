@@ -1,0 +1,54 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(picker) {
+  position: relative;
+
+  width: 100%;
+
+  border-radius: 30rpx 30rpx 0rpx 0rpx;
+  box-shadow: 0rpx 0rpx 40rpx 04rpx rgba(0, 0, 0, 0.1);
+
+  /* 顶部操作区域 start */
+  @include e(operation) {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30rpx 0rpx;
+    font-size: 30rpx;
+    @include when(only-confirm) {
+      justify-content: flex-end;
+    }
+  }
+  @include e(operation-btn) {
+    padding: 0rpx 30rpx;
+  }
+  /* 顶部操作区域 end */
+
+  /* 内容区域 start */
+  @include e(content) {
+    position: relative;
+    width: 100%;
+    height: 440rpx;
+    padding: 20rpx 30rpx;
+    padding-top: 0rpx;
+  }
+  @include e(content-item) {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* #ifdef MP-ALIPAY */
+    height: auto;
+    /* #endif */
+  }
+  /* 内容区域 end */
+
+  /* picker-view 样式 start */
+  @include e(picker-view) {
+    flex-grow: 1;
+    height: 100%;
+  }
+  /* picker-view 样式 end */
+}

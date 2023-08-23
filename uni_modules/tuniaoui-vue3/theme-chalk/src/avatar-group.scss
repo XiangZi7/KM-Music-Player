@@ -1,0 +1,9 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(avatar-group) {
+  display: flex;
+  align-items: center;
+
+  position: relative;
+  width: fit-content;
+}

@@ -1,0 +1,100 @@
+@use 'sass:map';
+
+@use '../mixins/mixins.scss' as *;
+@use '../var/size.scss' as *;
+
+// 尺寸信息
+$loadmore-sizes: () !default;
+$loadmore-sizes: map-merge(
+  (
+    'sm': (
+      'font-size': 24rpx,
+      'dot': 24rpx,
+    ),
+    '': (
+      'font-size': 28rpx,
+      'dot': 28rpx,
+    ),
+    'lg': (
+      'font-size': 32rpx,
+      'dot': 32rpx,
+    ),
+    'xl': (
+      'font-size': 36rpx,
+      'dot': 36rpx,
+    ),
+  ),
+  $loadmore-sizes
+);
+
+@include b(loadmore) {
+  position: relative;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: map-get(map-get($loadmore-sizes, ''), 'font-size');
+
+  /* 内容 start */
+  @include e(content) {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* 左右两边的横线 start */
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 100rpx;
+      height: 1rpx;
+      border-radius: 1000rpx;
+      background-color: var(--tn-color-gray);
+    }
+    &::before {
+      left: 0%;
+      transform: translate(calc(-100% - 20rpx), -50%);
+    }
+    &::after {
+      left: 100%;
+      transform: translate(20rpx, -50%);
+    }
+    /* 左右两边的横线 end */
+  }
+  /* 内容 end */
+
+  /* 点内容 start */
+  @include e(dot) {
+    width: map-get(map-get($loadmore-sizes, ''), 'dot');
+    height: map-get(map-get($loadmore-sizes, ''), 'dot');
+    border-radius: 50%;
+  }
+  /* 点内容 end */
+
+  /* 尺寸 start */
+  @each $size in $tn-inner-sizes {
+    @include m($size) {
+      font-size: map-get(map-get($loadmore-sizes, $size), 'font-size');
+
+      @include e(dot) {
+        width: map-get(map-get($loadmore-sizes, $size), 'dot');
+        height: map-get(map-get($loadmore-sizes, $size), 'dot');
+        border-radius: 50%;
+      }
+    }
+  }
+  /* 尺寸 end */
+
+  @include when(loading) {
+    @include when(loading-icon) {
+      @include e(text) {
+        margin-left: 10rpx;
+      }
+    }
+  }
+}

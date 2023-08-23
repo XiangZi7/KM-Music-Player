@@ -1,42 +1,43 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import path from 'path'
+import { defineConfig, loadEnv } from 'vite'
+import uni from '@dcloudio/vite-plugin-uni'
 import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
 
 
-const resolve = (dir) => path.join(__dirname, dir)
-export default defineConfig({
-  base: "./",
-  plugins: [
-    AutoImport({
-      imports: ["vue", "vue-router"], // 自动导入vue和vue-router相关函数
-    }),
-    Components({}),
-    vue()],
-  resolve: {
-    alias: {
-      '@': resolve('src'),
-    }
-  },
-  server: {
-    // 服务器主机名，如果允许外部访问，可设置为 "0.0.0.0"
-    host: "0.0.0.0",
-    port: 7171,
-    cors: true,
-    proxy: {
-      "/colorApi": {
-        target: "http://zhongguose.com/", // easymock
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/colorApi/, ""),
-      },
+export default defineConfig(({ mode, command }) => {
+  return {
+    plugins: [
+      uni(),
+      AutoImport({
+        include: [
+          /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+          /\.vue$/,
+          /\.vue\?vue/, // .vue
+        ],
+        imports: [
+          'vue',
+          'uni-app',
+        ],
+        dts: 'typings/auto-imports.d.ts',
+      })
+    ],
+    server: {
+      host: "0.0.0.0", // 服务器主机名，如果允许外部访问，可设置为"0.0.0.0"
     },
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@import "./src/styles/variables.scss";`,
+    esbuild: {
+      pure: true ? ["console.log", "debugger"] : []
+    },
+    build: {
+      outDir: "dist",
+      // esbuild 打包更快，但是不能去除 console.log，去除 console 使用 terser 模式
+      minify: "esbuild",
+      rollupOptions: {
+        output: {
+          chunkFileNames: "assets/js/[name]-[hash].js",
+          entryFileNames: "assets/js/[name]-[hash].js",
+          assetFileNames: "assets/[ext]/[name]-[hash].[ext]"
+        }
       }
     }
-  },
-})
+  };
+});
+

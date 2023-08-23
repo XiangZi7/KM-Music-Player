@@ -1,0 +1,89 @@
+.mv-player {
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+
+  video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.mv-details {
+  // margin-top: 20px;
+  padding: 10px;
+  border-bottom-left-radius: 20rpx;
+  border-bottom-right-radius: 20rpx;
+
+  .mv-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .mv-artist {
+    color: #888;
+    margin-bottom: 10px;
+    font-size: var(--font-size-sm);
+  }
+}
+
+.user-comments {
+  margin-top: 20px;
+  padding: 10px;
+
+  .user-comment {
+    margin-bottom: 30px;
+    padding: 10px;
+    border-radius: 20rpx;
+
+    background: linear-gradient(145deg, #f0f0f0, #f1efef);
+    // box-shadow: 20px 20px 60px #bebebe,
+    //   -20px -20px 60px #ffffff;
+
+    display: flex;
+
+    .user-card {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      width: 100%;
+
+      .user-avatar {
+        width: 32px;
+        height: 32px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .user-info {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .user-name {
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+
+        .comment-text {
+          margin-bottom: 5px;
+        }
+
+        .comment-time {
+          display: flex;
+          justify-content: space-between;
+          color: gray;
+          font-size: 12px;
+
+          .ip-address {
+            margin-right: auto;
+          }
+        }
+      }
+    }
+  }
+}

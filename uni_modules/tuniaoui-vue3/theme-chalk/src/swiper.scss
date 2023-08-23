@@ -1,0 +1,147 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(swiper) {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  @include e(wrapper) {
+    width: 100%;
+    height: 100%;
+  }
+  @include e(swiper) {
+    width: 100%;
+    height: 100%;
+  }
+  @include e(swiper-item) {
+    width: 100%;
+    height: 100%;
+    overflow: unset !important;
+    > view {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  /* 指示器 start */
+  @include e(indicator) {
+    position: absolute;
+
+    /* 设置指示器的位置 start */
+    @include m(left-top) {
+      left: 30rpx;
+      top: 30rpx;
+      transform: translateY(-50%);
+      @include e(indicator-number) {
+        margin-top: 20rpx;
+      }
+    }
+    @include m(center-top) {
+      top: 30rpx;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      @include e(indicator-number) {
+        margin-top: 20rpx;
+      }
+    }
+    @include m(right-top) {
+      right: 30rpx;
+      top: 30rpx;
+      transform: translateY(-50%);
+      @include e(indicator-number) {
+        margin-top: 20rpx;
+      }
+    }
+    @include m(left-bottom) {
+      left: 30rpx;
+      bottom: 30rpx;
+      transform: translateY(50%);
+      @include e(indicator-number) {
+        margin-bottom: 20rpx;
+      }
+    }
+    @include m(center-bottom) {
+      bottom: 30rpx;
+      left: 50%;
+      transform: translate(-50%, 50%);
+      @include e(indicator-number) {
+        margin-bottom: 20rpx;
+      }
+    }
+    @include m(right-bottom) {
+      right: 30rpx;
+      bottom: 30rpx;
+      transform: translateY(50%);
+      @include e(indicator-number) {
+        margin-bottom: 20rpx;
+      }
+    }
+    /* 设置指示器的位置 end */
+  }
+
+  /* 指示器类型 start */
+  @include e(indicator-line) {
+    position: relative;
+    width: 100rpx;
+    height: 8rpx;
+
+    .indicator-wrapper {
+      width: 100%;
+      height: 100%;
+
+      .active-block {
+        position: absolute;
+        height: 100%;
+        left: 0;
+        top: 0;
+        transition: transform 0.3s ease-out;
+      }
+    }
+  }
+  @include e(indicator-dot) {
+    position: relative;
+    width: fit-content;
+    height: auto;
+
+    .indicator-wrapper {
+      display: flex;
+      align-items: center;
+
+      .dot-item {
+        position: relative;
+        width: 16rpx;
+        height: 16rpx;
+        border-radius: 50%;
+        margin-right: 10rpx;
+        transition-property: width, border-radius;
+        transition-duration: 0.3s;
+        transition-timing-function: ease;
+
+        &.active {
+          width: 32rpx;
+          border-radius: 30rpx;
+        }
+      }
+    }
+  }
+  @include e(indicator-number) {
+    position: relative;
+    width: fit-content;
+    height: auto;
+
+    .indicator-wrapper {
+      display: flex;
+      align-items: center;
+      line-height: 1;
+      padding: 10rpx 24rpx;
+      border-radius: 100rpx;
+
+      .sep {
+        margin: 0rpx 6rpx;
+      }
+    }
+  }
+  /* 指示器类型 end */
+
+  /* 指示器 end */
+}

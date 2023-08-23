@@ -1,0 +1,29 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(subsection-item) {
+  position: relative;
+  flex: 1;
+  padding: 10rpx;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: color 0.3s ease;
+
+  /* 分段器模式 start */
+  @include m(default) {
+    border-right-width: 1rpx;
+    border-right-style: solid;
+
+    &:last-of-type {
+      border: none;
+    }
+  }
+  /* 分段器模式 end */
+
+  /* 禁止选中  */
+  @include when(disabled) {
+    opacity: 0.4;
+  }
+}

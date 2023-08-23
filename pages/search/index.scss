@@ -1,0 +1,57 @@
+.container {
+    padding: 10px;
+    
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    // justify-content: center;
+    align-items: center;
+}
+
+// 最近搜索
+.Recentsearch {
+    .rtsearch {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 10px;
+        backdrop-filter: blur(16px) saturate(180%);
+    }
+}
+
+// 搜索结果
+.searchResult {
+    backdrop-filter: blur(16px) saturate(180%);
+}
+
+.List {
+    .ListItem {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        .title {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+
+.des {
+    color: var(--tn-text-color-placeholder);
+}
+
+.songcover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ipt {
+    border-radius: 20px;
+    background-color: #EBF4FA;
+    border: none;
+}

@@ -1,0 +1,63 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(modal) {
+  position: relative;
+
+  width: 100%;
+  background-color: #fff;
+  border-radius: 15rpx;
+  overflow: hidden;
+
+  /* 标题 start */
+  @include e(title) {
+    width: 100%;
+    text-align: center;
+    font-size: 38rpx;
+    padding: 40rpx 30rpx 0 30rpx;
+  }
+  /* 标题 end */
+
+  /* 内容 start */
+  @include e(content) {
+    width: 100%;
+    line-height: 40rpx;
+    font-size: 30rpx;
+    padding: 50rpx 30rpx 0 30rpx;
+
+    @include m(text) {
+      width: 100%;
+      word-wrap: break-word;
+      text-align: center;
+    }
+  }
+  @include e(title) {
+    & + .#{$B}__content {
+      padding-top: 30rpx;
+    }
+  }
+  /* 内容 end */
+
+  /*操作按钮 start */
+  @include e(operation) {
+    width: 100%;
+    position: relative;
+
+    margin-top: 40rpx;
+
+    display: flex;
+    border-top: 1rpx solid var(--tn-color-gray-disabled);
+  }
+  @include e(operation-btn) {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28rpx;
+    font-size: 32rpx;
+
+    & + & {
+      border-left: 1rpx solid var(--tn-color-gray-disabled);
+    }
+  }
+  /*操作按钮 end */
+}

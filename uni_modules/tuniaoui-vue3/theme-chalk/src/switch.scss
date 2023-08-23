@@ -1,0 +1,196 @@
+@use 'sass:map';
+
+@use '../mixins/mixins' as *;
+@use '../var/size.scss' as *;
+
+$switch-sizes: () !default;
+$switch-sizes: map-merge(
+  (
+    'sm': (
+      width: 70rpx,
+      height: 40rpx,
+      font-size: 24rpx,
+      padding: 4rpx,
+    ),
+    '': (
+      width: 100rpx,
+      height: 50rpx,
+      font-size: 28rpx,
+      padding: 6rpx,
+    ),
+    'lg': (
+      width: 120rpx,
+      height: 60rpx,
+      font-size: 36rpx,
+      padding: 8rpx,
+    ),
+  ),
+  $switch-sizes
+);
+
+@include b(switch) {
+  display: inline-flex;
+
+  position: relative;
+
+  min-width: map-get(map-get($switch-sizes, ''), width);
+  height: map-get(map-get($switch-sizes, ''), height);
+  font-size: map-get(map-get($switch-sizes, ''), font-size);
+  padding: 0 map-get(map-get($switch-sizes, ''), padding);
+
+  transition: all 0.3s ease;
+
+  color: #fff;
+
+  /* 内部切换点 start */
+  @include e(dot) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: 50%;
+    left: map-get(map-get($switch-sizes, ''), padding);
+
+    width: calc(map-get(map-get($switch-sizes, ''), height) * 0.8);
+    height: calc(map-get(map-get($switch-sizes, ''), height) * 0.8);
+    background-color: #fff;
+    transform: translate(0, -50%);
+
+    transition: all 0.3s ease-in-out;
+
+    @include m(checked) {
+      left: calc(100% - map-get(map-get($switch-sizes, ''), padding));
+      transform: translate(-100%, -50%);
+    }
+  }
+  /* 内部切换点 end */
+
+  /* 按钮内部文字 start */
+  &__active-content,
+  &__inactive-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    animation-duration: 0.3s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+
+    &--icon {
+      transform-origin: center;
+      transform: scale(1.1);
+    }
+  }
+  /* 未激活 start */
+  @include e(inactive-content) {
+    padding-left: calc(
+      map-get(map-get($switch-sizes, ''), height) * 0.9 +
+        map-get(map-get($switch-sizes, ''), padding)
+    );
+    padding-right: map-get(map-get($switch-sizes, ''), padding);
+    transform: scale(0) translateX(-100%);
+    animation-name: switch-content-animation-inactive;
+  }
+  /* 未激活 end */
+  /* 激活 start */
+  @include e(active-content) {
+    padding-right: calc(
+      map-get(map-get($switch-sizes, ''), height) * 0.9 +
+        map-get(map-get($switch-sizes, ''), padding)
+    );
+    padding-left: map-get(map-get($switch-sizes, ''), padding);
+    transform: scale(0) translateX(100%);
+    animation-name: switch-content-animation-active;
+  }
+  /* 激活 end */
+  /* 按钮内部文字 end */
+
+  /* 按钮形状 start */
+  @include m(square) {
+    border-radius: 6rpx;
+    @include e(dot) {
+      border-radius: 6rpx;
+    }
+  }
+  @include m(round) {
+    border-radius: 1000rpx;
+    @include e(dot) {
+      border-radius: 50%;
+    }
+  }
+  /* 按钮形状 end */
+
+  /* 按钮尺寸 start */
+  @each $size in $tn-form-sizes {
+    @include m($size) {
+      min-width: map-get(map-get($switch-sizes, $size), width);
+      height: map-get(map-get($switch-sizes, $size), height);
+      font-size: map-get(map-get($switch-sizes, $size), font-size);
+      padding: 0 map-get(map-get($switch-sizes, $size), padding);
+
+      @include e(dot) {
+        left: map-get(map-get($switch-sizes, $size), padding);
+
+        width: calc(map-get(map-get($switch-sizes, $size), height) * 0.8);
+        height: calc(map-get(map-get($switch-sizes, $size), height) * 0.8);
+
+        @include m(checked) {
+          left: calc(100% - map-get(map-get($switch-sizes, $size), padding));
+        }
+      }
+
+      /* 未激活 start */
+      @include e(inactive-content) {
+        padding-left: calc(
+          map-get(map-get($switch-sizes, $size), height) * 0.9 +
+            map-get(map-get($switch-sizes, $size), padding)
+        );
+        padding-right: map-get(map-get($switch-sizes, $size), padding);
+      }
+      /* 未激活 end */
+      /* 激活 start */
+      @include e(active-content) {
+        padding-right: calc(
+          map-get(map-get($switch-sizes, $size), height) * 0.9 +
+            map-get(map-get($switch-sizes, $size), padding)
+        );
+        padding-left: map-get(map-get($switch-sizes, $size), padding);
+      }
+      /* 激活 end */
+    }
+  }
+  /* 按钮尺寸 end */
+
+  /* 禁用 start */
+  @include m(disabled) {
+    opacity: 0.6;
+  }
+  /* 禁用 end */
+
+  // 如果Switch开关存在内容，则根据内容去设置开关的宽度
+  @include when(content) {
+    min-width: auto;
+  }
+}
+
+@keyframes switch-content-animation-active {
+  from {
+    opacity: 0;
+    transform: scale(0) translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateX(0%);
+  }
+}
+@keyframes switch-content-animation-inactive {
+  from {
+    opacity: 0;
+    transform: scale(0) translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateX(0%);
+  }
+}

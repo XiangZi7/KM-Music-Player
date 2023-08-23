@@ -1,0 +1,64 @@
+{
+	"easycom": {
+		"custom": {
+			"^tn-(.*)-(item|group)$": "@/uni_modules/tuniaoui-vue3/components/$1/src/$1-$2.vue",
+			"^tn-(.*)": "@/uni_modules/tuniaoui-vue3/components/$1/src/$1.vue"
+		}
+	},
+	"pages": [
+		{
+			"path": "pages/index/index"
+		},
+		{
+			"path": "pages/search/index"
+		},
+		{
+			"path": "pages/me/index"
+		},
+		{
+			"path": "pages/login/index"
+		},
+		{
+			"path": "pages/playListDetail/index"
+		},
+		{
+			"path": "pages/songList/index"
+		},
+		{
+			"path": "pages/mv/index"
+		},
+		{
+			"path": "pages/mv/play"
+		},
+		{
+			"path": "pages/animation/index"
+		},
+		{
+			"path": "pages/animation/animedeta"
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "YXMusic",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle": "custom"
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#ff7693",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/me/index",
+				"text": "我的"
+			}
+		]
+	},
+	"uniIdRouter": {}
+}

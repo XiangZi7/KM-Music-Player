@@ -1,0 +1,172 @@
+@use 'sass:map';
+
+@use '../mixins/mixins.scss' as *;
+@use '../var/size.scss' as *;
+
+$search-box-sizes: () !default;
+$search-box-sizes: map-merge(
+  (
+    'sm': (
+      'font-size': 24rpx,
+      'height': 64rpx,
+      'search-button-padding': 0rpx 20rpx,
+    ),
+    '': (
+      'font-size': 28rpx,
+      'height': 74rpx,
+      'search-button-padding': 0rpx 26rpx,
+    ),
+    'lg': (
+      'font-size': 32rpx,
+      'height': 86rpx,
+      'search-button-padding': 0rpx 26rpx,
+    ),
+    'xl': (
+      'font-size': 36rpx,
+      'height': 94rpx,
+      'search-button-padding': 0rpx 26rpx,
+    ),
+  ),
+  $search-box-sizes
+);
+
+@include b(search-box) {
+  position: relative;
+  height: map-get(map-get($search-box-sizes, ''), 'height');
+  padding: 10rpx 10rpx 10rpx 20rpx;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  line-height: 1;
+
+  font-size: map-get(map-get($search-box-sizes, ''), 'font-size');
+
+  /* 内容容器 start */
+  @include e(content) {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+  @include e(input) {
+    flex-grow: 1;
+    background-color: transparent;
+    color: inherit;
+    font-size: inherit;
+    padding: 0rpx;
+    height: 100%;
+    min-height: 100%;
+    line-height: 1;
+
+    @include m(left) {
+      text-align: left;
+    }
+    @include m(center) {
+      text-align: center;
+    }
+    @include m(right) {
+      text-align: right;
+    }
+  }
+  /* 内容容器 end */
+
+  /* 占位符内容 start */
+  @include e(placeholder) {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    @include m(left) {
+      justify-content: flex-start;
+    }
+    @include m(center) {
+      justify-content: center;
+    }
+    @include m(right) {
+      justify-content: flex-end;
+    }
+  }
+  @include e(placeholder-icon) {
+    margin-right: 8rpx;
+    font-size: calc(map-get(map-get($search-box-sizes, ''), 'font-size') * 1.2);
+  }
+  /* 占位符内容 end */
+
+  /* 清除内容 start */
+  @include e(clear-button) {
+    color: var(--tn-color-gray);
+    font-size: 34rpx;
+    margin-left: 12rpx;
+  }
+  /* 清除内容 end */
+
+  /* 搜索按钮 start */
+  @include e(search-button) {
+    flex-shrink: 0;
+    padding: map-get(map-get($search-box-sizes, ''), 'search-button-padding');
+    height: 100%;
+    margin-left: 10rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* 搜索按钮 end */
+
+  /* 边框 start */
+  @include m(border) {
+    border-width: 1rpx;
+    border-style: solid;
+  }
+  /* 边框 end */
+
+  /* 搜索框形状 start */
+  @include m(square) {
+    border-radius: 15rpx;
+    @include e(search-button) {
+      border-radius: 15rpx;
+    }
+  }
+  @include m(round) {
+    border-radius: 1000rpx;
+    @include e(search-button) {
+      border-radius: 1000rpx;
+    }
+    @include e(input) {
+      padding-left: 16rpx;
+
+      @include m(left) {
+        padding-left: 0rpx;
+      }
+    }
+  }
+  /* 搜索框形状 end */
+
+  /* 设置尺寸 start */
+  @each $size in $tn-inner-sizes {
+    @include m($size) {
+      height: map-get(map-get($search-box-sizes, $size), 'height');
+      font-size: map-get(map-get($search-box-sizes, $size), 'font-size');
+
+      @include e(placeholder-icon) {
+        font-size: calc(
+          map-get(map-get($search-box-sizes, $size), 'font-size') * 1.2
+        );
+      }
+
+      @include e(search-button) {
+        padding: map-get(
+          map-get($search-box-sizes, $size),
+          'search-button-padding'
+        );
+      }
+    }
+  }
+  @include m(sm) {
+    &#{'.#{$B}--square'} {
+      border-radius: 8rpx;
+      @include e(search-button) {
+        border-radius: 8rpx;
+      }
+    }
+  }
+  /* 设置尺寸 end */
+}

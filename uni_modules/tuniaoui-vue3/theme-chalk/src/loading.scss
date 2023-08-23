@@ -1,0 +1,116 @@
+@use 'sass:map';
+
+@use '../mixins/mixins' as *;
+@use '../var/size.scss' as *;
+
+$loading-sizes: () !default;
+$loading-sizes: map.merge(
+  (
+    'sm': 24rpx,
+    '': 28rpx,
+    'lg': 36rpx,
+    'xl': 44rpx,
+  ),
+  $loading-sizes
+);
+
+@include b(loading) {
+  display: inline-block;
+
+  position: relative;
+  width: map-get($loading-sizes, '');
+  height: map-get($loading-sizes, '');
+
+  /* 尺寸 start */
+  @each $size in $tn-inner-sizes {
+    @include m($size) {
+      width: map-get($loading-sizes, $size);
+      height: map-get($loading-sizes, $size);
+    }
+  }
+  /* 尺寸 end */
+
+  /* 加载模式 start */
+  @include e(circle) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border-width: 4rpx;
+    border-style: solid;
+    border-color: var(--loading-color) transparent transparent transparent;
+  }
+
+  @include e(semicircle) {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+    border-width: 4rpx;
+    border-style: solid;
+    border-color: var(--tn-color-gray-light);
+  }
+
+  @include e(flower) {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: var(--loading-color);
+
+    @include m(item) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      &::before {
+        content: '';
+        display: block;
+        width: 4rpx;
+        height: 25%;
+        margin: 0 auto;
+        border-radius: 40%;
+        background-color: currentColor;
+      }
+
+      @for $i from 1 through 12 {
+        &:nth-of-type(#{$i}) {
+          opacity: calc(1 / 12 * #{$i});
+          transform: rotate(calc(360deg / 12 * #{$i}));
+        }
+      }
+    }
+  }
+  /* 加载模式 end */
+
+  /* 加载动画 start */
+  @include m(animation) {
+    animation-name: rotate;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    transform-origin: center center;
+
+    @include spec-selector('', circle) {
+      animation-timing-function: linear;
+    }
+    @include spec-selector('', flower) {
+      animation-timing-function: steps(12);
+    }
+  }
+  /* 加载动画 end */
+}
+
+// 旋转动画
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

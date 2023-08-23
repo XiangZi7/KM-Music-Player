@@ -1,0 +1,74 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(tabbar) {
+  position: relative;
+
+  width: 100%;
+  box-sizing: content-box;
+
+  /* 顶部阴影 start */
+  @include m(top-shadow) {
+    box-shadow: 0rpx 0rpx 30rpx 0rpx rgba(0, 0, 0, 0.07);
+  }
+  /* 顶部阴影 end */
+
+  /* 背景颜色 start */
+  @include e(bg) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    /* #ifndef MP-ALIPAY */
+    /* 毛玻璃 */
+    @include m(frosted) {
+      backdrop-filter: blur(20rpx);
+      -webkit-backdrop-filter: blur(20rpx);
+    }
+    /* #endif */
+  }
+  /* 背景颜色 end */
+
+  /* 内容区域 start */
+  @include e(content) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: inherit;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  /* 内容区域 end */
+
+  /* 凸起按钮 start */
+  @include e(bulge) {
+    position: absolute;
+    background-color: #fff;
+    transform: translateX(-50%);
+    border-radius: 50%;
+
+    &.top-shadow {
+      box-shadow: 0rpx 0rpx 30rpx 0rpx rgba(0, 0, 0, 0.07);
+    }
+  }
+  /* 凸起按钮 end */
+
+  /* 占位内容 start */
+  @include e(placeholder) {
+    position: relative;
+    background-color: transparent;
+    box-sizing: content-box;
+  }
+  /* 占位内容 end */
+
+  /* 固定在底部 start */
+  @include m(fixed) {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+  }
+  /* 固定在底部 end */
+}

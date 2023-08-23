@@ -1,0 +1,62 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(action-sheet) {
+  position: relative;
+
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 15rpx 15rpx 0rpx 0rpx;
+  margin-top: 30rpx;
+
+  // 顶部阴影
+  @include when('shadow') {
+    box-shadow: 0rpx 10rpx 40rpx 0rpx rgba(0, 0, 0, 0.1);
+  }
+
+  /* 标题 start */
+  @include e(title) {
+    padding: 22rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--tn-color-gray);
+    border-bottom: 8rpx solid var(--tn-color-gray-light);
+    font-size: 26rpx;
+  }
+  /* 标题 end */
+
+  /* 选项容器 start */
+  @include e(actions) {
+    width: 100%;
+  }
+  @include e(action) {
+    padding: 30rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1rpx solid var(--tn-color-gray-light);
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    .desc {
+      font-size: 24rpx;
+      color: var(--tn-color-grey-disabled);
+      margin-top: 8rpx;
+    }
+  }
+  /* 选项容器 end */
+
+  /* 取消按钮 start */
+  @include e(cancel) {
+    padding: 26rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 10rpx solid var(--tn-color-gray-light);
+    color: var(--tn-color-danger);
+  }
+  /* 取消按钮 end */
+}

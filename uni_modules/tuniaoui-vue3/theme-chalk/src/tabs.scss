@@ -1,0 +1,57 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(tabs) {
+  position: relative;
+
+  width: 100%;
+
+  /* scroll-view start */
+  @include e(scroll-view) {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+  }
+  /* scroll-view end */
+
+  /* 内容容器 start */
+  @include e(container) {
+    position: relative;
+
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    @include when(scroll) {
+      width: max-content;
+      max-width: none;
+      overflow: unset;
+    }
+  }
+  /* 内容容器 end */
+
+  /* bar 滑块 start */
+  @include e(bar-container) {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    transition-property: left, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+  }
+  @include e(bar) {
+    position: relative;
+    height: 10rpx;
+    border-radius: 3000rpx;
+  }
+  /* bar 滑块 end */
+
+  /* 底部阴影 start */
+  @include m(bottom-shadow) {
+    box-shadow: 0rpx 5rpx 16rpx 0rpx rgba(0, 0, 0, 0.05);
+  }
+  /* 底部阴影 end */
+}

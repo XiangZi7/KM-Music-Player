@@ -1,0 +1,29 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(notice-bar) {
+  position: relative;
+
+  width: 100%;
+  padding: 10rpx 20rpx;
+
+  display: flex;
+  align-items: center;
+
+  /* 左图标 start */
+  @include e(left-icon) {
+    padding-right: 20rpx;
+  }
+  /* 左图标 end */
+  /* 右图标 start */
+  @include e(right-icon) {
+    padding-left: 20rpx;
+  }
+  /* 右图标 end */
+
+  /* 内容区域 */
+  @include e(content) {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,100 @@
+@use 'sass:map';
+
+@use '../mixins/mixins.scss' as *;
+@use '../var/size.scss' as *;
+
+$index-list-sizes: () !default;
+$index-list-sizes: map-merge(
+  (
+    'sm': (
+      'font-size': 24rpx,
+    ),
+    '': (
+      'font-size': 28rpx,
+    ),
+    'lg': (
+      'font-size': 32rpx,
+    ),
+    'xl': (
+      'font-size': 36rpx,
+    ),
+  ),
+  $index-list-sizes
+);
+
+@include b(index-list) {
+  position: relative;
+  width: 100%;
+
+  @include e(scroll-view) {
+    position: relative;
+    height: 100%;
+  }
+
+  /* 内容标题 start */
+  @include e(title) {
+    padding: 4rpx 24rpx;
+    font-size: map-get(map-get($index-list-sizes, ''), 'font-size');
+  }
+  /* 内容标题 end */
+
+  /* key索引列表 start */
+  @include e(key-list) {
+    position: absolute;
+    right: 4%;
+    top: 50%;
+    transform: translate(50%, -50%);
+    z-index: 99999;
+    font-size: 24rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  @include e(key-list-value) {
+    text-align: center;
+    padding: 4rpx 0rpx;
+  }
+
+  @include e(key-list-tips-value) {
+    position: absolute;
+    top: 0;
+    left: -80rpx;
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    background-color: var(--tn-color-gray-light);
+    color: var(--tn-color-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    font-size: 46rpx;
+    font-weight: bold;
+    line-height: 1;
+
+    .auxiliary-element {
+      position: absolute;
+      height: 0;
+      width: 0;
+      right: 0;
+      top: 50%;
+      border-color: transparent transparent transparent
+        var(--tn-color-gray-light);
+      border-width: 30rpx;
+      border-style: solid;
+      transform: translate(47rpx, -50%);
+    }
+  }
+  /* key索引列表 end */
+
+  /* 尺寸 start */
+  @each $size in $tn-inner-sizes {
+    @include e(title) {
+      @include m($size) {
+        font-size: map-get(map-get($index-list-sizes, $size), 'font-size');
+      }
+    }
+  }
+  /* 尺寸 end */
+}

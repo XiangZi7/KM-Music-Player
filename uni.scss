@@ -1,0 +1,378 @@
+body,
+page {
+    /* 主题色Hex值 */
+    --tn-color-primary: #01beff;
+    --tn-color-primary-light-3: #4dd2ff;
+    --tn-color-primary-light-5: #80dfff;
+    --tn-color-primary-light-7: #b3ecff;
+    --tn-color-primary-light-8: #ccf2ff;
+    --tn-color-primary-light-9: #e6f9ff;
+    --tn-color-primary-dark-2: #0198cc;
+    --tn-color-success: #00d886;
+    --tn-color-success-light-3: #4de4aa;
+    --tn-color-success-light-5: #80ecc3;
+    --tn-color-success-light-7: #b3f3db;
+    --tn-color-success-light-8: #ccf7e7;
+    --tn-color-success-light-9: #e6fbf3;
+    --tn-color-success-dark-2: #00ad6b;
+    --tn-color-warning: #fbbd12;
+    --tn-color-warning-light-3: #fcd159;
+    --tn-color-warning-light-5: #fdde89;
+    --tn-color-warning-light-7: #feebb8;
+    --tn-color-warning-light-8: #fef2d0;
+    --tn-color-warning-light-9: #fff8e7;
+    --tn-color-warning-dark-2: #c9970e;
+    --tn-color-danger: #ff444f;
+    --tn-color-danger-light-3: #ff7c84;
+    --tn-color-danger-light-5: #ffa2a7;
+    --tn-color-danger-light-7: #ffc7ca;
+    --tn-color-danger-light-8: #ffdadc;
+    --tn-color-danger-light-9: #ffeced;
+    --tn-color-danger-dark-2: #cc363f;
+    --tn-color-error: #ff444f;
+    --tn-color-error-light-3: #ff7c84;
+    --tn-color-error-light-5: #ffa2a7;
+    --tn-color-error-light-7: #ffc7ca;
+    --tn-color-error-light-8: #ffdadc;
+    --tn-color-error-light-9: #ffeced;
+    --tn-color-error-dark-2: #cc363f;
+    --tn-color-info: #9c9c9c;
+    --tn-color-info-light-3: #bababa;
+    --tn-color-info-light-5: #cecece;
+    --tn-color-info-light-7: #e1e1e1;
+    --tn-color-info-light-8: #ebebeb;
+    --tn-color-info-light-9: whitesmoke;
+    --tn-color-info-dark-2: #7d7d7d;
+
+    /* 内置颜色Hex值 */
+    --tn-color-red: #e83a30;
+    --tn-color-red-dark: #ba2e26;
+    --tn-color-red-light: #fad8d6;
+    --tn-color-red-disabled: #f39c97;
+    --tn-color-purplered: #e72f8c;
+    --tn-color-purplered-dark: #b9266f;
+    --tn-color-purplered-light: #fad5e8;
+    --tn-color-purplered-disabled: #f397c5;
+    --tn-color-purple: #892fe8;
+    --tn-color-purple-dark: #6e26ba;
+    --tn-color-purple-light: #e7d5fa;
+    --tn-color-purple-disabled: #c497f3;
+    --tn-color-bluepurple: #5f4fd9;
+    --tn-color-bluepurple-dark: #4c3fae;
+    --tn-color-bluepurple-light: #dfdcf7;
+    --tn-color-bluepurple-disabled: #afa7ec;
+    --tn-color-aquablue: #3646ff;
+    --tn-color-aquablue-dark: #2b38cc;
+    --tn-color-aquablue-light: #d7daff;
+    --tn-color-aquablue-disabled: #9aa2ff;
+    --tn-color-blue: #3d7eff;
+    --tn-color-blue-dark: #3165cc;
+    --tn-color-blue-light: #d8e5ff;
+    --tn-color-blue-disabled: #9ebeff;
+    --tn-color-indigo: #31c9e8;
+    --tn-color-indigo-dark: #27a1ba;
+    --tn-color-indigo-light: #d6f4fa;
+    --tn-color-indigo-disabled: #98e4f3;
+    --tn-color-cyan: #2de8bd;
+    --tn-color-cyan-dark: #24ba97;
+    --tn-color-cyan-light: #d5faf2;
+    --tn-color-cyan-disabled: #96f3de;
+    --tn-color-teal: #24f083;
+    --tn-color-teal-dark: #1dc069;
+    --tn-color-teal-light: #d3fce6;
+    --tn-color-teal-disabled: #91f7c1;
+    --tn-color-green: #31e749;
+    --tn-color-green-dark: #27b93a;
+    --tn-color-green-light: #d6fadb;
+    --tn-color-green-disabled: #98f3a4;
+    --tn-color-yellowgreen: #a4e82f;
+    --tn-color-yellowgreen-dark: #82ba26;
+    --tn-color-yellowgreen-light: #edfad5;
+    --tn-color-yellowgreen-disabled: #d1f397;
+    --tn-color-lime: #d5eb00;
+    --tn-color-lime-dark: #aabc00;
+    --tn-color-lime-light: #f7fbcc;
+    --tn-color-lime-disabled: #e9f57f;
+    --tn-color-yellow: #fff420;
+    --tn-color-yellow-dark: #ccc21a;
+    --tn-color-yellow-light: #fffdd2;
+    --tn-color-yellow-disabled: #fff88f;
+    --tn-color-orangeyellow: #ffca28;
+    --tn-color-orangeyellow-dark: #cca220;
+    --tn-color-orangeyellow-light: #fff4d4;
+    --tn-color-orangeyellow-disabled: #ffe493;
+    --tn-color-orange: #ffa726;
+    --tn-color-orange-dark: #cc851e;
+    --tn-color-orange-light: #ffedd4;
+    --tn-color-orange-disabled: #ffd392;
+    --tn-color-orangered: #ff7043;
+    --tn-color-orangered-dark: #cc5a36;
+    --tn-color-orangered-light: #ffe2d9;
+    --tn-color-orangered-disabled: #ffb7a1;
+    --tn-color-brown: #914f2c;
+    --tn-color-brown-dark: #743f23;
+    --tn-color-brown-light: #e9dcd5;
+    --tn-color-brown-disabled: #c8a795;
+    --tn-color-grey: #78909c;
+    --tn-color-grey-dark: #5f7e8b;
+    --tn-color-grey-light: #e4e9ec;
+    --tn-color-grey-disabled: #c6d1d8;
+    --tn-color-gray: #aaaaaa;
+    --tn-color-gray-dark: #838383;
+    --tn-color-gray-light: #f8f7f8;
+    --tn-color-gray-disabled: #e6e6e6;
+    --text-color-placeholder: #a8abb2;
+
+    /* 默认背景颜色 */
+    --tn-bg-color: #ffffff;
+    /* 默认页面背景颜色 */
+    --tn-bg-color-page: #f4f4f4;
+    /* 默认覆盖层颜色 */
+    --tn-bg-color-overlay: #ffffff;
+    /* 默认mask颜色 */
+    --tn-bg-color-mask: rgba(0, 0, 0, 0.5);
+    /* 默认字体颜色 */
+    --tn-text-color-primary: #080808;
+    --tn-text-color-secondary: #9c9c9c;
+    --tn-text-color-placeholder: #838383;
+    --tn-text-color-disabled: #e6e6e6;
+
+    /*字体*/
+    --font-size-xs: 10px;
+    --font-size-sm: 12px;
+    --font-size-md: 14px;
+    --font-size-lg: 16px;
+
+    --space-size-large-y: 12px;
+
+}
+
+.glass-card {
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+.page-container {
+    padding-top: var(--status-bar-height);
+    background: linear-gradient(#E1F5F8 0%, #EEF2F8 50%, #EDF4FC 100%);
+    height: 100vh;
+    width: 100%;
+    overflow-y: auto;
+    /* 允许垂直滚动 */
+}
+
+.yxbr-10 {
+    border-radius: 10px;
+}
+
+// 导入
+/* devanagari */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/poppins/v19/pxiByp8kv8JHgFVrLFj_Z11lFc-K.woff2) format("woff2");
+    unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8,
+        U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+
+/* latin-ext */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/poppins/v19/pxiByp8kv8JHgFVrLFj_Z1JlFc-K.woff2) format("woff2");
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+        U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/poppins/v19/pxiByp8kv8JHgFVrLFj_Z1xlFQ.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+        U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+        U+FEFF, U+FFFD;
+}
+
+/* devanagari */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/poppins/v19/pxiByp8kv8JHgFVrLDz8Z11lFc-K.woff2) format("woff2");
+    unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8,
+        U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+
+/* latin-ext */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/poppins/v19/pxiByp8kv8JHgFVrLDz8Z1JlFc-K.woff2) format("woff2");
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+        U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/poppins/v19/pxiByp8kv8JHgFVrLDz8Z1xlFQ.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+        U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+        U+FEFF, U+FFFD;
+}
+
+/* devanagari */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/poppins/v19/pxiEyp8kv8JHgFVrJJbecmNE.woff2) format("woff2");
+    unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8,
+        U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+
+/* latin-ext */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/poppins/v19/pxiEyp8kv8JHgFVrJJnecmNE.woff2) format("woff2");
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+        U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/poppins/v19/pxiEyp8kv8JHgFVrJJfecg.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+        U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+        U+FEFF, U+FFFD;
+}
+
+/* devanagari */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/poppins/v19/pxiByp8kv8JHgFVrLGT9Z11lFc-K.woff2) format("woff2");
+    unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8,
+        U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+
+/* latin-ext */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/poppins/v19/pxiByp8kv8JHgFVrLGT9Z1JlFc-K.woff2) format("woff2");
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+        U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/poppins/v19/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+        U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+        U+FEFF, U+FFFD;
+}
+
+/* devanagari */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/poppins/v19/pxiByp8kv8JHgFVrLEj6Z11lFc-K.woff2) format("woff2");
+    unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8,
+        U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+
+/* latin-ext */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/poppins/v19/pxiByp8kv8JHgFVrLEj6Z1JlFc-K.woff2) format("woff2");
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+        U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/poppins/v19/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+        U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+        U+FEFF, U+FFFD;
+}
+
+/* devanagari */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/poppins/v19/pxiByp8kv8JHgFVrLCz7Z11lFc-K.woff2) format("woff2");
+    unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8,
+        U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+
+/* latin-ext */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/poppins/v19/pxiByp8kv8JHgFVrLCz7Z1JlFc-K.woff2) format("woff2");
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+        U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/poppins/v19/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+        U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+        U+FEFF, U+FFFD;
+}

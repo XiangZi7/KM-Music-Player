@@ -1,0 +1,85 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b(tabbar-item) {
+  flex: 1;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  line-height: 1;
+
+  /* 图标 start */
+  @include e(icon) {
+    font-size: 40rpx;
+    line-height: 1;
+    margin: 4rpx 0rpx;
+    transition: all 0.3s ease;
+    transform-origin: center center;
+  }
+  /* 图标 end */
+  /* 文字 start */
+  @include e(text) {
+    font-size: 22rpx;
+    margin: 8rpx 0rpx 12rpx 0rpx;
+    transition: all 0.3s ease;
+    transform-origin: center center;
+  }
+  /* 文字 end */
+
+  /* 凸起按钮 start */
+  @include e(bulge) {
+    position: absolute;
+    left: 50%;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 40rpx;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.3s ease;
+
+    transform: translateX(-50%);
+  }
+  /* 凸起按钮 end */
+
+  /* 单元素 start */
+  @include when(only-element) {
+    justify-content: center;
+
+    @include e(icon) {
+      margin: 0;
+    }
+    @include e(text) {
+      margin: 0;
+    }
+  }
+  /* 单元素 end */
+
+  /* 是否激活状态 start */
+  @include when(active) {
+    // 是否带动画
+    @include when(animation) {
+      @include e(icon) {
+        animation: normalSwitchAnimation 0.3s ease;
+      }
+    }
+  }
+  /* 是否激活状态 end */
+}
+
+// 切换动画
+@keyframes normalSwitchAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

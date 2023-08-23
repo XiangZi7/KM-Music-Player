@@ -1,0 +1,121 @@
+@use '../mixins/mixins.scss' as *;
+
+@include b('image-upload') {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* item 对象 */
+@include b('image-upload-item') {
+  flex-grow: 0;
+
+  position: relative;
+  width: calc(100% / 3 - 20rpx);
+  height: 0;
+  padding-bottom: calc(100% / 3 - 20rpx);
+  border-radius: 15rpx;
+  margin: 10rpx;
+  overflow: hidden;
+
+  /* 自定义显示图片数据 start */
+  @include when(custom) {
+    flex: auto;
+    width: 100%;
+    height: auto;
+    padding: 0rpx;
+    border-radius: 0rpx;
+    margin: 0;
+  }
+  /* 自定义显示图片数据 end */
+
+  /* 图片 start */
+  @include e(image) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    will-change: transform;
+    z-index: 1;
+
+    .image {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+    }
+  }
+  /* 图片 end */
+
+  /* 删除按钮 start */
+  @include e(remove) {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: transparent;
+    color: #fff;
+    width: 0;
+    height: 0;
+    z-index: 4;
+    border-top: 70rpx solid var(--tn-color-danger);
+    border-left: 70rpx solid transparent;
+
+    @include m(icon) {
+      position: absolute;
+      top: -76rpx;
+      right: 8rpx;
+      transform: translateY(50%);
+      line-height: 1;
+    }
+  }
+  /* 删除按钮 end */
+
+  /* 重试蒙层 start */
+  @include e(retry) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 110rpx;
+    line-height: 1;
+  }
+  /* 重试蒙层 end */
+
+  /* 进度条 start */
+  @include e(progress) {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+  }
+  /* 进度条 end */
+
+  /* 新增图片 按钮 start */
+  @include e(add-btn) {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: inherit;
+
+    @include m('icon') {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 100rpx;
+    }
+  }
+  /* 新增图片 按钮 end */
+}

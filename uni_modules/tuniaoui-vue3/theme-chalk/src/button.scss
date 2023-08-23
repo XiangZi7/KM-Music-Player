@@ -1,0 +1,100 @@
+@use '../mixins/mixins' as *;
+
+@include b(button) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  line-height: 1;
+  white-space: nowrap;
+  width: fit-content;
+  font-size: var(--tn-font-size);
+  padding: 10rpx 14rpx;
+  border-radius: 15rpx;
+
+  /* #ifdef MP-ALIPAY */
+  height: auto;
+  /* #endif */
+
+  /* icon图标按钮 start */
+  @include e(icon) {
+    font-size: inherit;
+    color: inherit;
+  }
+  /* icon图标按钮 end */
+
+  /* size尺寸 satrt */
+  @include m(sm) {
+    font-size: 20rpx;
+    padding: 6rpx 8rpx;
+    border-radius: 6rpx;
+  }
+  @include m(lg) {
+    font-size: 34rpx;
+    padding: 12rpx 18rpx;
+  }
+  @include m(xl) {
+    font-size: 40rpx;
+    padding: 16rpx 24rpx;
+  }
+  /* size尺寸 end */
+
+  /* shape形状 start */
+  @include m(circle) {
+    padding: 0;
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 50%;
+    @include spec-selector('', false, 'sm') {
+      width: 50rpx;
+      height: 50rpx;
+    }
+    @include spec-selector('', false, 'lg') {
+      width: 80rpx;
+      height: 80rpx;
+    }
+    @include spec-selector('', false, 'xl') {
+      width: 100rpx;
+      height: 100rpx;
+    }
+  }
+  @include m(round) {
+    border-radius: 1000rpx;
+    padding: 10rpx 16rpx;
+    @include spec-selector('', false, 'sm') {
+      padding: 6rpx 12rpx;
+      border-radius: 20rpx;
+    }
+    @include spec-selector('', false, 'lg') {
+      padding: 12rpx 18rpx;
+    }
+    @include spec-selector('', false, 'xl') {
+      padding: 16rpx 24rpx;
+    }
+  }
+  /* shape形状 end */
+
+  /* plain start */
+  @include m(plain) {
+    border-width: 2rpx;
+    border-style: solid;
+  }
+  @include m(plain-bold) {
+    border-width: 4rpx;
+  }
+  /* plain end */
+
+  /* text start */
+  @include m(text) {
+    border: none;
+    background-color: transparent;
+  }
+  /* text end */
+
+  /* 加载动画 start */
+  @include m(loading) {
+    margin-right: 8rpx;
+  }
+  /* 加载动画 end */
+}

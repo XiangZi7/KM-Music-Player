@@ -1,0 +1,13 @@
+## 1.0.9（2023-08-04）
+- 删除`TnGraphicCard`组件，以第三方组件的形式提供
+- `TnPicker` `change`和`confirm`事件新增返回传递的数据
+- `TnRegionPicker` `change`和`confirm`事件新增返回具体地区的数据
+- `TnSwiper`新增`previous-margin`和`next-margin`属性
+- `TnTabs`新增`active-bold`参数设置激活时是否加粗字体
+- 修复在部份情况下组件会编译到全局目录下的问题 <Badge type="info" text="感谢[ThinkAdmin]的排查" />
+- 修复`TnPicker`点击取消后值依旧发生改变的问题
+- 修复`TnTabbar`无法设置图标大小的问题
+- 修复`TnAvatarGroup`下的`TnAvatar`初始化失败的问题
+- 修复`TnButton` `border-color`无法设置为内置颜色外的其他颜色的问题
+- 修复`TnButton` `border-bold`无效的问题
+- 优化`TnPopup`弹出/隐藏动画

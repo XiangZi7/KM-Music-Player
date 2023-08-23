@@ -1,0 +1,125 @@
+@use 'sass:map';
+
+@use '../mixins/mixins.scss' as *;
+@use '../var/size.scss' as *;
+
+$input-sizes: () !default;
+$input-sizes: map-merge(
+  (
+    'sm': (
+      'padding': 10rpx,
+      'font-size': 24rpx,
+    ),
+    '': (
+      'padding': 16rpx,
+      'font-size': 28rpx,
+    ),
+    'lg': (
+      'padding': 20rpx,
+      'font-size': 32rpx,
+    ),
+  ),
+  $input-sizes
+);
+
+@include b(input) {
+  display: inline-flex;
+
+  position: relative;
+  width: 100%;
+  padding: map-get(map-get($input-sizes, ''), 'padding');
+  font-size: map-get(map-get($input-sizes, ''), 'font-size');
+  border-radius: 15rpx;
+  overflow: auto;
+
+  /* 输入框类型 start */
+  @include m(input) {
+    align-items: center;
+  }
+  /* 输入框类型 end */
+
+  /* 文字对齐方式 start */
+  @include m(text-left) {
+    @include e('base') {
+      text-align: left;
+    }
+  }
+  @include m(text-right) {
+    @include e('base') {
+      text-align: right;
+    }
+  }
+  @include m(text-center) {
+    @include e('base') {
+      text-align: center;
+    }
+  }
+  /* 文字对齐方式 end */
+
+  @include e(base) {
+    flex-grow: 1;
+
+    position: relative;
+    width: 100%;
+    background-color: transparent;
+    color: inherit;
+    font-size: inherit;
+  }
+
+  @include e(textarea) {
+    @include when(custom-height) {
+      height: 100%;
+    }
+  }
+
+  /* 右边图标 start */
+  @include e(icon) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    height: 100%;
+    padding-left: 10rpx;
+    line-height: 1;
+    color: var(--tn-color-gray);
+
+    [class*='validate'] {
+      margin-left: 6rpx;
+    }
+
+    @include m(validate-error) {
+      color: var(--tn-color-red);
+    }
+    @include m(validate-success) {
+      color: var(--tn-color-green);
+    }
+  }
+  /* 右边图标 end */
+
+  /* 尺寸 start */
+  @each $size in $tn-form-sizes {
+    @include m($size) {
+      padding: map-get(map-get($input-sizes, $size), 'padding');
+      font-size: map-get(map-get($input-sizes, $size), 'font-size');
+    }
+  }
+  /* 尺寸 end */
+
+  /* 禁止输入 start */
+  @include m(disabled) {
+    background-color: var(--tn-color-gray-light);
+  }
+  /* 禁止输入 end */
+
+  /* 插槽 start */
+  @include e(slot) {
+    @include m(left) {
+      margin-right: 8rpx;
+    }
+    @include m(right) {
+      margin-left: 8rpx;
+    }
+  }
+  /* 插槽 end */
+}
