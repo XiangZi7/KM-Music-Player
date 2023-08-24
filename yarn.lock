@@ -4112,6 +4112,11 @@ vite@4.1.4:
   optionalDependencies:
     fsevents "~2.3.2"
 
+vue-cookies@^1.8.3:
+  version "1.8.3"
+  resolved "https://registry.npmmirror.com/vue-cookies/-/vue-cookies-1.8.3.tgz#0c7ce26d150f7ac50356ae17cb4ead1122013b82"
+  integrity sha512-VBRsyRMVdahBgFfh389TMHPmDdr4URDJNMk4FKSCfuNITs7+jitBDhwyL4RJd3WUsfOYNNjPAkfbehyH9AFuoA==
+
 vue-demi@*:
   version "0.14.5"
   resolved "https://registry.npmmirror.com/vue-demi/-/vue-demi-0.14.5.tgz#676d0463d1a1266d5ab5cba932e043d8f5f2fbd9"

@@ -35,7 +35,7 @@ onLoad(() => {
         <tn-tabbar :z-index="2" @change="change" frosted v-model="globalstore.currentTabbar" fixed>
             <tn-tabbar-item icon="home" active-icon="home-fill" text="首页" />
             <div class="tn-flex items-center">
-                <tn-avatar size="95" :url="playerstore.songs[playerstore.currentIndex].cover" @click="showPlayer = true" />
+                <tn-avatar size="95" :url="playerstore.songs[playerstore.currentIndex].cover+ '?param=50y50'" @click="showPlayer = true" />
             </div>
             <tn-tabbar-item icon="my-circle" active-icon="my-circle-fill" text="我的" />
         </tn-tabbar>

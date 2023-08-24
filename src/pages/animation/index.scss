@@ -34,38 +34,6 @@
   color: #000;
 }
 
-.user-avatar {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.search-input {
-  margin: 10px;
-  background-color: #fff !important;
-}
-
-.banner {
-  background-image: url('@/static/sc2.png');
-  background-size: cover;
-  background-position: 50% 30%;
-  padding: 20px;
-  color: #fff;
-  height: 220rpx;
-}
-
-.banner-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.banner-description {
-  font-size: 16px;
-}
-
-
 .mv-item {
   display: flex;
   align-items: center;
@@ -95,6 +63,10 @@
   font-size: var(--font-size-sm);
 }
 
+.search-input{
+  background-color: #fff;
+  margin: 20rpx;
+}
 
 // .mv-list {
 //   list-style: none;

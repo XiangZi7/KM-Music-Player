@@ -1,6 +1,7 @@
 <script setup>
 import { commentMusic } from "@/api/api";
 import { PlayerStore } from "@/stores/modules/player";
+import number from "../../uni_modules/tuniaoui-vue3/libs/async-validator/validator/number";
 const paging = ref()
 const playerstore = PlayerStore()
 
@@ -18,7 +19,7 @@ const {
 } = toRefs(state)
 const props = defineProps({
     id: {
-        type: String,
+        type: [String,Number],
         default: ""
     }
 })

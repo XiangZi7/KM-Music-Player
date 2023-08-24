@@ -102,4 +102,11 @@ export const commentMV = (data) => http.request({
 export const videoSearch = (data) => http.request({ url: `video/search`, data })
 // 获取动漫Url
 export const videoUrl = (data) => http.request({ url: `video/chapter`, data })
-
+//状态
+export const loginStatus = () => http.request({
+    url: `login/status`,
+});
+//获取用户歌单
+export const userPlaylist = (id) => http.request({
+    url: `user/playlist?uid=${id}`,
+});

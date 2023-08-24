@@ -1,4 +1,5 @@
 <script setup>
+import Cookie from 'vue-cookies'
 import { anonimous, cellphone, captcha, verify } from "@/api/api";
 const formRef = ref()
 // 规则
@@ -21,10 +22,15 @@ const formRules = {
 const state = reactive({
     list: [],
     model: {},
+    // 验证码定时器
+    timer: null,
+    countdown: 0
 })
 const {
     list,
-    model
+    model,
+    timer,
+    countdown
 } = toRefs(state)
 
 function gtback() {
@@ -43,14 +49,25 @@ async function fnLogin() {
     formRef.value?.validate(async (valid) => {
         if (valid) {
             // 因接口要验证、暂时实现不了登录功能
-            // verify(state.model).then(({ data }) => {
-            //     if (data.data) {
-            //         cellphone(state.model)
-            //     }
-            // })
-            uni.showToast({
-                title: '表单成功',
-                icon: 'none',
+            verify(state.model).then(({ data }) => {
+                console.log("🚀 => data:", data)
+                if (data.data) {
+                    cellphone(state.model).then(({ data }) => {
+                        console.log("🚀 => data:", data)
+                        if (data.code == 200) {
+                            uni.setStorageSync("userinfo", data)
+                            Cookie.set('Cookie', data.cookie)
+                            uni.switchTab({
+                                url: '/pages/index/index'
+                            });
+                        }
+                    })
+                } else {
+                    uni.showToast({
+                        title: data.message,
+                        icon: 'none',
+                    })
+                }
             })
         } else {
             uni.showToast({
@@ -61,8 +78,39 @@ async function fnLogin() {
     })
 
 }
+function startCountdown() {
+    if (!state.model.phone) return uni.showToast({
+        title: "请输入手机号码",
+        icon: 'none',
+    })
+    if (state.countdown > 0) return
+
+    // 设置倒计时时间为 60 秒
+    state.countdown = 60;
+
+    // 启动定时器，每秒减少倒计时时间
+    state.timer = setInterval(() => {
+        if (state.countdown > 0) {
+            state.countdown--;
+        } else {
+            clearInterval(state.timer);
+            state.timer = null;
+        }
+    }, 1000);
+
+    // 调用发送验证码的函数
+    sent();
+}
 function sent() {
-    captcha({ phone: state.model.phone })
+    captcha({ phone: state.model.phone }).then(({ data }) => {
+        if (data.code == 400) {
+            uni.showToast({
+                title: data.message,
+                icon: 'none',
+            })
+        }
+
+    })
 }
 </script>
 <template>
@@ -88,7 +136,8 @@ function sent() {
                 <div class="inputContainer">
                     <tn-icon name="lock" class="inputIcon" />
                     <input placeholder="Verification code" v-model="model.captcha" class="inputField" type="number">
-                    <tn-button class="tn-ml-xs" shape="round" size="lg" shadow type="success" @click="sent">Send</tn-button>
+                    <tn-button class="tn-ml-xs" shape="round" size="lg" shadow type="success" :disabled="countdown > 0"
+                        @click="startCountdown">{{ countdown > 0 ? countdown + 's' : 'Send' }}</tn-button>
                 </div>
             </tn-form-item>
             <tn-button class="tnbutton" shape="round" size="lg" shadow type="primary" @click="fnLogin">Login</tn-button>

@@ -32,22 +32,10 @@ function gtback() {
     <div class="page-container">
         <z-paging ref="paging" v-model="animationList" @query="onGetAllData">
             <template #top>
-                <div class="head tn-flex justify-between">
-                    <div class="btn">
-                        <tn-icon size="30" name="left" @click="gtback" />
-                    </div>
-                    <div class="btn">
-                        <img class="user-avatar" src="https://resource.tuniaokj.com/images/avatar/test_avatar.jpg"
-                            alt="User Avatar">
-                    </div>
-                </div>
-                <tn-search-box placeholder-icon="search" :search-button="false" shape="round" :border="false"
-                    placeholder="Search..." class="search-input" v-model="kw" />
-
-                <div class="banner tn-shadow-blur">
-                    <div class="banner-title">Banner Title</div>
-                    <div class="banner-description">Banner Description</div>
-                </div>
+                <grid-head bg="12">
+                    <tn-search-box placeholder-icon="search" :search-button="false" shape="round" :border="false"
+                        placeholder="Search..." class="search-input" v-model="kw" />
+                </grid-head>
 
             </template>
 

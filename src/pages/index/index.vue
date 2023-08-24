@@ -1,6 +1,5 @@
 <script setup>
-import { reactive, toRefs } from "vue";
-import { banner, newMusic, songPlaylist } from "@/api/api";
+import { banner, newMusic, songPlaylist,loginStatus } from "@/api/api";
 import { btnList } from "./btnlist";
 const state = reactive({
   list: [],
@@ -19,8 +18,11 @@ const {
   popMusic,
   songList
 } = toRefs(state)
-
+const userinfo = computed(() => uni.getStorageSync('userinfo'));
 onMounted(async () => {
+   loginStatus().then(({ data }) => {
+        // console.log("🚀 => data:", data)
+    })
   try {
     const [bannerResult, newMusicResult, songListResult] = await Promise.all([
       banner(),
@@ -71,7 +73,7 @@ function navigate(params, value) {
           </div>
           <text class="tn-text-lg">Home</text>
           <div class="app__border">
-            <tn-avatar size="100%" url="https://resource.tuniaokj.com/images/avatar/test_avatar.jpg" />
+            <yxcr-show-img defImg="2" class="yxavatar" :src="userinfo.profile?.avatarUrl"></yxcr-show-img>
           </div>
         </div>
       </div>
@@ -121,7 +123,7 @@ function navigate(params, value) {
                 </div>
               </div>
               <tn-avatar @click="navigate('playListDetail/index', item.id)" class="tn-shadow-md" shape="square" size="300"
-                :url="item.coverImgUrl + '?param=300y300'" />
+                :url="item.coverImgUrl + '?param=186y186'" />
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 <script setup>
 import { PlayerStore } from "@/stores/modules/player";
 import { getImageThemeColor } from "@/utils/ThemeColor";
-import { lyric } from "@/api/api";
+import { lyric, loginStatus } from "@/api/api";
 import comments from "./comments.vue";
 const playerstore = PlayerStore()
 const state = reactive({
@@ -15,7 +15,7 @@ const state = reactive({
     // 歌词属性：
     height: 0,
     top: 0,
-    currentLine: -1
+    currentLine: -1,
 })
 const {
     list,
@@ -26,7 +26,7 @@ const {
     lyrics,
     height,
     top,
-    currentLine
+    currentLine,
 } = toRefs(state)
 onMounted(() => {
     // 获取歌词
@@ -39,10 +39,10 @@ onMounted(() => {
             playerstore.songs[playerstore.currentIndex].coverThemeColor = retRGBColor
         })
     })
-
 })
 
 const Emits = defineEmits(['leftClick'])
+
 function getLyric() {
     if (playerstore.songs[playerstore.currentIndex].Lyric) {
         state.lyrics = parseLyrics(playerstore.songs[playerstore.currentIndex].Lyric)
@@ -63,8 +63,14 @@ function initPlayer() {
         state.currentTime = Math.floor(playerstore.player.currentTime)
         // 当前播放歌曲的总时长
         state.duration = Math.floor(playerstore.player.duration)
+        // 设置动态封面颜色
+        if (!playerstore.songs[playerstore.currentIndex].coverThemeColor) {
+            getImageThemeColor(playerstore.songs[playerstore.currentIndex].cover, "getImageThemeColorCanvas", (retRGBColor) => {
+                playerstore.songs[playerstore.currentIndex].coverThemeColor = retRGBColor
+            })
+        }
 
-        //
+        //歌词
         for (let i = 0; i < state.lyrics.length; i++) {
             if (i === state.lyrics.length - 1 || state.currentTime < state.lyrics[i + 1].time) {
                 var newi = i - 1;
@@ -80,15 +86,6 @@ function initPlayer() {
     playerstore.player.onPlay(() => {
         playerstore.isPlaying = true
         playerstore.animationPlayState = "running"
-
-        nextTick(() => {
-            // 设置动态封面颜色
-            if (!playerstore.songs[playerstore.currentIndex].coverThemeColor) {
-                getImageThemeColor(playerstore.songs[playerstore.currentIndex].cover, "getImageThemeColorCanvas", (retRGBColor) => {
-                    playerstore.songs[playerstore.currentIndex].coverThemeColor = retRGBColor
-                })
-            }
-        })
         getLyric()
         console.log("音频播放事件");
     })
@@ -245,7 +242,6 @@ function leftClick() {
                     <div class="by">
                         <tn-icon size="49" name="next-song-fill" @click="playPrev" />
                     </div>
-
                 </div>
             </div>
             <div class="review">

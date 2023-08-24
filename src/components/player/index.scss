@@ -163,3 +163,7 @@
         width: 5em;
         height: 5em;
     }
+
+    .status-bar-height {
+        height: (var(--status-bar-height) + 44px);
+    }

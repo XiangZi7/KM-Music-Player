@@ -25,21 +25,22 @@ async function playerMusic(params) {
         playerstore.currentIndex = isExisting
     } else {
         // 1.获取歌曲链接
-        const { data } = await songUrl(params)
-        playerstore.songs.push({
-            title: params.title,
-            singer: params.singer,
-            cover: params.cover,
-            src: data.data[0].url,
-            time: params.time,
-            album: params.album,
-            id: params.id,
-            mv: params.mv,
-        })
-        playerstore.player.src = playerstore.songs[playerstore.songs.length - 1].src;
-        playerstore.currentIndex = playerstore.songs.length - 1;
-        nextTick(() => {
-            playerstore.player.play();
+        songUrl(params).then(({ data }) => {
+            playerstore.songs.push({
+                title: params.title,
+                singer: params.singer,
+                cover: params.cover,
+                src: data.data[0].url,
+                time: params.time,
+                album: params.album,
+                id: params.id,
+                mv: params.mv,
+            })
+            playerstore.player.src = playerstore.songs[playerstore.songs.length - 1].src;
+            playerstore.currentIndex = playerstore.songs.length - 1;
+            nextTick(() => {
+                playerstore.player.play();
+            })
         })
     }
 }
@@ -49,7 +50,7 @@ async function playerMusic(params) {
     <div class="popular">
         <div class="popular-item" v-for="item in props.data" :key="item.id" @click="playerMusic(item)">
             <div class="avatar">
-                <tn-avatar class="tn-shadow-md" shape="square" size="130" :url="item.cover + '?param=100y100'" />
+                <tn-avatar class="tn-shadow-md" shape="square" size="130" :url="item.cover + '?param=80y80'" />
             </div>
             <div class="info">
                 <text class="tn-text-sm">{{ item.title }}</text>

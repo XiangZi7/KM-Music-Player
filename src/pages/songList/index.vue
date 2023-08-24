@@ -62,19 +62,10 @@ function navigate(params, value) {
 </script>
 <template>
     <div class="page-container">
-        <div class="head tn-flex justify-between">
-            <div class="btn">
-                <tn-icon size="30" name="left" @click="gtback" />
-            </div>
-            <div class="btn">
-                <img class="user-avatar" src="https://resource.tuniaokj.com/images/avatar/test_avatar.jpg" alt="User Avatar">
-            </div>
-        </div>
-        <div class="banner tn-shadow-blur">
-            <div class="banner-title">Banner Title</div>
-            <div class="banner-description">Banner Description</div>
-        </div>
-
+        <grid-head bg="7">
+            <tn-search-box placeholder-icon="search" :search-button="false" shape="round" :border="false"
+                placeholder="Search..." class="search-input" />
+        </grid-head>
 
         <tn-tabs @change="tabsChange" bg-color="" v-model="currentTabIndex" class="yxbr-10 tn-mt-sm tn-mb-sm">
             <tn-tabs-item v-for="(item, index) in tabsData" :key="index" :title="item.name" />

@@ -3,22 +3,7 @@
 
 }
 
-.head {
-    width: 100%;
 
-    .btn {
-        z-index: 99;
-        background-color: #fff;
-        width: 2em;
-        height: 2em;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        backdrop-filter: blur(0.625rem);
-        margin: 0 10px;
-    }
-}
 
 .song-list {
     display: grid;
@@ -81,25 +66,6 @@
     border-radius: 50%;
 }
 
-.banner {
-    background-image: url('@/static/sc2.png');
-    background-size: cover;
-    background-position: 50% 30%;
-    padding: 20px;
-    color: #fff;
-    height: 220rpx;
-    margin-top: 20rpx;
-}
-
-.banner-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.banner-description {
-    font-size: 16px;
-}
 
 .song-cover {
     width: 100%;
