@@ -9,7 +9,6 @@ const {
     playlist
 } = toRefs(state)
 onShow(() => {
-    console.log(state.userinfo);
     state.userinfo = uni.getStorageSync('userinfo')
     if (state.userinfo) {
         userPlaylist(state.userinfo.profile.userId).then(({ data }) => {
@@ -45,10 +44,8 @@ function toRouter(params, value) {
 <template>
     <div class="page-container">
         <div class="app">
-            <div class="card bg">
+            <div class="card bg tn-shadow-blur">
                 <div class="header">
-                    <div @click="goBack">
-                    </div>
                     <div class="header-button" @click="routerLK">
                         <tn-icon name="install" size="40" />
                     </div>
@@ -81,7 +78,7 @@ function toRouter(params, value) {
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" v-if="playlist.length">
                 <p class="section-title">我的歌单</p>
                 <div class="song-list">
                     <div class="song-item" v-for="song in playlist" :key="song.id"

@@ -2,7 +2,8 @@ export const btnList = [
     {
         id: 1,
         icon: "music-fill",
-        title: "每日推荐"
+        title: "每日推荐",
+        url:"dailyPlaylist/dailyPlaylist"
     },
     {
         id: 2,

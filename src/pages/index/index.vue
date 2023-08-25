@@ -1,5 +1,5 @@
 <script setup>
-import { banner, newMusic, songPlaylist,loginStatus } from "@/api/api";
+import { banner, newMusic, songPlaylist, loginStatus } from "@/api/api";
 import { btnList } from "./btnlist";
 const state = reactive({
   list: [],
@@ -20,9 +20,9 @@ const {
 } = toRefs(state)
 const userinfo = computed(() => uni.getStorageSync('userinfo'));
 onMounted(async () => {
-   loginStatus().then(({ data }) => {
-        // console.log("🚀 => data:", data)
-    })
+  loginStatus().then(({ data }) => {
+    // console.log("🚀 => data:", data)
+  })
   try {
     const [bannerResult, newMusicResult, songListResult] = await Promise.all([
       banner(),
@@ -86,7 +86,7 @@ function navigate(params, value) {
             height="300">
             <template #default="{ data }">
               <view class="swiper-data">
-                <image class="image" :src="data.pic" mode="aspectFill" />
+                <image class="image" :src="data.pic+'?quality=89'" mode="aspectFill" />
               </view>
             </template>
           </tn-swiper>
@@ -105,7 +105,7 @@ function navigate(params, value) {
         </div>
       </div>
 
-      <div class="songlist">
+      <div class="songlist" v-if="songList.length">
         <text class="tn-text-lg songlist-title">歌单</text>
         <div class="songbox">
           <div class="songlist-item" v-for="item in songList" :key="item.id">
@@ -123,13 +123,13 @@ function navigate(params, value) {
                 </div>
               </div>
               <tn-avatar @click="navigate('playListDetail/index', item.id)" class="tn-shadow-md" shape="square" size="300"
-                :url="item.coverImgUrl + '?param=186y186'" />
+                :url="item.coverImgUrl + '?param=140y140'" />
             </div>
           </div>
         </div>
       </div>
 
-      <div class="popular">
+      <div class="popular" v-if="popMusic.length">
         <text class="tn-text-lg popular-title">流行音乐</text>
         <yxcr-table :data="popMusic"></yxcr-table>
       </div>

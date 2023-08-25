@@ -10,6 +10,7 @@ http.interceptor().request = (options) => {
     // 跨域请求时是否携带凭证（cookies）
     options.withCredentials = true
     options.data = {
+        realIP: '116.25.146.177',
         ...options.data,
         timestamp: Date.parse(new Date()) / 1000
     }

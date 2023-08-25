@@ -1,17 +1,20 @@
 <script setup>
+
 const state = reactive({
     list: [],
+    bgUrlList: [
+        'https://s1.ax1x.com/2023/08/25/pPtrEsf.jpg',
+        'https://s1.ax1x.com/2023/08/25/pPtrPJA.jpg',
+        'https://s1.ax1x.com/2023/08/25/pPtrFzt.jpg',
+        'https://s1.ax1x.com/2023/08/25/pPtrAQP.jpg',
+        'https://s1.ax1x.com/2023/08/25/pPtrEsf.jpg',
+    ]
 })
 const {
     list,
 } = toRefs(state)
-
-const props = defineProps({
-    bg: {
-        type: String,
-        default: "8"
-    }
-})
+const changeBg = computed(() => state.bgUrlList[Math.floor(Math.random() * state.bgUrlList.length)])
+const userinfo = computed(() => uni.getStorageSync('userinfo'));
 
 function gtback() {
     uni.navigateBack();
@@ -25,12 +28,11 @@ function gtback() {
                 <tn-icon size="30" name="left" @click="gtback" />
             </div>
             <div class="btn">
-                <img class="user-avatar" src="https://resource.tuniaokj.com/images/avatar/test_avatar.jpg"
-                    alt="User Avatar">
+                <yxcr-show-img defImg="2" class="yxavatar" :src="userinfo.profile?.avatarUrl"></yxcr-show-img>
             </div>
         </div>
         <slot></slot>
-        <div class="banner tn-shadow-blur" :style="{ backgroundImage: `url(/src/static/sc${props.bg}.png)` }">
+        <div class="banner tn-shadow-blur" :style="{ backgroundImage: `url(${changeBg})` }">
             <div class="dw">
                 <div class="banner-title">Banner Title</div>
                 <div class="banner-description">Banner Description</div>
@@ -67,7 +69,7 @@ function gtback() {
 }
 
 .banner {
-    background-image: url('@/static/sc10.png');
+    // background-image: url('@/static/sc10.png');
     background-size: cover;
     background-position: 50% 30%;
     padding: 20px;
@@ -88,5 +90,11 @@ function gtback() {
 
 .banner-description {
     font-size: 16px;
+}
+
+.yxavatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 }
 </style>

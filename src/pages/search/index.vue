@@ -1,7 +1,7 @@
 <script setup>
 import { GlobalStore } from "@/stores/index";
 import { PlayerStore } from "@/stores/modules/player";
-import { songUrl, cloudsearch } from "@/api/api";
+import { songUrl, cloudsearch, searchHot } from "@/api/api";
 const playerstore = PlayerStore();
 const globalstore = GlobalStore();
 const state = reactive({
@@ -12,9 +12,28 @@ const state = reactive({
   songList: [],
   albumList: [],
   mvList: [],
+  // 热搜列表
+  searchHotList: []
 });
-const { list, kw, currentTabIndex, songData, songList, albumList, mvList } =
-  toRefs(state);
+const { list,
+  kw,
+  currentTabIndex,
+  songData,
+  songList,
+  albumList,
+  mvList,
+  searchHotList
+} = toRefs(state);
+
+onLoad(() => {
+  // 热搜列表(简略)
+  searchHot().then(({ data }) => {
+    state.searchHotList = data.result.hots
+    console.log("🚀 => data:", data)
+  })
+})
+
+
 const tabsData = [
   {
     text: "歌曲",
@@ -100,12 +119,6 @@ async function playerMusic(params) {
   }
 }
 
-function navigate(params) {
-  uni.switchTab({
-    url: "/pages/" + params,
-  });
-}
-
 function taphisto(params) {
   state.kw = params;
   confirm();
@@ -115,72 +128,47 @@ function taphisto(params) {
   <div class="page-container">
     <div class="container">
       <div class="header">
-        <tn-input
-          height="60"
-          @confirm="confirm"
-          clearable
-          custom-class="ipt tn-shadow-md"
-          v-model="kw"
-          type="text"
-          placeholder="请输入歌曲"
-        >
+        <tn-input height="60" @confirm="confirm" clearable custom-class="ipt tn-shadow-md" v-model="kw" type="text"
+          placeholder="请输入歌曲">
           <template #prefix>
             <tn-icon name="search" size="40" class="des" />
           </template>
         </tn-input>
-        <div class="tn-ml-xs">
-          <tn-button type="primary" size="lg" @click="navigate('index/index')"
-            >取消</tn-button
-          >
-        </div>
+        <navigator open-type="navigateBack" class="tn-ml-xs custom-button">取消</navigator>
       </div>
       <!-- 最近搜索 -->
-      <div class="Recentsearch">
+      <div class="Recentsearch" v-if="!kw">
         <div class="tn-pt-sm tn-pb-sm">
           <text>最近搜索</text>
         </div>
         <div class="rtsearch tn-shadow">
-          <tn-tag
-            v-for="(item, index) in globalstore.historcontent"
-            @click="taphisto(item)"
-            :key="index"
-            bg-color="#E6F3F9"
-            text-color="#000"
-            shape="round"
-            class="yxbr-10 tn-mr-sm tn-mb-sm tn-shadow-md"
-            >{{ item }}</tn-tag
-          >
+          <div class="tag" v-for="(item, index) in globalstore.historcontent" @click="taphisto(item)" :key="index">{{
+            item }}</div>
+        </div>
+      </div>
+      <!-- 热门搜索 -->
+      <div class="Recentsearch" v-if="searchHotList.length && !kw">
+        <div class="tn-pt-sm tn-pb-sm">
+          <text>热门搜索</text>
+        </div>
+        <div class="rtsearch tn-shadow">
+          <div class="tag" v-for="(item, index) in searchHotList" @click="taphisto(item)" :key="index">{{
+            item.first }}</div>
         </div>
       </div>
       <!-- 搜索结果 -->
-      <div class="searchResult tn-pt-sm tn-pb-sm" v-show="kw">
-        <tn-tabs
-          @change="tabsChange"
-          bg-color=""
-          v-model="currentTabIndex"
-          class="yxbr-10"
-        >
-          <tn-tabs-item
-            v-for="(item, index) in tabsData"
-            :key="index"
-            :title="item.text"
-          />
+      <!-- 有歌曲的时候才显示 -->
+      <div class="searchResult tn-pt-sm tn-pb-sm" v-if="songData.length">
+        <tn-tabs @change="tabsChange" bg-color="" v-model="currentTabIndex" class="yxbr-10">
+          <tn-tabs-item v-for="(item, index) in tabsData" :key="index" :title="item.text" />
         </tn-tabs>
         <!-- 歌曲 -->
         <yxcr-table :data="songData" v-show="currentTabIndex == 0"></yxcr-table>
         <!-- 歌单 -->
         <div class="List tn-mt-xs" v-show="currentTabIndex == 1">
-          <div
-            class="ListItem tn-mb-sm"
-            v-for="item in songList"
-            :key="item.id"
-            @click="playerMusic(item)"
-          >
+          <div class="ListItem tn-mb-sm" v-for="item in songList" :key="item.id" @click="playerMusic(item)">
             <div class="songcover">
-              <tn-avatar
-                shape="square"
-                :url="item.coverImgUrl + '?param=60y60'"
-              />
+              <tn-avatar shape="square" :url="item.coverImgUrl + '?param=60y60'" />
             </div>
             <div class="title tn-mr-xs tn-ml-xs">
               <text class="tn-text-lg">{{ item.name }}</text>
@@ -195,17 +183,9 @@ function taphisto(params) {
           </div>
         </div>
         <div class="List tn-mt-xs" v-show="currentTabIndex == 2">
-          <div
-            class="ListItem tn-mb-sm"
-            v-for="item in albumList"
-            :key="item.id"
-            @click="playerMusic(item)"
-          >
+          <div class="ListItem tn-mb-sm" v-for="item in albumList" :key="item.id" @click="playerMusic(item)">
             <div class="songcover">
-              <tn-avatar
-                shape="square"
-                :url="item.blurPicUrl + '?param=60y60'"
-              />
+              <tn-avatar shape="square" :url="item.blurPicUrl + '?param=60y60'" />
             </div>
             <div class="title tn-mr-xs tn-ml-xs">
               <text class="tn-text-lg">{{ item.name }}</text>
@@ -220,17 +200,9 @@ function taphisto(params) {
           </div>
         </div>
         <div class="List tn-mt-xs" v-show="currentTabIndex == 3">
-          <div
-            class="ListItem tn-mb-sm"
-            v-for="item in mvList"
-            :key="item.id"
-            @click="playerMusic(item)"
-          >
+          <div class="ListItem tn-mb-sm" v-for="item in mvList" :key="item.id" @click="playerMusic(item)">
             <div class="songcover">
-              <tn-avatar
-                shape="square"
-                :url="item.al.picUrl + '?param=60y60'"
-              />
+              <tn-avatar shape="square" :url="item.al.picUrl + '?param=60y60'" />
             </div>
             <div class="title tn-mr-xs tn-ml-xs">
               <text class="tn-text-lg">{{ item.name }}</text>

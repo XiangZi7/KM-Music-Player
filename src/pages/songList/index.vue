@@ -62,7 +62,7 @@ function navigate(params, value) {
 </script>
 <template>
     <div class="page-container">
-        <grid-head bg="7">
+        <grid-head bg="8">
             <tn-search-box placeholder-icon="search" :search-button="false" shape="round" :border="false"
                 placeholder="Search..." class="search-input" />
         </grid-head>

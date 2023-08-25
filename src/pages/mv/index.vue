@@ -21,16 +21,13 @@ function onRouter(id) {
         url: `/pages/mv/play?id=${id}`
     })
 }
-function gtback() {
-    uni.navigateBack();
-}
 </script>
 <template>
     <div class="page-container">
 
         <z-paging ref="paging" v-model="mvList" @query="onGetAllData">
             <template #top>
-                <grid-head bg="10">
+                <grid-head >
                     <tn-search-box placeholder-icon="search" :search-button="false" shape="round" :border="false"
                         placeholder="Search..." class="search-input" />
                 </grid-head>

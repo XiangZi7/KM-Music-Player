@@ -110,3 +110,7 @@ export const loginStatus = () => http.request({
 export const userPlaylist = (id) => http.request({
     url: `user/playlist?uid=${id}`,
 });
+//获取热搜列表(简略)
+export const searchHot = () => http.request({
+    url: `search/hot`,
+});

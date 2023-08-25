@@ -11,7 +11,10 @@
     gap: 20px;
     // padding: 0 10px;
 }
-
+.search-input {
+    margin: 10px;
+    background-color: #fff !important;
+  }
 .song-item {
     display: flex;
     flex-direction: column;

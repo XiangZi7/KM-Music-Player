@@ -11,8 +11,6 @@ const {
     playlists
 } = toRefs(state)
 onLoad(async (params) => {
-    console.log("🚀 => params:", params)
-
     const { data } = await playListDetail({ id: params.id })
     state.playlists = data.playlist
     state.list = data.playlist.tracks.map(item => {
@@ -44,7 +42,8 @@ function gtback() {
                 <tn-icon size="30" name="share" />
             </div>
         </div>
-        <div class="card" :style="{ backgroundImage: `url(${playlists.coverImgUrl + '?param=250y250'})` }">
+        <div v-if="Object.keys(playlists).length > 0" class="card"
+            :style="{ backgroundImage: `url(${playlists.coverImgUrl + '?param=250y250'})` }">
             <div class="card-content">
                 <h2 class="card-title tn-text-ellipsis-1">{{ playlists.name }}</h2>
                 <div class="user-info">
@@ -56,7 +55,7 @@ function gtback() {
                 </p>
             </div>
         </div>
-        <div class="main">
+        <div class="main" v-if="list.length">
             <div class="play-all">
                 <div class="play-item">
                     <div class="play-icon">
