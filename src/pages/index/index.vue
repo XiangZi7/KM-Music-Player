@@ -153,7 +153,7 @@ function navigate(params, value) {
                 class="tn-shadow-md"
                 shape="square"
                 size="300"
-                :url="item.coverImgUrl + '?param=190y190'"
+                :url="item.coverImgUrl + '?param=250y250'"
               />
             </div>
           </div>
