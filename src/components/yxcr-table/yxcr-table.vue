@@ -50,7 +50,7 @@ async function playerMusic(params) {
     <div class="popular">
         <div class="popular-item" v-for="item in props.data" :key="item.id" @click="playerMusic(item)">
             <div class="avatar">
-                <tn-avatar class="tn-shadow-md" shape="square" size="130" :url="item.cover + '?param=62y62'" />
+                <tn-avatar class="tn-shadow-md" shape="square" size="130" :url="item.cover + '?param=75y75'" />
             </div>
             <div class="info">
                 <text class="tn-text-sm">{{ item.title }}</text>

@@ -114,3 +114,11 @@ export const userPlaylist = (id) => http.request({
 export const searchHot = () => http.request({
     url: `search/hot`,
 });
+//每日歌曲
+export const recommendSongs = () => http.request({
+    url: `recommend/songs`,
+});
+//每日歌单
+export const getdaylist = () => http.request({
+    url: `recommend/resource`,
+});
