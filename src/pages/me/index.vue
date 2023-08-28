@@ -51,7 +51,7 @@ function toRouter(params, value) {
           <yxcr-show-img
             defImg="2"
             class="avatar"
-            :src="userinfo.profile?.avatarUrl + '?param=90y90'"
+            :src="userinfo.profile?.avatarUrl + '?param=120y120'"
           ></yxcr-show-img>
           <p class="username">{{ userinfo.profile?.nickname || "" }}</p>
         </div>
