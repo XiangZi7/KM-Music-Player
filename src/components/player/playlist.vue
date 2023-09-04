@@ -13,6 +13,10 @@ function showPlayList(params) {
 
 function playMusic(idx) {
   playerstore.currentIndex = idx;
+  playerstore.player.src = playerstore.songs[playerstore.currentIndex].src;
+  nextTick(() => {
+    playerstore.player.play();
+  });
 }
 </script>
 <template>

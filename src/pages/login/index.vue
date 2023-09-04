@@ -48,7 +48,6 @@ async function anonimousFn() {
 async function fnLogin() {
     formRef.value?.validate(async (valid) => {
         if (valid) {
-            // 因接口要验证、暂时实现不了登录功能
             verify(state.model).then(({ data }) => {
                 console.log("🚀 => data:", data)
                 if (data.data) {
@@ -56,7 +55,7 @@ async function fnLogin() {
                         console.log("🚀 => data:", data)
                         if (data.code == 200) {
                             uni.setStorageSync("userinfo", data)
-                            Cookie.set('Cookie', data.cookie)
+                            // Cookie.set('Cookie', data.cookie)
                             uni.switchTab({
                                 url: '/pages/index/index'
                             });
