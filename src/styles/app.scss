@@ -1,3 +1,5 @@
+@import "reset.css";
+
 @font-face {
   font-family: 'Poppins';
   font-style: normal;
@@ -10,28 +12,23 @@
 }
 
 :root {
-  --dark-color: hsl(var(--hue), 100%, 9%);
-  --light-color: hsl(var(--hue), 95%, 98%);
-  --base: hsl(var(--hue), 95%, 50%);
-  --complimentary1: hsl(var(--hue-complimentary1), 95%, 50%);
-  --complimentary2: hsl(var(--hue-complimentary2), 95%, 50%);
-
   --font-family: "Poppins", system-ui;
-
-  --bg-gradient: linear-gradient(to bottom, hsl(235, 95%, 99%), hsl(235, 95%, 84%));
-  --hue: 235;
-  --hue-complimentary1: 265;
-  --hue-complimentary2: 295;
-
-  --greyLight-2: #c8d0e7;
-  --greyLight-3: #bec8e4;
-  --greyDark: #9baacf;
-  --white: #FFFFFF;
 }
 
 body {
   font-family: var(--font-family);
+  background-image: url(https://wallpapershome.com/images/wallpapers/macos-big-sur-1280x720-dark-wwdc-2020-22655.jpg);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2em;
+  width: 100%;
+  height: 100vh;
 }
+
 /*
 * 全局滚动条
 */
@@ -43,24 +40,4 @@ body {
 ::-webkit-scrollbar-thumb {
   background: rgb(1 2 3 / 40%);
   border-radius: 10px;
-}
-
-.shadow-blue {
-  box-shadow: 0.8rem 0.8rem 1.4rem var(--greyLight-2), -0.2rem -0.2rem 1.8rem var(--white);
-}
-
-.video-bg {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-
-  video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(70px); /* 调整数字以增加或减少模糊程度 */
-  }
 }

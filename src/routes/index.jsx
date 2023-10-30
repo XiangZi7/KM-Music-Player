@@ -1,8 +1,7 @@
 import {Navigate, useRoutes} from 'react-router-dom';
 import {lazy, Suspense} from 'react';
-import {Spinner} from "@nextui-org/react";
 
-const Home = lazy(() => import('@/pages/Home'));
+const Home = lazy(() => import('@/pages/Home/index'));
 const Mini = lazy(() => import('@/pages/MiniPlayer'))
 const Ml = lazy(() => import('@/pages/Ml'))
 const Radio = lazy(() => import('@/pages/Radio'))
@@ -14,7 +13,7 @@ const Test = lazy(() => import('@/pages/Test'))
 const Search = lazy(() => import('@/pages/Search/index.jsx'))
 
 const LoadingTip = Element => (
-    <Suspense fallback={<Spinner/>}>
+    <Suspense fallback={<div>加载中。。。</div>}>
         <Element/>
     </Suspense>
 );

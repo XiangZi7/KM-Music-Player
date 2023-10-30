@@ -1,64 +1,27 @@
-# KM-Music-Player Player
+# React + TypeScript + Vite
 
-### 介绍 📖
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-KM-Music-Player = Kuriyama Mirai Music Player(Mirai Kuriyama My Wife >///<)
+Currently, two official plugins are available:
 
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-基于 Vue3.3、Vite4、Pinia、Element-Plus 开源的Web音乐播放器，使用目前最新技术栈开发。
+## Expanding the ESLint configuration
 
-### 在线预览 👀
-netlify：https://kmmusic.netlify.app
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-github pages：https://xiangzi7.github.io/KM-Music-Player/
+- Configure the top-level `parserOptions` property like this:
 
+```js
+   parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+   },
+```
 
-vercel：https://kmmusic.vercel.app (可能需要魔法)
-
-
-### 代码仓库 ⭐
-
-GitHub：https://github.com/XiangZi7/KM-Music-Player
-
-项目功能 🔨
-使用 Vue3.3 开发，单文件组件＜ script setup ＞
-采用 Vite4 作为项目开发、打包工具
-使用 Pinia 替代 Vuex，轻量、简单、易用，集成 Pinia 持久化插件
-基于 Element Plus
-使用 VueRouter 路由懒加载
-
-### 安装使用步骤 📔
-
-* Clone
-
-
-#Github
-
-`git clone https://github.com/XiangZi7/KM-Music-Player.git`
-
-* Install：
-  `yarn`
-* Run：
-  `yarn dev`
-* 文档说明
-  https://neteasecloudmusicapi.vercel.app/#/  （可能需魔法上网）
-
-### 项目截图 📷
-
-![1686722338917](image/README/1686722338917.png)
-
-![1686722358440](image/README/1686722358440.png)
-
-![1686722368781](image/README/1686722368781.png)
-
-![1686722421686](image/README/1686722421686.png)
-
-![1686722435660](image/README/1686722435660.png)
-
-### 项目后台接口 🧩
-
-* https://neteasecloudmusicapi.vercel.app/#/  （可能需魔法上网）
-
-### QQ交流群 👨‍👨‍👦‍👦
-
-![1686722147442](image/README/1686722147442.png)
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list

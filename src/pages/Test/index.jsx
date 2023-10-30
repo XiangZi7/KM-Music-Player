@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef, useContext} from 'react'
-import {formatTime} from "@/utils/FormatTime.jsx";
+import {formatTime} from "@/utils/FormatTime.js";
 import MusicPlayerContext from '@/utils/PlayerContext.js';
 import {PauseCircleIcon} from "@/components/min-Player/PauseCircleIcon.jsx";
 import {PlayIcon} from "@/components/min-Player/PlayIcon.jsx";

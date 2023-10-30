@@ -1,3 +1,5 @@
+import MkTable from '@/components/Mk-Table/Mk-Table'
+
 export default function App() {
     return (
         <>
