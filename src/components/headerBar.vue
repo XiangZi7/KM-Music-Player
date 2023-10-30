@@ -125,7 +125,7 @@ const submit = () => {
 		</div>
 
 		<div class="search-bar">
-			<input type="text" placeholder="Search" @keyup.enter='toResult' v-model='kw'>
+			<input type="text" placeholder="Index" @keyup.enter='toResult' v-model='kw'>
 		</div>
 		<div class="about">
 			<a href="https://github.com/XiangZi7/KM-Music-Player/" target="_blank">github</a>

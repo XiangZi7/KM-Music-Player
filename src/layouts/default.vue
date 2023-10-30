@@ -6,7 +6,7 @@ import Player from "@/components/Player.vue";
 <template>
 	<div class="app">
 		<!-- //////////////////// -->
-		<!-- ////  MenuBar  ///// -->
+		<!-- ////  HeaderBar  ///// -->
 		<!-- //////////////////// -->
 		<HeaderBar />
 		<div class="wrapper">
