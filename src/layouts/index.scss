@@ -1,0 +1,16 @@
+.layout-main-page-enter {
+  opacity: 0;
+  transform: translateY(-50px);
+}
+.layout-main-page-enter-active {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: opacity 500ms, transform 500ms;
+}
+.layout-main-page-exit {
+  opacity: 1;
+}
+.layout-main-page-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}
