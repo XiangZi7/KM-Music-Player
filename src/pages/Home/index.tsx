@@ -17,7 +17,7 @@ export default function App() {
 
                     <div className="content-section">
                         <div className="content-section-title">Installed</div>
-                        <MkTable></MkTable>
+                        <MkTable  />
                     </div>
                     <div className="content-section">
                         <div className="content-section-title">Apps in your plan</div>

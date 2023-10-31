@@ -114,10 +114,8 @@ body.light-mode .video-bg:before {
 
 .app {
   background-color: var(--theme-bg-color);
-  //max-width: 1440px;
   max-height: 860px;
   height: 90vh;
-  width: 1250px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -937,37 +935,32 @@ body.light-mode .video-bg:before {
   flex-grow: 1;
   justify-content: space-between;
   align-items: center;
+  padding: 0 10px;
 }
 
 .player {
   &_left {
-    color: var(--theme-color);
+    color: var(--inactive-color);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
   }
 
   &_center {
     color: var(--theme-color);
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 
     .player_btn {
       display: flex;
       align-items: center;
-      margin-bottom: 5px;
+      justify-content: center;
 
-      svg {
-        width: 35px;
-        height: 25px;
-        margin-right: 8px;
-      }
-
-      //svg:nth-of-type(1) {
-      //  width: 20px;
-      //  height: 15px;
-      //}
-
-      svg:nth-of-type(2) {
-        width: 20px;
-        height: 15px;
+      div {
+        cursor: pointer;
+        margin: 0 10px;
       }
     }
 
@@ -978,6 +971,31 @@ body.light-mode .video-bg:before {
 
   &_right {
     color: var(--theme-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    .ant-slider-rail {
+      background-color: #57576F;
+    }
+  }
+}
+
+.player_slider {
+  display: flex;
+  //width: 500px;
+  width: 100%;
+  align-items: center;
+  .ant-slider-rail {
+    background-color: #57576F;
+  }
+
+  span {
+    font-size: 12px;
+    color: var(--inactive-color);
+
   }
 }
 
@@ -999,6 +1017,36 @@ body.light-mode .video-bg:before {
 
 .ml-5 {
   margin-left: 5px;
+}
+
+.mr-5 {
+  margin-right: 5px;
+}
+
+.mx-5 {
+  margin: 0 5px;
+}
+
+.mx-10 {
+  margin: 0 10px;
+}
+
+.w-120 {
+  width: 120px;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-80 {
+  width: 80px;
+}
+
+.px-5 {
+  padding: 0 5px;
+}.px-10 {
+  padding: 0 10px;
 }
 
 .flex-1 {

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {
     setPlaying,
     playNext,
@@ -7,8 +7,9 @@ import {
     setLooping,
     setShuffling,
 } from "@/stores/modules/playerStore";
-import { httpGet } from '@/utils/http';
-import { createBilingualData } from '@/utils/parseLyrics';
+import {httpGet} from '@/utils/http';
+import {createBilingualData} from '@/utils/parseLyrics';
+import {message} from 'antd';
 
 interface LyricLine {
     time: number;
@@ -75,7 +76,7 @@ const useMusicPlayer = (): MusicPlayer => {
     useEffect(() => {
         audio.src = songs[currentIndex].src;
         setLyricList([]);
-        httpGet('/lyric', { id: songs[currentIndex].Lyric }).then((data) => {
+        httpGet('/lyric', {id: songs[currentIndex].Lyric}).then((data) => {
             const bilingualData = createBilingualData(data.lrc.lyric, data.tlyric.lyric);
             setLyricList(bilingualData);
         });
@@ -132,13 +133,13 @@ const useMusicPlayer = (): MusicPlayer => {
 
     // 循环播放
     function handleLoopClick() {
-        // message.success('循环播放', 3);
+        message.success('循环播放')
         dispatch(setLooping(!isLooping));
     }
 
     // 随机播放
     function handleShuffleClick() {
-        // message.success('随机播放', 3);
+        message.success('随机播放')
         dispatch(setShuffling(!isShuffling));
     }
 
@@ -154,7 +155,7 @@ const useMusicPlayer = (): MusicPlayer => {
         }
 
         if (lyricList.length > 0) {
-            const lineHeight = 48; // 每行歌词的高度
+            const lineHeight = 20; // 每行歌词的高度
             const translateY = (currentLine - 4) * -lineHeight; // 将当前行的上两行作为起始位置
             setLineHeight(translateY);
         }
