@@ -1,11 +1,36 @@
 import MkTable from '@/components/Mk-Table/Mk-Table'
+import {useEffect, useState} from "react";
+import {httpGet} from '@/utils/http'
+import {Button} from "antd";
 
 export default function App() {
+    const [song, setSong] = useState([])
+    useEffect(() => {
+        httpGet('/playlist/track/all?id=86596672&limit=30&offset=1').then((data) => {
+            let newData = data.songs.map(item => {
+                const names = item.ar.map(subItem => subItem.name).join(',');
+                let songs = {
+                    title: item.name,
+                    singer: names,
+                    cover: item.al.picUrl,
+                    time: item.dt,
+                    album: item.al.name,
+                    id: item.id,
+                    mv: item.mv,
+                    Lyric: item.id
+                }
+                return songs
+            })
+            setSong(newData)
+        });
+    }, [])
+
+
     return (
         <>
             <div className="main-container">
                 <div className="main-header">
-                    <a className="menu-link-main" href="#">All Apps</a>
+                    <a className="menu-link-main" href="#">Hot Music</a>
                     <div className="header-menu">
                         <a className="main-header-link is-active" href="#">Desktop</a>
                         <a className="main-header-link" href="#">Mobile</a>
@@ -13,14 +38,34 @@ export default function App() {
                     </div>
                 </div>
                 <div className="content-wrapper">
-                    <div className="content-wrapper-header"></div>
-
-                    <div className="content-section">
-                        <div className="content-section-title">Installed</div>
-                        <MkTable  />
+                    <div className="content-wrapper-header">
+                        <div className="content-wrapper-header-padding">
+                            <div className="content-wrapper-context">
+                                <h3 className="img-content">
+                                    境界的彼方
+                                </h3>
+                                <div className="content-text">
+                                    《境界的彼方》是由鸟居奈古梦著作、鸭居知世插画的轻小说，于2012年6月9日，由KAESUMA文库文库（京都动画）发行。小说曾获得第2回京都动画大赏（小说部门）奖励赏。
+                                </div>
+                                <Button style={{padding: ' 0px 45px'}} className="content-button" shape="round"
+                                        type="primary">试听专辑</Button>
+                                {/*<button className="content-button"><a*/}
+                                {/*    href="#/search?keyworks=%E5%A2%83%E7%95%8C%E7%9A%84%E5%BD%BC%E6%96%B9"*/}
+                                {/*    className="content-button">试听专辑*/}
+                                {/*</a></button>*/}
+                            </div>
+                        </div>
+                        <img src="src/static/km.png" height={230}/>
                     </div>
+
+                    {song.length !== 0 ?
+                        <div className="content-section">
+                            <div className="content-section-title">Album</div>
+                            <MkTable data={song} style={{maxHeight: "40vh"}}/>
+                        </div>
+                        : null}
                     <div className="content-section">
-                        <div className="content-section-title">Apps in your plan</div>
+                        <div className="content-section-title">Song List</div>
                         <div className="apps-card">
                             <div className="app-card">
        <span>
