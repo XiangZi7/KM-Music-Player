@@ -8,13 +8,16 @@ import './styles/player.scss'
 import store, {persistor} from "./stores";
 import {Provider} from "react-redux";
 import {PersistGate} from "redux-persist/integration/react";
+import {HashRouter} from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
+        <HashRouter>
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persistor}>
                     <App/>
                 </PersistGate>
             </Provider>
+        </HashRouter>
     </React.StrictMode>,
 )

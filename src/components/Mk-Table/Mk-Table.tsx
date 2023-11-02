@@ -32,7 +32,7 @@ export default function MkTable({data, style, className}) {
                         <span className="status">{formatTimes(item.time)}</span>
                         <div className="button-wrapper">
                             <div className="flex items-center">
-                                <PlayCircle/>
+                                <PlayCircle onClick={() => playMusic(item)}/>
                                 {item.mv !== 0 ? <Film/> : null}
                             </div>
                         </div>

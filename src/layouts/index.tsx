@@ -29,10 +29,11 @@ export default function LayoutIndex() {
                 <div className="wrapper">
                     {/*Side*/}
                     <LeftSide/>
+
                     {/*Main*/}
-                    <HashRouter>
+                    <div className="flex flex-col app-main">
                         <Router></Router>
-                    </HashRouter>
+                    </div>
                 </div>
                 <Player/>
             </div>

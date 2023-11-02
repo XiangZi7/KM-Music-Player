@@ -1,10 +1,17 @@
 import MkTable from '@/components/Mk-Table/Mk-Table'
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {httpGet} from '@/utils/http'
 import {Button} from "antd";
 
 export default function App() {
+    const songsCard = useRef();
+    const [songCardWidth, setSongCardWidth] = useState(0)
     const [song, setSong] = useState([])
+    // header
+    const headerLink = ["Message", "Music Library", "Animation"]
+    const [headerActive, setHeaderActive] = useState(0)
+    // 歌单
+    const [playlists, setPlayLists] = useState([])
     useEffect(() => {
         httpGet('/playlist/track/all?id=86596672&limit=30&offset=1').then((data) => {
             let newData = data.songs.map(item => {
@@ -23,18 +30,36 @@ export default function App() {
             })
             setSong(newData)
         });
+        httpGet("/top/playlist?limit=30&offset=0").then(({playlists}) => {
+            setPlayLists(playlists)
+        })
     }, [])
 
+    useEffect(() => {
+        if (songsCard.current) {
+            const width = songsCard.current.getBoundingClientRect().width;
+            setSongCardWidth(width)
+        }
+    }, [songsCard.current]);
+
+    function handleHeader(idx: number) {
+        setHeaderActive(idx)
+    }
 
     return (
         <>
             <div className="main-container">
                 <div className="main-header">
-                    <a className="menu-link-main" href="#">Hot Music</a>
+                    <span className="menu-link-main">Hot Music</span>
                     <div className="header-menu">
-                        <a className="main-header-link is-active" href="#">Desktop</a>
-                        <a className="main-header-link" href="#">Mobile</a>
-                        <a className="main-header-link" href="#">Web</a>
+                        {headerLink.map((item, idx) => (
+                            <span key={idx}
+                                  onClick={() => handleHeader(idx)}
+                                  className={`main-header-link ${headerActive == idx ? 'is-active' : ''}`}
+                            >
+                                {item}
+                            </span>
+                        ))}
                     </div>
                 </div>
                 <div className="content-wrapper">
@@ -49,48 +74,39 @@ export default function App() {
                                 </div>
                                 <Button style={{padding: ' 0px 45px'}} className="content-button" shape="round"
                                         type="primary">试听专辑</Button>
-                                {/*<button className="content-button"><a*/}
-                                {/*    href="#/search?keyworks=%E5%A2%83%E7%95%8C%E7%9A%84%E5%BD%BC%E6%96%B9"*/}
-                                {/*    className="content-button">试听专辑*/}
-                                {/*</a></button>*/}
                             </div>
                         </div>
                         <img src="src/static/km.png" height={230}/>
                     </div>
-
+                    {/*歌单*/}
+                    <div className="content-section">
+                        <div className="content-section-title" ref={songsCard}>Song List</div>
+                        <div className="songs-card"
+                             style={{maxWidth: `${songCardWidth}px`}}>
+                            {playlists.map((item, idx) => (
+                                <div className="song-card" key={idx}>
+                                    {/*<div className="song-title">*/}
+                                    {/*    {item.name}*/}
+                                    {/*</div>*/}
+                                    <img className="song-img"
+                                         src={`${item.coverImgUrl}?param=200y200`}/>
+                                    <div className="song-des">
+                                        <div>
+                                            <p>{item.name}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    {/*歌曲*/}
                     {song.length !== 0 ?
                         <div className="content-section">
                             <div className="content-section-title">Album</div>
                             <MkTable data={song} style={{maxHeight: "40vh"}}/>
                         </div>
                         : null}
-                    <div className="content-section">
-                        <div className="content-section-title">Song List</div>
-                        <div className="apps-card">
-                            <div className="app-card">
-       <span>
-        <svg viewBox="0 0 512 512">
-         <path xmlns="http://www.w3.org/2000/svg"
-               d="M480 0H32C14.368 0 0 14.368 0 32v448c0 17.664 14.368 32 32 32h448c17.664 0 32-14.336 32-32V32c0-17.632-14.336-32-32-32z"
-               fill="#210027" data-original="#7b1fa2"></path>
-         <g xmlns="http://www.w3.org/2000/svg">
-          <path
-              d="M192 64h-80c-8.832 0-16 7.168-16 16v352c0 8.832 7.168 16 16 16s16-7.168 16-16V256h64c52.928 0 96-43.072 96-96s-43.072-96-96-96zm0 160h-64V96h64c35.296 0 64 28.704 64 64s-28.704 64-64 64zM400 256h-32c-18.08 0-34.592 6.24-48 16.384V272c0-8.864-7.168-16-16-16s-16 7.136-16 16v160c0 8.832 7.168 16 16 16s16-7.168 16-16v-96c0-26.464 21.536-48 48-48h32c8.832 0 16-7.168 16-16s-7.168-16-16-16z"
-              fill="#f6e7fa" data-original="#e1bee7"></path>
-         </g>
-        </svg>
-        Premiere Pro
-       </span>
-                                <div className="app-card__subtext">Edit, master and create fully proffesional
-                                    videos
-                                </div>
-                                <div className="app-card-buttons">
-                                    <button className="content-button status-button">Update</button>
-                                    <div className="menu"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </>
