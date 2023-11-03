@@ -10,6 +10,8 @@ import {
 import {httpGet} from '@/utils/http';
 import {createBilingualData} from '@/utils/parseLyrics';
 import {message} from 'antd';
+import {RootState} from '@/stores'
+import {LyricData} from "@/api/interface.ts";
 
 interface LyricLine {
     time: number;
@@ -48,7 +50,7 @@ const useMusicPlayer = (): MusicPlayer => {
         isLooping,
         isShuffling,
         isPlaying,
-    } = useSelector((state) => state.player);
+    } = useSelector((state: RootState) => state.player);
     const dispatch = useDispatch();
     const [audio] = useState(new Audio(songs[currentIndex].src));
     const [currentTime, setCurrentTime] = useState<number>(0);
@@ -76,7 +78,7 @@ const useMusicPlayer = (): MusicPlayer => {
     useEffect(() => {
         audio.src = songs[currentIndex].src;
         setLyricList([]);
-        httpGet('/lyric', {id: songs[currentIndex].Lyric}).then((data) => {
+        httpGet<LyricData>('/lyric', {id: songs[currentIndex].Lyric}).then((data) => {
             const bilingualData = createBilingualData(data.lrc.lyric, data.tlyric.lyric);
             setLyricList(bilingualData);
         });

@@ -30,6 +30,7 @@ export default function App() {
             })
             setSong(newData)
         });
+
         httpGet("/top/playlist?limit=30&offset=0").then(({playlists}) => {
             setPlayLists(playlists)
         })
@@ -50,7 +51,9 @@ export default function App() {
         <>
             <div className="main-container">
                 <div className="main-header">
+                    {/*左标题*/}
                     <span className="menu-link-main">Hot Music</span>
+                    {/*tabs*/}
                     <div className="header-menu">
                         {headerLink.map((item, idx) => (
                             <span key={idx}
@@ -60,6 +63,10 @@ export default function App() {
                                 {item}
                             </span>
                         ))}
+                    </div>
+                    {/*搜索*/}
+                    <div className="search-bar">
+                        <input type="text" placeholder="Search"/>
                     </div>
                 </div>
                 <div className="content-wrapper">
@@ -85,11 +92,8 @@ export default function App() {
                              style={{maxWidth: `${songCardWidth}px`}}>
                             {playlists.map((item, idx) => (
                                 <div className="song-card" key={idx}>
-                                    {/*<div className="song-title">*/}
-                                    {/*    {item.name}*/}
-                                    {/*</div>*/}
                                     <img className="song-img"
-                                         src={`${item.coverImgUrl}?param=200y200`}/>
+                                         src={`${item.coverImgUrl}?param=300y300`}/>
                                     <div className="song-des">
                                         <div>
                                             <p>{item.name}</p>
@@ -100,13 +104,12 @@ export default function App() {
                         </div>
                     </div>
                     {/*歌曲*/}
-                    {song.length !== 0 ?
+                    {song.length > 0 && (
                         <div className="content-section">
                             <div className="content-section-title">Album</div>
                             <MkTable data={song} style={{maxHeight: "40vh"}}/>
                         </div>
-                        : null}
-
+                    )}
                 </div>
             </div>
         </>

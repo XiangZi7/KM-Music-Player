@@ -1,6 +1,6 @@
 import {Navigate, useRoutes} from 'react-router-dom';
 import {lazy, Suspense} from 'react';
-
+import { Spin } from 'antd';
 const Home = lazy(() => import('@/pages/Home/index'));
 const Mini = lazy(() => import('@/pages/MiniPlayer'))
 const Ml = lazy(() => import('@/pages/Ml'))
@@ -10,10 +10,10 @@ const Anim = lazy(() => import('@/pages/Anim'))
 const Chat = lazy(() => import('@/pages/Chat'));
 const Theme = lazy(() => import('@/pages/theme'))
 const Test = lazy(() => import('@/pages/Test'))
-const Search = lazy(() => import('@/pages/Search/index.jsx'))
+const Search = lazy(() => import('@/pages/Search'))
 
 const LoadingTip = Element => (
-    <Suspense fallback={<div>加载中。。。</div>}>
+    <Suspense fallback={<Spin/>}>
         <Element/>
     </Suspense>
 );

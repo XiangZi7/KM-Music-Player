@@ -8,7 +8,7 @@ import {ShuffleIcon} from "./ShuffleIcon";
 import {PlayIcon} from "./PlayIcon.jsx"
 import {useState, useEffect, useRef, useContext} from 'react'
 
-import {formatTime} from "@/utils/FormatTime.js";
+import {formatTime} from "@/utils/FormatTime.ts";
 import './index.scss'
 import Slider from "@/components/min-Player/slider.jsx";
 import MusicPlayerContext from "@/utils/PlayerContext.js";

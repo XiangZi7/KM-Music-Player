@@ -1,17 +1,31 @@
 import {Film, PlayCircle} from "react-feather";
-import {Avatar} from "antd";
 import {httpGet} from '@/utils/http'
-import {useState} from "react";
+import {CSSProperties, useState} from "react";
 import {useDispatch} from "react-redux";
 import {addSongs, setPlaying} from "@/stores/modules/playerStore";
 import {formatTimes} from "@/utils/FormatTime";
-import {it} from "node:test";
 
-export default function MkTable({data, style, className}) {
+interface Song {
+    id: number;
+    title: string;
+    singer: string;
+    time: number;
+    cover: string;
+    mv: number;
+}
+
+interface Props {
+    data: Song[];
+    style?: CSSProperties;
+    className?: string;
+}
+
+
+export default function MkTable({data, style, className}: Props) {
     const dispatch = useDispatch();
 
     // 播放音乐
-    function playMusic(item) {
+    function playMusic(item: Song) {
         httpGet(`/song/url/v1?id=${item.id}&level=exhigh`).then(({data}) => {
             let songs = Object.assign({}, item, {src: data[0].url})
             dispatch(addSongs(songs))
@@ -22,7 +36,7 @@ export default function MkTable({data, style, className}) {
     return (
         <>
             <ul style={style} className={className}>
-                {data.map((item, idx) => (
+                {data.map((item) => (
                     <li className="adobe-product" key={item.id} onDoubleClick={() => playMusic(item)}>
                         <div className="products">
                             <img src={item.cover + "?param=28y28"}/>

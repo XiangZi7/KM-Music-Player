@@ -7,13 +7,16 @@ import counterStore from "./modules/counterStore";
 import channelStore from "./modules/channelStore";
 import playerStore from "./modules/playerStore";
 import globalStore from "./modules/globalStore";
-
+import {PlayerState} from './interface/index'
 // 配置持久化
 const persistConfig = {
     key: 'root',
     storage,
 };
-
+// 模块的数据类型
+export type RootState = {
+    player: PlayerState;
+};
 const persistedReducer = persistReducer(persistConfig, combineReducers({
     counter: counterStore,
     channel: channelStore,

@@ -702,7 +702,7 @@ body.light-mode .video-bg:before {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  width: 187px;
+  width: 50px;
   //margin-left: auto;
   @media screen and (max-width: 480px) {
     width: auto;
@@ -1069,7 +1069,7 @@ body.light-mode .video-bg:before {
   width: calc(100% + 20px);
   overflow-x: auto;
   box-sizing: border-box;
-  gap: 5px;
+  gap: 20px;
 
   .song-card {
     display: flex;
@@ -1099,12 +1099,14 @@ body.light-mode .video-bg:before {
     border-radius: 0 0 10px 10px;
     font-size: 0.75rem;
     color: rgb(45 45 45/1);
-    backdrop-filter:blur(8px) saturate(1.5);
+    backdrop-filter: blur(8px) saturate(1.5);
     display: flex;
     align-items: center;
-    div{
+
+    div {
       width: 100%;
     }
+
     p {
       /* 内容过长显示两行，多余为省略号 */
       text-overflow: ellipsis; /*设置隐藏部分为省略号*/

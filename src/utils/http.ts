@@ -1,16 +1,14 @@
-import axios from 'axios';
+import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
-const instance = axios.create({
+const instance: AxiosInstance = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
     timeout: 10000,
-    changeOrigin: true,  //跨域
     withCredentials: true,
 });
 
 // 请求拦截器
 instance.interceptors.request.use(
     (config) => {
-        // 在请求发送之前做一些处理，例如添加时间戳
         config.params = {
             ...config.params,
             timestamp: Date.now(),
@@ -24,8 +22,7 @@ instance.interceptors.request.use(
 
 // 响应拦截器
 instance.interceptors.response.use(
-    (response) => {
-        // 在响应数据之前做一些处理
+    (response: AxiosResponse) => {
         return response.data;
     },
     (error) => {
@@ -34,11 +31,10 @@ instance.interceptors.response.use(
 );
 
 // 封装get方法
-export const httpGet = (url, params) => {
-    return instance.get(url, { params });
+export const httpGet = <T>(url: string, params?: object): Promise<AxiosResponse<T>> => {
+    return instance.get<T>(url, {params});
 };
-
 // 封装post方法
-export const httpPost = (url, data) => {
-    return instance.post(url, data);
+export const httpPost = <T>(url: string, data?: object): Promise<AxiosResponse<T>> => {
+    return instance.post<T>(url, data);
 };
