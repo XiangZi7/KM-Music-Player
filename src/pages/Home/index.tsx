@@ -2,6 +2,7 @@ import MkTable from '@/components/Mk-Table/Mk-Table'
 import {useEffect, useRef, useState} from "react";
 import {httpGet} from '@/utils/http'
 import {Button} from "antd";
+import {useNavigate} from "react-router-dom";
 
 export default function App() {
     const songsCard = useRef();
@@ -10,6 +11,9 @@ export default function App() {
     // header
     const headerLink = ["Message", "Music Library", "Animation"]
     const [headerActive, setHeaderActive] = useState(0)
+    const [keyword, setKeyword] = useState("")
+    const Navigate = useNavigate()
+
     // 歌单
     const [playlists, setPlayLists] = useState([])
     useEffect(() => {
@@ -31,8 +35,8 @@ export default function App() {
             setSong(newData)
         });
 
-        httpGet("/top/playlist?limit=30&offset=0").then(({playlists}) => {
-            setPlayLists(playlists)
+        httpGet("/cloudsearch?keywords=境界的彼方&type=1000").then(({result}) => {
+            setPlayLists(result.playlists)
         })
     }, [])
 
@@ -47,6 +51,14 @@ export default function App() {
         setHeaderActive(idx)
     }
 
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            Navigate(`/search?keyword=${encodeURIComponent(keyword)}`);
+        }
+    };
+    const handleChange = (event) => {
+        setKeyword(event.target.value);
+    };
     return (
         <>
             <div className="main-container">
@@ -66,7 +78,7 @@ export default function App() {
                     </div>
                     {/*搜索*/}
                     <div className="search-bar">
-                        <input type="text" placeholder="Search"/>
+                        <input type="text" onChange={handleChange} value={keyword} placeholder="Search" onKeyDown={handleKeyPress}/>
                     </div>
                 </div>
                 <div className="content-wrapper">

@@ -45,6 +45,7 @@
   top: 0;
   width: 100%;
   height: 100%;
+  filter: blur(100px);
 
   video {
     width: 100%;
@@ -1052,6 +1053,10 @@ body.light-mode .video-bg:before {
 
 .flex-1 {
   flex: 1;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
 }
 
 .app-main {

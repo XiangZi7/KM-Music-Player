@@ -3,14 +3,14 @@ import {lazy, Suspense} from 'react';
 import { Spin } from 'antd';
 const Home = lazy(() => import('@/pages/Home/index'));
 const Mini = lazy(() => import('@/pages/MiniPlayer'))
-const Ml = lazy(() => import('@/pages/Ml'))
+const Ml = lazy(() => import('@/pages/Ml/index'))
 const Radio = lazy(() => import('@/pages/Radio'))
 const Movie = lazy(() => import('@/pages/Movie'));
 const Anim = lazy(() => import('@/pages/Anim'))
 const Chat = lazy(() => import('@/pages/Chat'));
 const Theme = lazy(() => import('@/pages/theme'))
 const Test = lazy(() => import('@/pages/Test'))
-const Search = lazy(() => import('@/pages/Search'))
+const Search = lazy(() => import('@/pages/Search/index'))
 
 const LoadingTip = Element => (
     <Suspense fallback={<Spin/>}>

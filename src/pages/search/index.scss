@@ -1,0 +1,15 @@
+.wrap {
+  padding: 20px;
+
+  .ant-tabs-nav::before {
+    border: none;
+  }
+
+  .ant-tabs-tab-btn {
+    color: var(--inactive-color);
+  }
+
+  .ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #fff;
+  }
+}
