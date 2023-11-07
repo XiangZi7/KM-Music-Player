@@ -1,71 +1,156 @@
-import React from "react";
-import {useSearchParams} from "react-router-dom";
-import {Tabs} from 'antd';
-import type {TabsProps} from 'antd';
-import './index.scss'
-
-
+import {useEffect, useState} from "react";
+import {useNavigate, useSearchParams} from "react-router-dom";
+import {ConfigProvider, Pagination, Spin, Tabs} from "antd";
+import type {TabsProps} from "antd";
+import {buildSearchData} from "@/utils/Constructdata";
+import "./index.scss";
+import Single from "./components/single";
+import Songlist from "./components/songlist";
+import {httpGet} from "@/utils/http.ts";
 // 搜索类型
 const MediaType = {
-    '1': 1,
-    '2': 10,
-    '3': 100,
-    '4': 1000,
-    '5': 1002,
-    '6': 1004,
-    '7': 1006,
+    "1": 1,
+    "2": 10,
+    "3": 100,
+    "4": 1000,
+    "5": 1002,
+    "6": 1004,
+    "7": 1006,
 };
-// tabs
-const items: TabsProps['items'] = [
-    {
-        key: '1',
-        label: '单曲',
-    },
-    {
-        key: '2',
-        label: '专辑',
-    },
-    {
-        key: '3',
-        label: '歌手',
-    },
-    {
-        key: '4',
-        label: '歌手',
-    },
-    {
-        key: '5',
-        label: '歌单',
-    },
-    {
-        key: '6',
-        label: '用户',
-    },
-    {
-        key: '7',
-        label: 'MV',
-    },
-];
-const onChange = (key: string) => {
-    console.log(MediaType[key]);
-};
+
 export default function App() {
+    const Navigate = useNavigate();
     const [searchParams] = useSearchParams();
-    const id = searchParams.get('keyword');
+    const [currentMType, setCurrentMType] = useState(1);
+    // tabs activeKey
+    const [tabActiveKey, setTabActiveKey] = useState("1");
+    const keyword = searchParams.get("keyword");
+    const [kw, setKw] = useState("");
+    const [songCount, setSongCount] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [songs, setSongs] = useState([]);
+    // tabs
+    const items: TabsProps["items"] = [
+        {
+            key: "1",
+            label: "单曲",
+            children: <Single data={songs}/>
+        },
+        {
+            key: "2",
+            label: "专辑",
+            children: <Songlist data={songs}/>
+        },
+        {
+            key: "3",
+            label: "歌手",
+        },
+        {
+            key: "4",
+            label: "歌单",
+        },
+        {
+            key: "5",
+            label: "用户",
+        },
+        {
+            key: "6",
+            label: "MV",
+        },
+        {
+            key: "7",
+            label: "歌词",
+        },
+        {
+            key: "8",
+            label: "动漫",
+        },
+    ];
+    // tab Change
+
+    // 每次切换都刷新数据
+    useEffect(() => {
+        searchMusic();
+    }, [currentMType]);
+    // 监听用户搜索的内容
+    useEffect(() => {
+        searchMusic();
+    }, [keyword]);
+    // 监听用户改变分页
+    useEffect(() => {
+        searchMusic();
+    }, [currentPage]);
+
+    // 搜索歌曲
+    function searchMusic() {
+        setSongs([]);
+        setSongCount(0);
+        httpGet(`/cloudsearch`, {
+            keywords: keyword,
+            type: currentMType,
+            offset: (currentPage - 1) * 30,
+            limit: 30,
+        }).then(({result}) => {
+            const tableData = buildSearchData(currentMType, result);
+            // setSongs(tableData.songs);
+            setSongCount(tableData.songCount);
+        });
+    }
+
+    // 页数更改
+    function pageChange(idx: number) {
+        setCurrentPage(idx);
+    }
+    // 搜索功能
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            Navigate(`/search?keyword=${encodeURIComponent(kw)}`);
+        }
+    };
+    const handleChange = (event) => {
+        setKw(event.target.value);
+    };
+    // tabs change
+    const onChange = (key: string) => {
+        setCurrentMType(MediaType[key]);
+        setTabActiveKey(key);
+    };
     return (
         <>
-            <div className="main-header">
-                <span className="menu-link-main">Hot Music</span>
-                <div className="header-menu">
-                    <span className="main-header-link is-active">Message</span>
-                    <span className="main-header-link ">Music Library</span>
-                    <span className="main-header-link ">Animation</span>
+            <div className="search-box">
+                <div className="search-bar" style={{maxWidth: "50%"}}>
+                    <input
+                        type="text"
+                        onChange={handleChange}
+                        placeholder="Search"
+                        onKeyDown={handleKeyPress}
+                    />
                 </div>
-                <div className="search-bar">
-                    <input type="text" placeholder="Search"/></div>
             </div>
             <div className="wrap">
-                <Tabs defaultActiveKey="1" items={items} onChange={onChange}/>
+                <Tabs activeKey={tabActiveKey} items={items} onChange={onChange}/>
+
+                {/*分页*/}
+                {songs.length != 0 && (
+                    <div className="Pagination">
+                        <ConfigProvider
+                            theme={{
+                                components: {
+                                    Pagination: {
+                                        itemActiveBg: "transparent",
+                                    },
+                                },
+                            }}
+                        >
+                            <Pagination
+                                showSizeChanger={false}
+                                current={currentPage}
+                                total={songCount}
+                                onChange={pageChange}
+                            />
+                        </ConfigProvider>
+                    </div>
+                )}
             </div>
         </>
     );

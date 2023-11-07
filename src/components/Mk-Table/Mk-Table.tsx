@@ -4,6 +4,8 @@ import {CSSProperties, useState} from "react";
 import {useDispatch} from "react-redux";
 import {addSongs, setPlaying} from "@/stores/modules/playerStore";
 import {formatTimes} from "@/utils/FormatTime";
+import './style.scss'
+import {Col, Row} from "antd";
 
 interface Song {
     id: number;
@@ -15,7 +17,7 @@ interface Song {
 }
 
 interface Props {
-    data: Song[];
+    data?: Song[];
     style?: CSSProperties;
     className?: string;
 }
@@ -26,8 +28,9 @@ export default function MkTable({data, style, className}: Props) {
 
     // 播放音乐
     function playMusic(item: Song) {
+        console.log(item)
         httpGet(`/song/url/v1?id=${item.id}&level=exhigh`).then(({data}) => {
-            let songs = Object.assign({}, item, {src: data[0].url})
+            const songs = Object.assign({}, item, {src: data[0].url})
             dispatch(addSongs(songs))
             dispatch(setPlaying(true));
         })
@@ -35,24 +38,30 @@ export default function MkTable({data, style, className}: Props) {
 
     return (
         <>
-            <ul style={style} className={className}>
-                {data.map((item) => (
-                    <li className="adobe-product" key={item.id} onDoubleClick={() => playMusic(item)}>
-                        <div className="products">
-                            <img src={item.cover + "?param=28y28"}/>
-                            <span className="ml-5"> {item.title}</span>
-                        </div>
-                        <span className="status">{item.singer}</span>
-                        <span className="status">{formatTimes(item.time)}</span>
-                        <div className="button-wrapper">
-                            <div className="flex items-center">
-                                <PlayCircle onClick={() => playMusic(item)}/>
-                                {item.mv !== 0 ? <Film/> : null}
+            <Row>
+                <div style={style} className={`w-full single-box ${className}`}>
+                    {
+                        data.map((item, idx) => (
+                            <div className="flex single-item" key={idx} onDoubleClick={() => playMusic(item)}>
+                                <Col span={8} className="textoverflow">
+                                    <div className="cover">
+                                        <img src={item.cover + "?param=28y28"}/>
+                                        <span className="ml-10">{item.title}</span>
+                                    </div>
+                                </Col>
+                                <Col span={8} className="textoverflow">{item.singer}</Col>
+                                <Col span={4}>{formatTimes(item.time)}</Col>
+                                <Col span={4}>
+                                    <div className="flex items-center justify-flexend">
+                                        <PlayCircle onClick={() => playMusic(item)}/>
+                                        {item.mv !== 0 ? <Film className="ml-10"/> : null}
+                                    </div>
+                                </Col>
                             </div>
-                        </div>
-                    </li>
-                ))}
-            </ul>
+                        ))
+                    }
+                </div>
+            </Row>
         </>
     )
 }

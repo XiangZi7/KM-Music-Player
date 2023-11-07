@@ -17,8 +17,8 @@ const parseLyrics = (lyric) => {
 };
 
 export const createBilingualData = (lrc, tlyric) => {
-    const lrcLines = parseLyrics(lrc);
-    const tlyricLines = parseLyrics(tlyric);
+    const lrcLines = parseLyrics(lrc || "");
+    const tlyricLines = parseLyrics(tlyric || "");
 
     const lrcObj = {};
     const tlyricObj = {};
@@ -27,10 +27,12 @@ export const createBilingualData = (lrc, tlyric) => {
     lrcLines.forEach((line) => {
         lrcObj[line.time] = line.text;
     });
+    if (tlyricLines) {
+        tlyricLines.forEach((line) => {
+            tlyricObj[line.time] = line.text;
+        });
+    }
 
-    tlyricLines.forEach((line) => {
-        tlyricObj[line.time] = line.text;
-    });
 
     const bilingualData = [];
     for (let i = 0; i < lrcLines.length; i++) {

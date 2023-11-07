@@ -78,8 +78,8 @@ const useMusicPlayer = (): MusicPlayer => {
     useEffect(() => {
         audio.src = songs[currentIndex].src;
         setLyricList([]);
-        httpGet<LyricData>('/lyric', {id: songs[currentIndex].Lyric}).then((data) => {
-            const bilingualData = createBilingualData(data.lrc.lyric, data.tlyric.lyric);
+        httpGet<LyricData>('/lyric', {id: songs[currentIndex].id}).then((data) => {
+            const bilingualData = createBilingualData(data.lrc?.lyric, data.tlyric?.lyric);
             setLyricList(bilingualData);
         });
     }, [currentIndex]);

@@ -1010,13 +1010,18 @@ body.light-mode .video-bg:before {
 .justify-center {
   justify-content: center;
 }
-
+.justify-flexend {
+  justify-content: flex-end;
+}
 .flex-col {
   flex-direction: column;
 }
 
 .ml-5 {
   margin-left: 5px;
+}
+.ml-10 {
+  margin-left: 10px;
 }
 
 .mr-5 {
@@ -1049,6 +1054,14 @@ body.light-mode .video-bg:before {
 
 .px-10 {
   padding: 0 10px;
+}
+
+.pt-10 {
+  padding-top: 10px;
+}
+
+.mt-10 {
+  margin-top: 10px;
 }
 
 .flex-1 {
@@ -1158,7 +1171,36 @@ body.light-mode .video-bg:before {
   }
 }
 
+.text-white {
+  color: var(--theme-color);
+}
 
 //.song-card:nth-child(4n+1) {
 //  margin-left: 0;
 //}
+//分页
+.Pagination {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--content-bg);
+  border-radius: 14px;
+  border: 1px solid var(--theme-bg-color);
+  margin-top: 10px;
+
+  //.ant-pagination-item-active a {
+  //  color: var(--theme-color);
+  //}
+  //.ant-pagination-item a{
+  //  //color: var(--inactive-color);
+  //}
+  //.ant-select-selector{
+  //  background-color: transparent;
+  //}
+
+  //.ant-pagination-item-active {
+  //  background-color: transparent;
+  //  border: var(--theme-color);
+  //}
+}

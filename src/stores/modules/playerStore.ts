@@ -18,7 +18,6 @@ const playerStore = createSlice({
             src: 'http://music.163.com/song/media/outer/url?id=27591651.mp3',
             time: 149000,
             mv: "",
-            Lyric: "27591651"
         },
             {
                 id: "409872504",
@@ -29,7 +28,6 @@ const playerStore = createSlice({
                 src: 'http://music.163.com/song/media/outer/url?id=409872504.mp3',
                 time: 260675,
                 mv: "",
-                Lyric: "409872504"
             },
         ],
         // 历史搜索

@@ -1,22 +1,12 @@
 import Router from "@/routes/index";
-import {httpGet} from "@/utils/http";
-import {useEffect, useState} from 'react'
 import Player from '@/components/player/player'
 // 共享音乐播放器的状态
 import MusicPlayerContext from '@/utils/PlayerContext'
 import useMusicPlayer from '@/utils/usePlayerMusic'
 import LeftSide from './components/left-side'
-import {HashRouter} from 'react-router-dom';
 
 export default function LayoutIndex() {
     const musicPlayer = useMusicPlayer();
-
-    // const [userinfo, setUserInfo] = useState({})
-    // useEffect(() => {
-    //     httpGet("login/status").then(({data}) => {
-    //         setUserInfo(data.profile)
-    //     })
-    // }, [])
 
     return (
         <MusicPlayerContext.Provider value={musicPlayer}>

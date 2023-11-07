@@ -1,6 +1,7 @@
 import {Navigate, useRoutes} from 'react-router-dom';
 import {lazy, Suspense} from 'react';
-import { Spin } from 'antd';
+import {Spin} from 'antd';
+
 const Home = lazy(() => import('@/pages/Home/index'));
 const Mini = lazy(() => import('@/pages/MiniPlayer'))
 const Ml = lazy(() => import('@/pages/Ml/index'))
@@ -21,13 +22,8 @@ const LoadingTip = Element => (
 const rootRouter = [
     // Navigate 重定向
     {path: '/', element: <Navigate to='/home'/>},
-    {path: '/home', element: LoadingTip(Home)},
-    {
-        path: '/movie',
-        element: LoadingTip(Movie),
-        meta: {title: 'MV',},
-        children: [{path: 'chat/:name', element: LoadingTip(Chat)}],
-    },
+    {path: '/home', element: LoadingTip(Home),},
+    {path: '/movie', element: LoadingTip(Movie), meta: {title: 'MV'},},
     {path: '/chat', element: LoadingTip(Chat), meta: {title: 'AI',},},
     {path: '/ml', element: LoadingTip(Ml), meta: {title: '乐库'}},
     {path: '/mini', element: LoadingTip(Mini), meta: {title: '迷你播放器'}},

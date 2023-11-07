@@ -13,3 +13,15 @@
     color: #fff;
   }
 }
+
+.search-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+
+  .title {
+    font-size: 18px;
+    color: var(--theme-color);
+  }
+}

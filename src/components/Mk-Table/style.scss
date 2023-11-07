@@ -1,0 +1,44 @@
+.textoverflow {
+  /* 内容过长显示两行，多余为省略号 */
+  text-overflow: ellipsis; /*设置隐藏部分为省略号*/
+  overflow: hidden; /*设置隐藏*/
+  white-space: nowrap;
+  padding-right: 20px;
+  //display: -webkit-box;
+  //-webkit-line-clamp: 2; /*设置显示行数，此处为2行，可设置其他数字*/
+  //-webkit-box-orient: vertical;
+  //text-align: center;
+  //width: 100%;
+}
+
+.single-box {
+  border-radius: 10px;
+  overflow: auto;
+  //max-height: 40vh;
+}
+
+.single-item {
+  padding: 10px 18px;
+  transition: 0.3s;
+  color: var(--theme-color);
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--content-bg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+
+  .cover {
+    display: flex;
+    align-items: center;
+
+    img {
+      border-radius: 5px;
+    }
+  }
+}
+
+.single-item:hover {
+  background-color: var(--theme-bg-color);
+}
