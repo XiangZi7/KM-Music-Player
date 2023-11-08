@@ -14,3 +14,9 @@ export const formatTimes = (songdt) => {
     }
     return min + ":" + sec;
 }
+
+export function timestamp(timestamp) {
+    const date = new Date(timestamp);
+    const normalTime = date.toLocaleString(); // 使用 toLocaleString() 方法将时间转换为本地时间格式
+    return normalTime
+}

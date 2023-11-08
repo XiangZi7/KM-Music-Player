@@ -1,6 +1,6 @@
 import {useState, FC,ChangeEvent} from "react";
 import "./styles.scss";
-import {Avatar, Button} from "antd";
+import {Avatar, Button, Input} from "antd";
 import {UserOutlined} from "@ant-design/icons";
 
 interface Message {
@@ -11,9 +11,6 @@ interface Message {
 const ChatBubble: FC<Message> = ({message, sender}) => {
     return (
         <div className={`chat-bubble ${sender}`}>
-            {/*<div className="avatar mr-5">*/}
-            {/*    <Avatar size={45} icon={<UserOutlined />} />*/}
-            {/*</div>*/}
             {sender == "robot" && <Avatar className="mr-5" size={45} icon={<UserOutlined/>}/>}
             <div className="chat-content">{message}</div>
             {sender == "user" && <Avatar className="ml-5" size={45} icon={<UserOutlined/>}/>}

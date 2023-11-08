@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {useNavigate, useSearchParams} from "react-router-dom";
-import {ConfigProvider, Pagination, Spin, Tabs} from "antd";
+import {ConfigProvider, Pagination, Tabs} from "antd";
 import type {TabsProps} from "antd";
 import {buildSearchData} from "@/utils/Constructdata";
 import "./index.scss";
@@ -39,35 +39,37 @@ export default function App() {
         {
             key: "2",
             label: "专辑",
-            children: <Songlist data={songs}/>
+            children: <Songlist data={songs} idx={tabActiveKey}/>
         },
         {
             key: "3",
             label: "歌手",
+            children: <Songlist data={songs} idx={tabActiveKey}/>
         },
         {
             key: "4",
             label: "歌单",
+            children: <Songlist data={songs} idx={tabActiveKey}/>
         },
         {
             key: "5",
             label: "用户",
+            children: <Songlist data={songs} idx={tabActiveKey}/>
+
         },
         {
             key: "6",
             label: "MV",
-        },
-        {
-            key: "7",
-            label: "歌词",
+            children: <Songlist data={songs} idx={tabActiveKey}/>
+
         },
         {
             key: "8",
             label: "动漫",
+            children: <Songlist data={songs} idx={tabActiveKey}/>
         },
     ];
     // tab Change
-
     // 每次切换都刷新数据
     useEffect(() => {
         searchMusic();
@@ -85,22 +87,37 @@ export default function App() {
     function searchMusic() {
         setSongs([]);
         setSongCount(0);
-        httpGet(`/cloudsearch`, {
-            keywords: keyword,
-            type: currentMType,
-            offset: (currentPage - 1) * 30,
-            limit: 30,
-        }).then(({result}) => {
-            const tableData = buildSearchData(currentMType, result);
-            // setSongs(tableData.songs);
-            setSongCount(tableData.songCount);
-        });
+        // 动漫接口
+        if (tabActiveKey == '8') {
+            httpGet(`/video/search`, {
+                name: keyword,
+                from: currentPage,
+                size: 30,
+            }).then((data) => {
+                const tableData = buildSearchData(tabActiveKey, data);
+                setSongs(tableData.songs);
+                setSongCount(tableData.songCount);
+            });
+        } else {
+            // 音乐接口
+            httpGet(`/cloudsearch`, {
+                keywords: keyword,
+                type: currentMType,
+                offset: (currentPage - 1) * 30,
+                limit: 30,
+            }).then(({result}) => {
+                const tableData = buildSearchData(tabActiveKey, result);
+                setSongs(tableData.songs);
+                setSongCount(tableData.songCount);
+            });
+        }
     }
 
     // 页数更改
     function pageChange(idx: number) {
         setCurrentPage(idx);
     }
+
     // 搜索功能
     const handleKeyPress = (event) => {
         if (event.key === "Enter") {
@@ -146,6 +163,7 @@ export default function App() {
                                 showSizeChanger={false}
                                 current={currentPage}
                                 total={songCount}
+                                pageSize={30}
                                 onChange={pageChange}
                             />
                         </ConfigProvider>
