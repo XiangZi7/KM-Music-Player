@@ -1093,7 +1093,7 @@ body.light-mode .video-bg:before {
   .float {
     position: absolute;
     right: 0;
-    bottom: 10%;
+    bottom: 17%;
 
     .button-f {
       opacity: 0.8;
@@ -1212,9 +1212,6 @@ body.light-mode .video-bg:before {
   color: var(--theme-color);
 }
 
-//.song-card:nth-child(4n+1) {
-//  margin-left: 0;
-//}
 //分页
 .Pagination {
   display: flex;
@@ -1225,20 +1222,9 @@ body.light-mode .video-bg:before {
   border-radius: 14px;
   border: 1px solid var(--theme-bg-color);
   margin-top: 10px;
-
-  //.ant-pagination-item-active a {
-  //  color: var(--theme-color);
-  //}
-  //.ant-pagination-item a{
-  //  //color: var(--inactive-color);
-  //}
-  //.ant-select-selector{
-  //  background-color: transparent;
-  //}
-
-  //.ant-pagination-item-active {
-  //  background-color: transparent;
-  //  border: var(--theme-color);
-  //}
 }
 
+.yx-shadow{
+  box-shadow: 0px 5px 30px -9.5px rgba(0, 0, 0, .1);
+  //--tn-shadow-colored: 0px 5px 30px -9.5px var(--tn-shadow-color);
+}

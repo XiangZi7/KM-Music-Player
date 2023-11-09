@@ -45,8 +45,8 @@ export default function MkTable({data, style, className}: Props) {
                             <div className="flex single-item" key={idx} onDoubleClick={() => playMusic(item)}>
                                 <Col span={8} className="textoverflow">
                                     <div className="cover">
-                                        <img src={item.cover + "?param=28y28"}/>
-                                        <span className="ml-10">{item.title}</span>
+                                        <img className="yx-shadow" src={item.cover + "?param=28y28"}/>
+                                        <span className="ml-10 textoverflow">{item.title}</span>
                                     </div>
                                 </Col>
                                 <Col span={8} className="textoverflow">{item.singer}</Col>

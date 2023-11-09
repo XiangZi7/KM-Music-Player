@@ -7,9 +7,7 @@ export const items = [{
     children: [
         {path: '/home', title: "Home", icon: <Home className="text-2xl"/>},
         {path: '/ml', title: "Music library", icon: <Music className="text-2xl"/>},
-        {path: '/radio', title: "Radio", icon: <Radio className="text-2xl"/>},
         {path: '/movie', title: "Movie", icon: <Film className="text-2xl"/>},
-        {path: '/anim', title: "Animation", icon: <Video className="text-2xl"/>},
         {path: '/mini', title: "Mini Player", icon: <Trello className="text-2xl"/>},
         {path: '/chat', title: "AI", icon: <PlayCircle className="text-2xl"/>},
         {path: '/theme', title: "Theme", icon: <Layout className="text-2xl"/>},

@@ -5,13 +5,11 @@ import {Spin} from 'antd';
 const Home = lazy(() => import('@/pages/Home/index'));
 const Mini = lazy(() => import('@/pages/MiniPlayer'))
 const Ml = lazy(() => import('@/pages/Ml/index'))
-const Radio = lazy(() => import('@/pages/Radio'))
 const Movie = lazy(() => import('@/pages/Movie'));
-const Anim = lazy(() => import('@/pages/Anim'))
 const Chat = lazy(() => import('@/pages/Chat'));
 const Theme = lazy(() => import('@/pages/theme'))
-const Test = lazy(() => import('@/pages/Test'))
-const Search = lazy(() => import('@/pages/Search/index'))
+const Test = lazy(() => import('@/pages/Test/index'))
+const Search = lazy(() => import('@/pages/Search'))
 const Moviedetails = lazy(() => import('@/pages/Moviedetails'))
 const PlayList = lazy(() => import('@/pages/PlayList'))
 
@@ -29,8 +27,6 @@ const rootRouter = [
     {path: '/chat', element: LoadingTip(Chat), meta: {title: 'AI',},},
     {path: '/ml', element: LoadingTip(Ml), meta: {title: '乐库'}},
     {path: '/mini', element: LoadingTip(Mini), meta: {title: '迷你播放器'}},
-    {path: '/radio', element: LoadingTip(Radio), meta: {title: '电台'}},
-    {path: '/anim', element: LoadingTip(Anim), meta: {title: '动漫'}},
     {path: '/theme', element: LoadingTip(Theme), meta: {title: '主题'}},
     {path: '/test', element: LoadingTip(Test), meta: {title: '测试'}},
     {path: '/search', element: LoadingTip(Search), meta: {title: '搜索'}},

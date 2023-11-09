@@ -117,7 +117,7 @@ export default function App() {
               {playlists.map((item, idx) => (
                 <div className="song-card" key={idx}>
                   <img
-                    className="song-img"
+                    className="song-img yx-shadow"
                     src={`${item.coverImgUrl}?param=300y300`}
                   />
                   <div className="song-des">
