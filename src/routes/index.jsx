@@ -6,7 +6,7 @@ const Home = lazy(() => import('@/pages/Home'));
 const Mini = lazy(() => import('@/pages/MiniPlayer'))
 const Ml = lazy(() => import('@/pages/Ml'))
 const Movie = lazy(() => import('@/pages/Movie'));
-const Chat = lazy(() => import('src/pages/AIChat'));
+const Chat = lazy(() => import('@/pages/AIChat'));
 const Theme = lazy(() => import('@/pages/theme'))
 const Test = lazy(() => import('@/pages/Test'))
 const Search = lazy(() => import('@/pages/Search'))
