@@ -9,7 +9,7 @@ const Movie = lazy(() => import('@/pages/Movie'));
 const Chat = lazy(() => import('@/pages/AIChat'));
 const Theme = lazy(() => import('@/pages/theme'))
 const Test = lazy(() => import('@/pages/Test'))
-const Search = lazy(() => import('@/pages/Search'))
+const Search = lazy(() => import('@/pages/Searchs'))
 const Moviedetails = lazy(() => import('@/pages/Moviedetails'))
 const PlayList = lazy(() => import('@/pages/PlayList'))
 
