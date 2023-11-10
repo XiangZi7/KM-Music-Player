@@ -1,8 +1,30 @@
-export function buildSearchData(key, result) {
-    const tableData = {}
+import {Song} from "@/stores/interface";
+type Songs = {
+    id: string;
+    name: string;
+    ar: {
+        name: string;
+    }[];
+    al: {
+        picUrl: string;
+        name: string;
+    };
+    dt: number;
+    mv: string;
+};
+type TableData = {
+    songs: Song[]; // 歌曲数组
+    songCount: number; // 歌曲总数
+};
+
+export function buildSearchData(key:string, result:any) {
+    const tableData: TableData = {
+        songs: [],
+        songCount: 0
+    }
     switch (key) {
         case '1':
-            tableData.songs = result.songs.map(item => {
+            tableData.songs = result.songs.map((item:Songs) => {
                 const names = item.ar.map(subItem => subItem.name).join(',');
                 return {
                     cover: item.al.picUrl,
@@ -38,7 +60,7 @@ export function buildSearchData(key, result) {
             tableData.songCount = result.mvCount
             break;
         case '7':
-            tableData.songs = result.songs.map(item => {
+            tableData.songs = result.songs.map((item:Songs) => {
                 const names = item.ar.map(subItem => subItem.name).join(',');
                 return {
                     cover: item.al.picUrl,
@@ -60,9 +82,10 @@ export function buildSearchData(key, result) {
     }
     return tableData
 }
-export function buildPage(idx) {
+
+export function buildPage(idx: string): string | number {
     // 搜索类型
-    const MediaType = {
+    const MediaType: { [key: string]: string | number } = {
         "1": "/moviedetails",
         "2": "/playlist",
         "3": 100,

@@ -5,8 +5,8 @@ export interface Song {
     album: string;
     cover: string;
     src: string;
-    time: number;
-    mv: string;
+    time: [number,string];
+    mv: [number,string];
     Lyric: string;
 }
 
@@ -22,4 +22,8 @@ export interface PlayerState {
     currentLyricIndex: number;
     isLooping: boolean;
     isShuffling: boolean;
+}
+export interface LyricLine{
+    time: number;
+    text: string;
 }

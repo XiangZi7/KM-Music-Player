@@ -1,4 +1,4 @@
-import {Film, Home, Layout, Music, PlayCircle, Radio, Thermometer, Trello, Video} from 'react-feather';
+import {Film, Home, Layout, Music, PlayCircle, Thermometer, Trello} from 'react-feather';
 import {ReactNode} from "react";
 
 // 根据路由表生成对应的路由规则

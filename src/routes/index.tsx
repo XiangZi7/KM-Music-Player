@@ -1,5 +1,5 @@
 import {Navigate, useRoutes} from 'react-router-dom';
-import {lazy, Suspense} from 'react';
+import {ComponentType, lazy, ReactNode, Suspense} from 'react';
 import {Spin} from 'antd';
 
 const Home = lazy(() => import('@/pages/Home/index'));
@@ -13,9 +13,15 @@ const Search = lazy(() => import('@/pages/Search'))
 const Moviedetails = lazy(() => import('@/pages/Moviedetails'))
 const PlayList = lazy(() => import('@/pages/PlayList'))
 
-const LoadingTip = Element => (
+type LoadingTipProps = {
+    children: ReactNode;
+};
+
+type LoadingTipComponent = ComponentType<LoadingTipProps>;
+
+const LoadingTip = (Element: LoadingTipComponent): JSX.Element => (
     <Suspense fallback={<Spin/>}>
-        <Element/>
+        <Element children={undefined}/>
     </Suspense>
 );
 
