@@ -1,7 +1,7 @@
 import "./style.scss";
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { httpGet } from "@/utils/http.ts";
+import { httpGet } from "@/utils/http.js";
 import { Button, Col, Row, Skeleton } from "antd";
 import {
   PlaySquareOutlined,

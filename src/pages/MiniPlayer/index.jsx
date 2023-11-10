@@ -3,7 +3,7 @@ import {ConfigProvider, Slider, Spin} from "antd";
 import {PauseCircle, PlayCircle, Repeat, Shuffle, SkipBack, SkipForward} from "react-feather";
 import {useContext} from "react";
 import MusicPlayerContext from "@/utils/PlayerContext";
-import {formatTime} from "@/utils/FormatTime.ts";
+import {formatTime} from "@/utils/FormatTime.js";
 
 export default function miniPlayer() {
 

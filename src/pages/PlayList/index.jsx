@@ -10,7 +10,7 @@ import {
     MessageOutlined,
     UserOutlined,
 } from "@ant-design/icons";
-import {timestamp} from "@/utils/FormatTime.ts";
+import {timestamp} from "@/utils/FormatTime.js";
 import MkTable from "@/components/Mk-Table/Mk-Table";
 import Comment from "@/components/comment";
 

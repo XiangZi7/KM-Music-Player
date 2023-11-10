@@ -1,7 +1,7 @@
 import './index.scss';
 import {Avatar, Col, Row} from "antd";
 import {useEffect, useState} from "react";
-import {httpGet} from "@/utils/http.ts";
+import {httpGet} from "@/utils/http.js";
 
 const MusicLibrary = () => {
     // 示例数据
