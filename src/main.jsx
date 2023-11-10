@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import '@/styles/app.scss'
-import '@/styles/player.scss'
+
 
 // Redux
 import store, {persistor} from "./stores/index.js";
