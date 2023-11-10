@@ -1,7 +1,7 @@
 import Slider from "@/components/min-Player/slider.jsx";
-import {formatTime} from "@/utils/FormatTime.ts";
-import {useState, useEffect, useContext} from "react";
-import MusicPlayerContext from '@/utils/PlayerContext.ts';
+import {formatTime} from "@/utils/FormatTime.js";
+import {useContext} from "react";
+import MusicPlayerContext from '@/utils/PlayerContext.js';
 import {PauseCircleIcon} from "@/components/min-Player/PauseCircleIcon.jsx";
 import {PlayIcon} from "@/components/min-Player/PlayIcon.jsx";
 import {Button,Image} from "@nextui-org/react";

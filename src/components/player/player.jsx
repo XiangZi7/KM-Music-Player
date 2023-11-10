@@ -20,7 +20,7 @@ export default function player() {
         currentLine,
     } = useContext(MusicPlayerContext)
 
-    function SliderChange(e: number) {
+    function SliderChange(e) {
         seek(e)
     }
 

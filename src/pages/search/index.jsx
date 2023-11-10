@@ -1,12 +1,10 @@
-import {useEffect, useState} from "react";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import {ConfigProvider, Pagination, Tabs} from "antd";
-import type {TabsProps} from "antd";
 import {buildSearchData} from "@/utils/Constructdata";
 import "./index.scss";
 import Single from "./components/single";
 import Songlist from "./components/songlist";
-import {httpGet} from "@/utils/http.js";
+import {httpGet} from "@/utils/http";
 // 搜索类型
 const MediaType = {
     "1": 1,
@@ -30,7 +28,7 @@ export default function App() {
     const [currentPage, setCurrentPage] = useState(1);
     const [songs, setSongs] = useState([]);
     // tabs
-    const items: TabsProps["items"] = [
+    const items = [
         {
             key: "1",
             label: "单曲",
@@ -114,7 +112,7 @@ export default function App() {
     }
 
     // 页数更改
-    function pageChange(idx: number) {
+    function pageChange(idx) {
         setCurrentPage(idx);
     }
 
@@ -128,7 +126,7 @@ export default function App() {
         setKw(event.target.value);
     };
     // tabs change
-    const onChange = (key: string) => {
+    const onChange = (key) => {
         setCurrentMType(MediaType[key]);
         setTabActiveKey(key);
     };

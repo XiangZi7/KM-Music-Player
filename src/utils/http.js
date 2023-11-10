@@ -1,10 +1,6 @@
-import axios, { AxiosInstance } from 'axios';
-type ResponseData<T> = {
-    data: T;
-    code: number;
-    result: string;
-};
-const instance: AxiosInstance = axios.create({
+import axios from 'axios';
+
+const instance = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
     timeout: 10000,
     withCredentials: true,
@@ -26,7 +22,7 @@ instance.interceptors.request.use(
 
 // 响应拦截器
 instance.interceptors.response.use(
-    (response) => { // 使用泛型指定返回类型
+    (response) => {
         return response.data;
     },
     (error) => {
@@ -35,10 +31,10 @@ instance.interceptors.response.use(
 );
 
 // 封装get方法
-export const httpGet = <T>(url: string, params?: object): Promise<ResponseData<T>> => {
-    return instance.get<T>(url, {params});
+export const httpGet =(url, params)=> {
+    return instance.get(url, {params});
 };
 // 封装post方法
-export const httpPost = <T>(url: string, data?: object): Promise<ResponseData<T>> => {
-    return instance.post<T>(url, data);
+export const httpPost = (url, data)=> {
+    return instance.post(url, data);
 };

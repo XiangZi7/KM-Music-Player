@@ -2,11 +2,11 @@ import DefaultLayouts from '@/layouts/index.jsx'
 
 function App() {
 
-  return (
-    <>
-        <DefaultLayouts/>
-    </>
-  )
+    return (
+        <>
+            <DefaultLayouts/>
+        </>
+    )
 }
 
 export default App

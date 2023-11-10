@@ -1,5 +1,4 @@
 import MkTable from "@/components/Mk-Table/Mk-Table";
-import { useEffect, useRef, useState } from "react";
 import { httpGet } from "@/utils/http";
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -44,7 +43,7 @@ export default function App() {
     });
   }, []);
 
-  function handleHeader(idx: number, path: string) {
+  function handleHeader(idx, path) {
     setHeaderActive(idx);
     Navigate("/" + path);
   }

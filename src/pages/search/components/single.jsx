@@ -1,22 +1,7 @@
-import MkTable from "@/components/Mk-Table/Mk-Table";
-import { CSSProperties } from "react";
+import MkTable from "@/components/Mk-Table/Mk-Table.jsx";
 
-interface Song {
-  id: number;
-  title: string;
-  singer: string;
-  time: number;
-  cover: string;
-  mv: number;
-}
 
-interface Props {
-  data: Song[];
-  style?: CSSProperties;
-  className?: string;
-}
-
-export default function single({ data }: Props) {
+export default function single({ data }) {
   return (
     <>
       {/*歌曲*/}

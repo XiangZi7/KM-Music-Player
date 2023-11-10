@@ -1,27 +1,24 @@
 import { Avatar, Modal, Tag } from "antd";
 import { GithubOutlined, UserOutlined } from "@ant-design/icons";
-import { items, Menu } from "./data";
+import { items } from "./data";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { httpGet } from "@/utils/http";
 import { LogOut } from "react-feather";
 
-interface User {
-  avatarUrl: string;
-  nickname: string;
-}
+
 
 export default function LeftSide() {
   const navigate = useNavigate();
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState(null);
 
-  function toRouter(idx: number) {
+  function toRouter(idx) {
     const path = items[0].children[idx].path;
     navigate(path);
   }
 
   useEffect(() => {
-    httpGet<{ profile: User }>("login/status").then(({ data }) => {
+    httpGet("login/status").then(({ data }) => {
       setUser(data.profile);
     });
   }, []);
@@ -66,10 +63,10 @@ export default function LeftSide() {
           </div>
         </div>
         {/*静态数据*/}
-        {items.map((item: Menu.MenuItem, idx: number) => (
+        {items.map((item, idx) => (
           <div className="side-wrapper" key={idx}>
             <div className="side-title">{item.title}</div>
-            {item.children.map((item2: Menu.children, idx2: number) => (
+            {item.children.map((item2, idx2) => (
               <div
                 className="side-menu"
                 key={idx2}

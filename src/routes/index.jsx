@@ -1,27 +1,22 @@
 import {Navigate, useRoutes} from 'react-router-dom';
-import {ComponentType, lazy, ReactNode, Suspense} from 'react';
+import {lazy, Suspense} from 'react';
 import {Spin} from 'antd';
 
 const Home = lazy(() => import('@/pages/Home/index'));
-const Mini = lazy(() => import('@/pages/MiniPlayer'))
+const Mini = lazy(() => import('@/pages/MiniPlayer/index'))
 const Ml = lazy(() => import('@/pages/Ml/index'))
-const Movie = lazy(() => import('@/pages/Movie'));
-const Chat = lazy(() => import('@/pages/Chat'));
-const Theme = lazy(() => import('@/pages/theme'))
+const Movie = lazy(() => import('@/pages/Movie/index'));
+const Chat = lazy(() => import('@/pages/Chat/index'));
+const Theme = lazy(() => import('@/pages/theme/index'))
 const Test = lazy(() => import('@/pages/Test/index'))
-const Search = lazy(() => import('@/pages/Search'))
-const Moviedetails = lazy(() => import('@/pages/Moviedetails'))
-const PlayList = lazy(() => import('@/pages/PlayList'))
+const Search = lazy(() => import('@/pages/Search/index'))
+const Moviedetails = lazy(() => import('@/pages/Moviedetails/index'))
+const PlayList = lazy(() => import('@/pages/PlayList/index'))
 
-type LoadingTipProps = {
-    children: ReactNode;
-};
 
-type LoadingTipComponent = ComponentType<LoadingTipProps>;
-
-const LoadingTip = (Element: LoadingTipComponent): JSX.Element => (
+const LoadingTip = (Element) => (
     <Suspense fallback={<Spin/>}>
-        <Element children={undefined}/>
+        <Element/>
     </Suspense>
 );
 

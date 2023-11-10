@@ -1,9 +1,9 @@
 import Router from "@/routes/index";
-import Player from "@/components/player/player";
+import Player from "@/components/player/player.jsx";
 // 共享音乐播放器的状态
 import MusicPlayerContext from "@/utils/PlayerContext";
 import useMusicPlayer from "@/utils/usePlayerMusic";
-import LeftSide from "./components/left-side";
+import LeftSide from "./components/left-side.jsx";
 import { useNavigate } from "react-router-dom";
 import { LeftOutlined } from "@ant-design/icons";
 

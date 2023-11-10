@@ -1,27 +1,16 @@
 import {Film, PlayCircle} from "react-feather";
 import {httpGet} from '@/utils/http'
-import {CSSProperties} from "react";
 import {useDispatch} from "react-redux";
 import {addSongs, setPlaying} from "@/stores/modules/playerStore";
 import {formatTimes} from "@/utils/FormatTime";
 import './style.scss'
 import {Col, Row} from "antd";
-import {Song} from "@/stores/interface";
 
-
-
-interface Props {
-    data?: Song[];
-    style?: CSSProperties;
-    className?: string;
-}
-
-
-export default function MkTable({data, style, className}: Props) {
+export default function MkTable({data, style, className}) {
     const dispatch = useDispatch();
 
     // 播放音乐
-    function playMusic(item: Song) {
+    function playMusic(item) {
         httpGet(`/song/url/v1?id=${item.id}&level=exhigh`).then(({data}) => {
             const songs = Object.assign({}, item, {src: data[0].url})
             dispatch(addSongs(songs))

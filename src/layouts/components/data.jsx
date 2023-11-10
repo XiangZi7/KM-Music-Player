@@ -1,5 +1,4 @@
 import {Film, Home, Layout, Music, PlayCircle, Thermometer, Trello} from 'react-feather';
-import {ReactNode} from "react";
 
 // 根据路由表生成对应的路由规则
 export const items = [{
@@ -15,18 +14,3 @@ export const items = [{
     ],
 },
 ]
-
-
-// eslint-disable-next-line @typescript-eslint/no-namespace
-export namespace Menu {
-    export interface MenuItem {
-        title: string;
-        children: children[];
-    }
-
-    export interface children {
-        title: string;
-        icon: ReactNode;
-        path: string;
-    }
-}

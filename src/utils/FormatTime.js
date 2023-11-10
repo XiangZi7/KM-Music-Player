@@ -1,9 +1,9 @@
-export const formatTime = (time:string) => {
+export const formatTime = (time) => {
     const minutes = Math.floor(time / 60).toString().padStart(2, '0');
     const seconds = Math.floor(time % 60).toString().padStart(2, '0');
     return `${minutes}:${seconds}`;
 };
-export const formatTimes = (songdt:string) => {
+export const formatTimes = (songdt) => {
     let min = parseInt(songdt / 1000 / 60)
     let sec = parseInt((songdt / 1000) % 60)
     if (min < 10) {
@@ -15,7 +15,7 @@ export const formatTimes = (songdt:string) => {
     return min + ":" + sec;
 }
 
-export function timestamp(timestamp:string) {
+export function timestamp(timestamp) {
     const date = new Date(timestamp);
     const normalTime = date.toLocaleString(); // 使用 toLocaleString() 方法将时间转换为本地时间格式
     return normalTime

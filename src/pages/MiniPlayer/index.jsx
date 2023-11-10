@@ -1,5 +1,5 @@
 import './style.scss'
-import {ConfigProvider, Slider, Spin} from "antd";
+import {ConfigProvider, Slider} from "antd";
 import {PauseCircle, PlayCircle, Repeat, Shuffle, SkipBack, SkipForward} from "react-feather";
 import {useContext} from "react";
 import MusicPlayerContext from "@/utils/PlayerContext";
@@ -18,12 +18,9 @@ export default function miniPlayer() {
         handlePrevClick,
         handleNextClick,
         handleShuffleClick,
-        lyricList,
-        currentLine,
-        lineHeights
     } = useContext(MusicPlayerContext)
 
-    function SliderChange(e: number) {
+    function SliderChange(e) {
         seek(e)
     }
 

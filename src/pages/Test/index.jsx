@@ -1,5 +1,4 @@
-import React, {useState, useEffect, useRef, useContext} from 'react'
-import Popular from './Popular'
+import Popular from './Popular.jsx'
 import './style.scss'
 export default function Test() {
 

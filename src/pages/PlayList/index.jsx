@@ -1,31 +1,27 @@
 import "./style.scss";
-import {useNavigate, useSearchParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import { useSearchParams} from "react-router-dom";
 import {httpGet} from "@/utils/http";
-import {Avatar, Button, Col, Row, Skeleton, Space, Tabs, TabsProps, Tag} from "antd";
+import {Avatar, Col, Row, Skeleton, Space, Tabs, Tag} from "antd";
 import {
     PlaySquareOutlined,
     FieldTimeOutlined,
-    HomeOutlined,
     MessageOutlined,
-    UserOutlined,
 } from "@ant-design/icons";
-import {timestamp} from "@/utils/FormatTime.js";
+import {timestamp} from "@/utils/FormatTime";
 import MkTable from "@/components/Mk-Table/Mk-Table";
-import Comment from "@/components/comment";
+import Comment from "@/components/comment/index";
 
 export default function playList() {
     const [searchParams] = useSearchParams();
     const id = searchParams.get("id");
     const [isPlay, setIsPlay] = useState(false);
-    const [url, setUrl] = useState("");
     const [plObj, setMvobj] = useState({});
     const [chapterList, setChapterList] = useState([]);
     const [commList, setCommList] = useState([]);
     // tabs
     const [tabActiveKey, setTabActiveKey] = useState("1");
     // tabs
-    const items: TabsProps["items"] = [
+    const items = [
         {
             key: "1",
             label: "歌单",
@@ -64,13 +60,8 @@ export default function playList() {
         });
     }, []);
 
-    function playVidio(url: string) {
-        setUrl(url);
-        setIsPlay(true);
-    }
-
     // tabs change
-    const onChange = (key: string) => {
+    const onChange = (key) => {
         setTabActiveKey(key);
     };
     return (
@@ -83,15 +74,7 @@ export default function playList() {
                             <Col span={6}>
                                 <div className="cover">
                                     <img src={plObj.coverImgUrl} alt=""/>
-                                    <div className="mt-10">
-                                        {/*<Button*/}
-                                        {/*  type="primary"*/}
-                                        {/*  block*/}
-                                        {/*  onClick={() => playVidio(chapterList[0].chapterPath)}*/}
-                                        {/*>*/}
-                                        {/*  Play*/}
-                                        {/*</Button>*/}
-                                    </div>
+
                                 </div>
                             </Col>
                             <Col span={18}>

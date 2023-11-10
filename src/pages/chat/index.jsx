@@ -1,30 +1,14 @@
-import {ReactNode, useEffect, useState} from 'react';
 import './styles.scss'
 import {Input, Select, Space} from "antd";
 import ReactMarkdown from 'react-markdown'
 import axios from 'axios'
 // 设置高亮样式
-import {Prism as SyntaxHighlighter,SyntaxHighlighterProps } from 'react-syntax-highlighter'
+import {Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import {xonokai} from 'react-syntax-highlighter/dist/esm/styles/prism'
-interface Model {
-    data: any;
-    id: string;
-}
 
-interface ModelOption {
-    value: string;
-    label: string;
-}
-interface CodeProps {
-    node: ReactNode;
-    inline?: boolean;
-    className?: string;
-    children: ReactNode;
-    props?: SyntaxHighlighterProps;
-}
 // 代码高亮
 const Code = {
-    code({node, inline, className, children, ...props}: CodeProps) {
+    code({node, inline, className, children, ...props}) {
         const match = /language-(\w+)/.exec(className || '')
         return !inline && match ? (
             <SyntaxHighlighter
@@ -55,7 +39,7 @@ const ChatApp = () => {
     // 返回的消息
     const [result, setResult] = useState("")
     // 模型
-    const [modelList, setModelList] = useState<ModelOption[]>([])
+    const [modelList, setModelList] = useState([])
     const [currentModel, setCurrentModel] = useState("gpt-3.5-turbo")
     const handleSendMessage = () => {
         if (inputValue.trim() !== '') {
@@ -89,8 +73,8 @@ const ChatApp = () => {
     }, [result]);
     // 获取chatGPT模型
     useEffect(() => {
-        axios.get<Model>(import.meta.env.VITE_API_AIURL + "/models").then(({data}) => {
-            const arr: ModelOption[] = data.data.map((item:Model) => {
+        axios.get(import.meta.env.VITE_API_AIURL + "/models").then(({data}) => {
+            const arr= data.data.map((item) => {
                 return {
                     value: item.id,
                     label: item.id

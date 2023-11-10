@@ -6,43 +6,12 @@ import {
     playPrevious,
     setLooping,
     setShuffling,
-} from "@/stores/modules/playerStore";
-import {httpGet} from '@/utils/http';
-import {createBilingualData} from '@/utils/parseLyrics';
+} from "@/stores/modules/playerStore.js";
+import {httpGet} from '@/utils/http.js';
+import {createBilingualData} from '@/utils/parseLyrics.js';
 import {message} from 'antd';
-import {RootState} from '@/stores'
-import {LyricData} from "@/api/interface.ts";
 
-interface LyricLine {
-    time: number;
-    text: string;
-    translation: string;
-}
-
-interface Song {
-    src: string;
-    Lyric: number;
-}
-
-interface MusicPlayer {
-    isPlaying: boolean;
-    currentTime: number;
-    duration: number;
-    lyricList: LyricLine[];
-    currentLine: number;
-    lineHeights: number;
-    song: Song;
-    seek: (time: number) => void;
-    handlePlayPauseClick: () => void;
-    handlePrevClick: () => void;
-    handleLoopClick: () => void;
-    handleShuffleClick: () => void;
-    handleNextClick: () => void;
-    handleVolume: (volume: number) => void;
-    volume: number;
-}
-
-const useMusicPlayer = (): MusicPlayer => {
+const useMusicPlayer = () => {
     // 得到 Redux 中的数据
     const {
         songs,
@@ -50,18 +19,18 @@ const useMusicPlayer = (): MusicPlayer => {
         isLooping,
         isShuffling,
         isPlaying,
-    } = useSelector((state: RootState) => state.player);
+    } = useSelector((state) => state.player);
     const dispatch = useDispatch();
     const [audio] = useState(new Audio(songs[currentIndex].src));
-    const [currentTime, setCurrentTime] = useState<number>(0);
-    const [duration, setDuration] = useState<number>(0);
-    const [volume, setVolume] = useState<number>(70);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [duration, setDuration] = useState(0);
+    const [volume, setVolume] = useState(70);
     // 歌词
-    const [lyricList, setLyricList] = useState<LyricLine[]>([]);
+    const [lyricList, setLyricList] = useState([]);
     // 当前歌词
-    const [currentLine, setCurrentLine] = useState<number>(-1);
+    const [currentLine, setCurrentLine] = useState(-1);
     // 当前歌词高度
-    const [lineHeights, setLineHeight] = useState<number>(144);
+    const [lineHeights, setLineHeight] = useState(144);
     // 初始化
     useEffect(() => {
         audio.addEventListener('ended', () => handleEnded());
@@ -78,7 +47,7 @@ const useMusicPlayer = (): MusicPlayer => {
     useEffect(() => {
         audio.src = songs[currentIndex].src;
         setLyricList([]);
-        httpGet<LyricData>('/lyric', {id: songs[currentIndex].id}).then((data:LyricData) => {
+        httpGet('/lyric', {id: songs[currentIndex].id}).then((data) => {
             const bilingualData = createBilingualData(data.lrc?.lyric, data.tlyric?.lyric);
             setLyricList(bilingualData);
         });
@@ -163,10 +132,10 @@ const useMusicPlayer = (): MusicPlayer => {
         }
     }
 
-    const seek = (time: number) => {
+    const seek = (time) => {
         audio.currentTime = time;
     };
-    const handleVolume = (volume: number) => {
+    const handleVolume = (volume) => {
         audio.volume = volume / 100;
         setVolume(volume)
     };
