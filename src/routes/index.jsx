@@ -2,16 +2,16 @@ import {Navigate, useRoutes} from 'react-router-dom';
 import {lazy, Suspense} from 'react';
 import {Spin} from 'antd';
 
-const Home = lazy(() => import('@/pages/Home/index'));
-const Mini = lazy(() => import('@/pages/MiniPlayer/index'))
-const Ml = lazy(() => import('@/pages/Ml/index'))
-const Movie = lazy(() => import('@/pages/Movie/index'));
-const Chat = lazy(() => import('@/pages/Chat/index'));
-const Theme = lazy(() => import('@/pages/theme/index'))
-const Test = lazy(() => import('@/pages/Test/index'))
-const Search = lazy(() => import('@/pages/Search/index'))
-const Moviedetails = lazy(() => import('@/pages/Moviedetails/index'))
-const PlayList = lazy(() => import('@/pages/PlayList/index'))
+const Home = lazy(() => import('@/pages/Home'));
+const Mini = lazy(() => import('@/pages/MiniPlayer'))
+const Ml = lazy(() => import('@/pages/Ml'))
+const Movie = lazy(() => import('@/pages/Movie'));
+const Chat = lazy(() => import('@/pages/Chat'));
+const Theme = lazy(() => import('@/pages/theme'))
+const Test = lazy(() => import('@/pages/Test'))
+const Search = lazy(() => import('@/pages/Search'))
+const Moviedetails = lazy(() => import('@/pages/Moviedetails'))
+const PlayList = lazy(() => import('@/pages/PlayList'))
 
 
 const LoadingTip = (Element) => (
