@@ -100,7 +100,7 @@ const ChatApp = () => {
                     >
                         {message.sender === 'robot' &&
                             <div className="flex items-center">
-                                <img src="src/static/1.png" className="mr-5" alt=""/>
+                                <img src="../../../public/1.png" className="mr-5" alt=""/>
                                 <p>robot</p>
                             </div>
                         }

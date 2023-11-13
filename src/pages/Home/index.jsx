@@ -107,7 +107,7 @@ export default function App() {
                                 </Button>
                             </div>
                         </div>
-                        <img src="/src/static/km.png" height={230}/>
+                        <img src="km.png" height={230}/>
                     </div>
                     {/*歌单*/}
                     <div className="content-section">

@@ -27,9 +27,9 @@ const MusicLibrary = () => {
                     <Col span={17}>
                         <div className="left">
                             <div className="avatar">
-                                <img src="/src/static/32.png" alt=""/>
+                                <img src="32.png" alt=""/>
                                 <div className="bnmsg">
-                                    <Avatar shape="square" size={64} src="/src/static/1.jpg"/>
+                                    <Avatar shape="square" size={64} src="1.jpg"/>
                                     <div className="name-box">
                                         <div className="title">Kiki's Delivery Service</div>
                                         <div className="des">Kiki</div>
@@ -40,7 +40,7 @@ const MusicLibrary = () => {
                             <div className="banner">
                                 <h2 style={{textAlign: "left"}}>Featured for you</h2>
                                 <div className="wrapper-contexts">
-                                    <img src="/src/static/kiki1.png"/>
+                                    <img src="kiki1.png"/>
                                     <div className="content-wrapper-header-padding dw">
                                         <div className="content-wrapper-context">
                                             <div
