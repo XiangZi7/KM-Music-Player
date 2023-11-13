@@ -1075,6 +1075,10 @@ body.light-mode .video-bg:before {
   margin-top: 10px;
 }
 
+.mx-20 {
+  margin: 0 10%;
+}
+
 .flex-1 {
   flex: 1;
 }
@@ -1124,7 +1128,7 @@ body.light-mode .video-bg:before {
   .song-card {
     display: flex;
     flex-direction: column;
-    flex: 0 0 calc(20% - 20px);
+    flex: 0 0 calc(16% - 20px);
     font-size: 16px;
     background-color: var(--content-bg);
     border-radius: 14px;
@@ -1224,7 +1228,7 @@ body.light-mode .video-bg:before {
   margin-top: 10px;
 }
 
-.yx-shadow{
+.yx-shadow {
   box-shadow: 0px 5px 30px -9.5px rgba(0, 0, 0, .1);
   //--tn-shadow-colored: 0px 5px 30px -9.5px var(--tn-shadow-color);
 }

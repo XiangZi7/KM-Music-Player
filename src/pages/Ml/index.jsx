@@ -2,12 +2,14 @@ import './index.scss';
 import {Avatar, Col, Row} from "antd";
 import {useEffect, useState} from "react";
 import {httpGet} from "@/utils/http.js";
+import {useNavigate} from "react-router-dom";
 
 const MusicLibrary = () => {
     // 示例数据
     const [songList, setSongList] = useState([])
 
     const [playlist, setPlayList] = useState([])
+    const Navigate = useNavigate();
 
     useEffect(() => {
         httpGet("/playlist/track/all?id=526287570&limit=30&offset=1").then(({songs}) => {
@@ -25,9 +27,9 @@ const MusicLibrary = () => {
                     <Col span={17}>
                         <div className="left">
                             <div className="avatar">
-                                <img src="src/static/32.png" alt=""/>
+                                <img src="/src/static/32.png" alt=""/>
                                 <div className="bnmsg">
-                                    <Avatar shape="square" size={64} src="src/static/1.jpg"/>
+                                    <Avatar shape="square" size={64} src="/src/static/1.jpg"/>
                                     <div className="name-box">
                                         <div className="title">Kiki's Delivery Service</div>
                                         <div className="des">Kiki</div>
@@ -36,9 +38,9 @@ const MusicLibrary = () => {
 
                             </div>
                             <div className="banner">
-                                <h2>Featured for you</h2>
+                                <h2 style={{textAlign: "left"}}>Featured for you</h2>
                                 <div className="wrapper-contexts">
-                                    <img src="src/static/kiki1.png"/>
+                                    <img src="/src/static/kiki1.png"/>
                                     <div className="content-wrapper-header-padding dw">
                                         <div className="content-wrapper-context">
                                             <div
@@ -54,10 +56,11 @@ const MusicLibrary = () => {
                     </Col>
                     <Col span={7}>
                         <div className="right">
-                            <h2>Recently Listened</h2>
+                            <h2 style={{textAlign: "left"}}>Recently Listened</h2>
                             <div className="songlist">
                                 {songList && songList.map((item, idx) => (
-                                    <div className="song-item" key={idx}>
+                                    <div className="song-item" key={idx}
+                                         onClick={() => Navigate("/playlist?id=" + item.id)}>
                                         <Avatar shape="square" size={55} src={item.al.picUrl + "?param=52y52"}/>
                                         <div className="msg">
                                             <div>{item.name}</div>
@@ -71,7 +74,7 @@ const MusicLibrary = () => {
                 </Row>
             </div>
             <div className="footer--container">
-                <h2 className="mb-10">Recommended Song List</h2>
+                <h2 className="mb-10" style={{textAlign: "left"}}>Recommended Song List</h2>
                 <div className="songlist">
                     {
                         playlist.map((item, idx) => (
