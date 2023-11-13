@@ -3,7 +3,6 @@
   flex-direction: column;
   padding: 20px;
   height: 100%;
-
 }
 
 .messages {
@@ -61,4 +60,16 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+.ant-input {
+  background-color: transparent;
+  border: none;
+  color: var(--theme-color) !important;
+
+}
+.ant-select-selector {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--theme-color) !important;
 }
