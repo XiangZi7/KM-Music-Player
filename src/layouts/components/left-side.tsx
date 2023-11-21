@@ -83,7 +83,7 @@ export default function LeftSide() {
                 color="#000"
                 style={{ cursor: "pointer" }}
               >
-                <a href="https://github.com/JoshuaZhengsurp/" target="_blank" rel="noreferrer">
+                <a href="https://github.com/XiangZi7/" target="_blank" rel="noreferrer">
                   Github
                 </a>
               </Tag>
