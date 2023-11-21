@@ -23,8 +23,8 @@ export default function MkTable({data, style, className}) {
             <Row>
                 <div style={style} className={`w-full single-box ${className}`}>
                     {
-                        data.map((item, idx) => (
-                            <div className="flex single-item" key={idx} onDoubleClick={() => playMusic(item)}>
+                        data.map((item) => (
+                            <div className="flex single-item" key={item.id} onDoubleClick={() => playMusic(item)}>
                                 <Col span={8} className="textoverflow">
                                     <div className="cover">
                                         <img className="yx-shadow" src={item.cover + "?param=28y28"}/>

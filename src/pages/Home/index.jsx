@@ -8,7 +8,7 @@ export default function App() {
     // header
     const headerLink = [
         {title: "Message", path: "home"},
-        {title: "Music Library", path: ""},
+        {title: "Music Library", path: "ml"},
         {title: "Search", path: "search"},
     ];
     const [headerActive, setHeaderActive] = useState(0);
@@ -113,8 +113,8 @@ export default function App() {
                     <div className="content-section">
                         <div className="content-section-title">Song List</div>
                         <div className="songs-card">
-                            {playlists.map((item, idx) => (
-                                <div className="song-card" key={idx}
+                            {playlists.map((item) => (
+                                <div className="song-card" key={item.id}
                                      onClick={() => Navigate("/playlist?id=" + item.id)}>
                                     <img
                                         className="song-img yx-shadow"

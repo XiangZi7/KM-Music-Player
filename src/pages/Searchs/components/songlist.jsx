@@ -14,7 +14,7 @@ export default function songList({ data, idx }) {
     <>
       <div className="apps-card">
         {data.map((item, idx) => (
-          <div className="app-card" key={idx} onClick={() => toPage(item)}>
+          <div className="app-card" key={item.id} onClick={() => toPage(item)}>
             <span>
               <img
                 src={

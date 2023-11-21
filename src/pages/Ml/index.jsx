@@ -58,8 +58,8 @@ const MusicLibrary = () => {
                         <div className="right">
                             <h2 style={{textAlign: "left"}}>Recently Listened</h2>
                             <div className="songlist">
-                                {songList && songList.map((item, idx) => (
-                                    <div className="song-item" key={idx}
+                                {songList && songList.map((item) => (
+                                    <div className="song-item" key={item.id}
                                          onClick={() => Navigate("/playlist?id=" + item.id)}>
                                         <Avatar shape="square" size={55} src={item.al.picUrl + "?param=52y52"}/>
                                         <div className="msg">
@@ -78,7 +78,7 @@ const MusicLibrary = () => {
                 <div className="songlist">
                     {
                         playlist.map((item, idx) => (
-                            <div className="songlist-item" key={idx}>
+                            <div className="songlist-item" key={item.id}>
                                 <img className="songlist-img"
                                      src={item.coverImgUrl}
                                      alt=""/>

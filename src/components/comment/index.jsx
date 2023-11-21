@@ -6,7 +6,7 @@ export default function comment({ data }) {
     <>
       <div className="comms-card">
         {data.map((item, idx) => (
-          <div className="comm-card" key={idx}>
+          <div className="comm-card" key={item.id}>
             <span className="flex items-center">
               <div className="mr-5 ">
                 <Avatar shape="square" src={item.user.avatarUrl} />
