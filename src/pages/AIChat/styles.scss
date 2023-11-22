@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
-  height: 100%;
+  height: 92%;
+
 }
 
 .messages {
@@ -49,18 +50,6 @@
   margin-top: 20px;
 }
 
-button {
-  padding: 8px 12px;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
 
 .ant-input {
   background-color: transparent;
@@ -68,8 +57,15 @@ button:hover {
   color: var(--theme-color) !important;
 
 }
+
 .ant-select-selector {
   background-color: transparent !important;
   border: none !important;
   color: var(--theme-color) !important;
+}
+
+.it-footer {
+  background-color: var(--theme-bg-color);
+  padding: 10px;
+  margin-bottom: 10px;
 }

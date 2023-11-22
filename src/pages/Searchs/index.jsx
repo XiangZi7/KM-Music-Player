@@ -1,10 +1,10 @@
-import {useNavigate, useSearchParams} from "react-router-dom";
-import {ConfigProvider, Pagination, Tabs} from "antd";
-import {buildSearchData} from "@/utils/Constructdata";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { ConfigProvider, Pagination, Tabs } from "antd";
+import { buildSearchData } from "@/utils/Constructdata";
 import "./index.scss";
 import Single from "./components/single";
 import Songlist from "./components/songlist";
-import {httpGet} from "@/utils/http";
+import { httpGet } from "@/utils/http";
 // 搜索类型
 const MediaType = {
     "1": 1,
@@ -32,39 +32,45 @@ export default function App() {
         {
             key: "1",
             label: "单曲",
-            children: <Single data={songs}/>
+            children: <Single data={songs} />
         },
         {
             key: "2",
             label: "专辑",
-            children: <Songlist data={songs} idx={tabActiveKey}/>
+            children: <Songlist data={songs}
+                idx={tabActiveKey} />
         },
         {
             key: "3",
             label: "歌手",
-            children: <Songlist data={songs} idx={tabActiveKey}/>
+            children: <Songlist data={songs}
+                idx={tabActiveKey} />
         },
         {
             key: "4",
             label: "歌单",
-            children: <Songlist data={songs} idx={tabActiveKey}/>
+            children: <Songlist data={songs}
+                idx={tabActiveKey} />
         },
         {
             key: "5",
             label: "用户",
-            children: <Songlist data={songs} idx={tabActiveKey}/>
+            children: <Songlist data={songs}
+                idx={tabActiveKey} />
 
         },
         {
             key: "6",
             label: "MV",
-            children: <Songlist data={songs} idx={tabActiveKey}/>
+            children: <Songlist data={songs}
+                idx={tabActiveKey} />
 
         },
         {
             key: "8",
             label: "动漫",
-            children: <Songlist data={songs} idx={tabActiveKey}/>
+            children: <Songlist data={songs}
+                idx={tabActiveKey} />
         },
     ];
     // tab Change
@@ -103,7 +109,7 @@ export default function App() {
                 type: currentMType,
                 offset: (currentPage - 1) * 30,
                 limit: 30,
-            }).then(({result}) => {
+            }).then(({ result }) => {
                 const tableData = buildSearchData(tabActiveKey, result);
                 setSongs(tableData.songs);
                 setSongCount(tableData.songCount);
@@ -133,7 +139,8 @@ export default function App() {
     return (
         <>
             <div className="search-box">
-                <div className="search-bar" style={{maxWidth: "50%"}}>
+                <div className="search-bar"
+                    style={{ maxWidth: "50%" }}>
                     <input
                         type="text"
                         onChange={handleChange}
@@ -143,7 +150,9 @@ export default function App() {
                 </div>
             </div>
             <div className="wrap">
-                <Tabs activeKey={tabActiveKey} items={items} onChange={onChange}/>
+                <Tabs activeKey={tabActiveKey}
+                    items={items}
+                    onChange={onChange} />
 
                 {/*分页*/}
                 {songs.length != 0 && (

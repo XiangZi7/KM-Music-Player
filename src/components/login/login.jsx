@@ -115,7 +115,7 @@ function Login({ modelValue, onModelValue, onLogin }) {
           httpPost("/login/cellphone", {
             phone: loginForm.phone,
             captcha: loginForm.captcha,
-          }).then(({ data }) => {
+          }).then(() => {
             // 通知父组件，让父组件刷新登录数据
             onLogin(true);
             onModelValue(false);
@@ -152,22 +152,24 @@ function Login({ modelValue, onModelValue, onLogin }) {
           ></div>
           <div className="popup-content">
             <div
-              className={`container ${
-                isCurrent !== "qrcode" ? "right-panel-active" : ""
-              }`}
+              className={`container ${isCurrent !== "qrcode" ? "right-panel-active" : ""
+                }`}
               id="container"
             >
               <div className="form-container sign-up-container">
                 <form onSubmit={(event) => handleSubmit(event, "captcha")}>
                   <h1 style={{ color: "#000" }}>Create Account</h1>
                   <div className="social-container">
-                    <a href="#" className="social">
+                    <a href="#"
+                      className="social">
                       <i className="fab fa-facebook-f"></i>
                     </a>
-                    <a href="#" className="social">
+                    <a href="#"
+                      className="social">
                       <i className="fab fa-google-plus-g"></i>
                     </a>
-                    <a href="#" className="social">
+                    <a href="#"
+                      className="social">
                       <i className="fab fa-linkedin-in"></i>
                     </a>
                   </div>
@@ -196,7 +198,8 @@ function Login({ modelValue, onModelValue, onLogin }) {
                         }
                         placeholder="captcha"
                       />
-                      <button onClick={sendCaptcha} disabled={isCounting}>
+                      <button onClick={sendCaptcha}
+                        disabled={isCounting}>
                         {isCounting ? `${countdown}` : "Captcha"}
                       </button>
                     </div>
@@ -208,23 +211,30 @@ function Login({ modelValue, onModelValue, onLogin }) {
                 <form onSubmit={(event) => handleSubmit(event, "qrcode")}>
                   <h1 style={{ color: "#000" }}>Sign in</h1>
                   <div className="social-container">
-                    <a href="#" className="social">
+                    <a href="#"
+                      className="social">
                       <i className="fab fa-facebook-f"></i>
                     </a>
-                    <a href="#" className="social">
+                    <a href="#"
+                      className="social">
                       <i className="fab fa-google-plus-g"></i>
                     </a>
-                    <a href="#" className="social">
+                    <a href="#"
+                      className="social">
                       <i className="fab fa-linkedin-in"></i>
                     </a>
                   </div>
                   <span style={{ color: "#000" }}>or use QR Code</span>
                   <div className="mx-20">
-                    <img src={qrurl} alt="" width={200} height={200} />
+                    <img src={qrurl}
+                      alt=""
+                      width={200}
+                      height={200} />
                     <div className="flex flex-col items-center">
                       <span className="mb-10">{Tips.message}</span>
                       {Tips.avatarUrl && (
-                        <Avatar className="mb-10" src={Tips.avatarUrl} />
+                        <Avatar className="mb-10"
+                          src={Tips.avatarUrl} />
                       )}
                       <span>{Tips.nickname}</span>
                     </div>
@@ -236,7 +246,7 @@ function Login({ modelValue, onModelValue, onLogin }) {
                   <div className="overlay-panel overlay-left">
                     <h1>Welcome Back!</h1>
                     <p>
-                    Go log in using the QR code
+                      Go log in using the QR code
                     </p>
                     <button
                       className="ghost"
@@ -249,7 +259,7 @@ function Login({ modelValue, onModelValue, onLogin }) {
                   <div className="overlay-panel overlay-right">
                     <h1>Hello, Friend!</h1>
                     <p>
-                    Login with verification code and travel with us
+                      Login with verification code and travel with us
                     </p>
                     <button
                       className="ghost"

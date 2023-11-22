@@ -12,7 +12,7 @@ import {
 } from "@ant-design/icons";
 import ReactPlayer from "react-player";
 
-export default function moviedetails() {
+export default function Moviedetails() {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
   const [isPlay, setIsPlay] = useState(false);
@@ -41,7 +41,8 @@ export default function moviedetails() {
             <Row>
               <Col span={6}>
                 <div className="cover">
-                  <img src={mvobj.cover} alt="" />
+                  <img src={mvobj.cover}
+                    alt="" />
                   <div className="mt-10">
                     <Button
                       type="primary"

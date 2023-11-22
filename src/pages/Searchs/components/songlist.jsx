@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { buildPage } from "@/utils/Constructdata";
 
-export default function songList({ data, idx }) {
+export default function SongList({ data, idx }) {
   const Navigate = useNavigate();
 
   function toPage(params) {
@@ -13,8 +13,10 @@ export default function songList({ data, idx }) {
   return (
     <>
       <div className="apps-card">
-        {data.map((item, idx) => (
-          <div className="app-card" key={item.id} onClick={() => toPage(item)}>
+        {data.map((item) => (
+          <div className="app-card"
+            key={item.id}
+            onClick={() => toPage(item)}>
             <span>
               <img
                 src={

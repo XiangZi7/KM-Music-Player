@@ -1,10 +1,10 @@
-import {Avatar, Modal, Tag} from "antd";
-import {GithubOutlined, UserOutlined} from "@ant-design/icons";
-import {items} from "./data";
-import {useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {httpGet} from "@/utils/http";
-import {LogOut} from "react-feather";
+import { Avatar, Modal, Tag } from "antd";
+import { GithubOutlined, UserOutlined } from "@ant-design/icons";
+import { items } from "./data";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { httpGet } from "@/utils/http";
+import { LogOut } from "react-feather";
 import LoginPopup from "@/components/login/login"
 
 export default function LeftSide() {
@@ -18,7 +18,7 @@ export default function LeftSide() {
     }
 
     useEffect(() => {
-        httpGet("login/status").then(({data}) => {
+        httpGet("login/status").then(({ data }) => {
             setUser(data.profile);
         });
     }, []);
@@ -31,8 +31,8 @@ export default function LeftSide() {
 
     const handleOk = () => {
         setIsModalOpen(false);
-        httpGet("/logout").then(res => {
-            httpGet("login/status").then(({data}) => {
+        httpGet("/logout").then(() => {
+            httpGet("login/status").then(({ data }) => {
                 setUser(data.profile);
             });
         })
@@ -40,7 +40,7 @@ export default function LeftSide() {
     };
 
     function RefreshUserInfo() {
-        httpGet("login/status").then(({data}) => {
+        httpGet("login/status").then(({ data }) => {
             setUser(data.profile);
         });
     }
@@ -55,20 +55,24 @@ export default function LeftSide() {
                     <div className="user">
                         <div>
                             {user ? (
-                                <Avatar size={65} src={user.avatarUrl}/>
+                                <Avatar size={65}
+                                    src={user.avatarUrl} />
                             ) : (
-                                <Avatar size={65} icon={<UserOutlined/>}/>
+                                <Avatar size={65}
+                                    icon={<UserOutlined />} />
                             )}
                         </div>
                         <div className="username">
                             {user ? <span>{user.nickname}</span> :
                                 <span onClick={() => setShowLogin(true)}> LogIn</span>}
                             <Tag
-                                icon={<GithubOutlined/>}
+                                icon={<GithubOutlined />}
                                 color="#000"
-                                style={{cursor: "pointer"}}
+                                style={{ cursor: "pointer" }}
                             >
-                                <a href="https://github.com/XiangZi7/" target="_blank" rel="noreferrer">
+                                <a href="https://github.com/XiangZi7/"
+                                    target="_blank"
+                                    rel="noreferrer">
                                     GitHub
                                 </a>
                             </Tag>
@@ -77,7 +81,8 @@ export default function LeftSide() {
                 </div>
                 {/*静态数据*/}
                 {items.map((item, idx) => (
-                    <div className="side-wrapper" key={idx}>
+                    <div className="side-wrapper"
+                        key={idx}>
                         <div className="side-title">{item.title}</div>
                         {item.children.map((item2, idx2) => (
                             <div
@@ -98,9 +103,10 @@ export default function LeftSide() {
                 {user && (
                     <div className="side-wrapper">
                         <div className="side-title">User Settings</div>
-                        <div className="side-menu" onClick={showModal}>
+                        <div className="side-menu"
+                            onClick={showModal}>
                             <div className="controls">
-                                <LogOut/>
+                                <LogOut />
                                 <span>Log out</span>
                                 {/*<span className="notification-number updates">3</span>*/}
                             </div>
@@ -117,7 +123,9 @@ export default function LeftSide() {
                 <p>Are you sure you want out？</p>
             </Modal>
             {/*登录*/}
-            <LoginPopup modelValue={showLogin} onModelValue={(e) => setShowLogin(e)} onLogin={RefreshUserInfo}/>
+            <LoginPopup modelValue={showLogin}
+                onModelValue={(e) => setShowLogin(e)}
+                onLogin={RefreshUserInfo} />
         </>
     );
 }

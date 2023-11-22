@@ -1,15 +1,15 @@
 import MkTable from "@/components/Mk-Table/Mk-Table";
-import {httpGet} from "@/utils/http";
-import {Button} from "antd";
-import {useNavigate} from "react-router-dom";
+import { httpGet } from "@/utils/http";
+import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
 
 export default function App() {
     const [song, setSong] = useState([]);
     // header
     const headerLink = [
-        {title: "Message", path: "home"},
-        {title: "Music Library", path: "ml"},
-        {title: "Search", path: "search"},
+        { title: "Message", path: "home" },
+        { title: "Music Library", path: "ml" },
+        { title: "Search", path: "search" },
     ];
     const [headerActive, setHeaderActive] = useState(0);
     const [keyword, setKeyword] = useState("");
@@ -38,7 +38,7 @@ export default function App() {
             }
         );
 
-        httpGet("/cloudsearch?keywords=境界的彼方&type=1000").then(({result}) => {
+        httpGet("/cloudsearch?keywords=境界的彼方&type=1000").then(({ result }) => {
             setPlayLists(result.playlists);
         });
     }, []);
@@ -70,12 +70,11 @@ export default function App() {
                             <span
                                 key={idx}
                                 onClick={() => handleHeader(idx, item.path)}
-                                className={`main-header-link ${
-                                    headerActive == idx ? "is-active" : ""
-                                }`}
+                                className={`main-header-link ${headerActive == idx ? "is-active" : ""
+                                    }`}
                             >
-                {item.title}
-              </span>
+                                {item.title}
+                            </span>
                         ))}
                     </div>
                     {/*搜索*/}
@@ -98,7 +97,7 @@ export default function App() {
                                     《境界的彼方》是由鸟居奈古梦著作、鸭居知世插画的轻小说，于2012年6月9日，由KAESUMA文库文库（京都动画）发行。小说曾获得第2回京都动画大赏（小说部门）奖励赏。
                                 </div>
                                 <Button
-                                    style={{padding: " 0px 45px"}}
+                                    style={{ padding: " 0px 45px" }}
                                     className="content-button"
                                     shape="round"
                                     type="primary"
@@ -107,15 +106,17 @@ export default function App() {
                                 </Button>
                             </div>
                         </div>
-                        <img src="km.png" height={230}/>
+                        <img src="km.png"
+                            height={230} />
                     </div>
                     {/*歌单*/}
                     <div className="content-section">
                         <div className="content-section-title">Song List</div>
                         <div className="songs-card">
                             {playlists.map((item) => (
-                                <div className="song-card" key={item.id}
-                                     onClick={() => Navigate("/playlist?id=" + item.id)}>
+                                <div className="song-card"
+                                    key={item.id}
+                                    onClick={() => Navigate("/playlist?id=" + item.id)}>
                                     <img
                                         className="song-img yx-shadow"
                                         src={`${item.coverImgUrl}?param=300y300`}
@@ -133,7 +134,8 @@ export default function App() {
                     {song.length > 0 && (
                         <div className="content-section">
                             <div className="content-section-title">Album</div>
-                            <MkTable data={song} style={{maxHeight: "40vh"}}/>
+                            <MkTable data={song}
+                                style={{ maxHeight: "40vh" }} />
                         </div>
                     )}
                 </div>

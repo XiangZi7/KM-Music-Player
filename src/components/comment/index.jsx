@@ -5,11 +5,13 @@ export default function comment({ data }) {
   return (
     <>
       <div className="comms-card">
-        {data.map((item, idx) => (
-          <div className="comm-card" key={item.id}>
+        {data.map((item) => (
+          <div className="comm-card"
+            key={item.id}>
             <span className="flex items-center">
               <div className="mr-5 ">
-                <Avatar shape="square" src={item.user.avatarUrl} />
+                <Avatar shape="square"
+                  src={item.user.avatarUrl} />
               </div>
               <span className="text-13">{item.user.nickname}</span>
             </span>

@@ -1,11 +1,11 @@
 import './style.scss'
-import {ConfigProvider, Slider} from "antd";
-import {PauseCircle, PlayCircle, Repeat, Shuffle, SkipBack, SkipForward} from "react-feather";
-import {useContext} from "react";
+import { ConfigProvider, Slider } from "antd";
+import { PauseCircle, PlayCircle, Repeat, Shuffle, SkipBack, SkipForward } from "react-feather";
+import { useContext } from "react";
 import MusicPlayerContext from "@/utils/PlayerContext";
-import {formatTime} from "@/utils/FormatTime.js";
+import { formatTime } from "@/utils/FormatTime.js";
 
-export default function miniPlayer() {
+export default function MiniPlayer() {
 
     const {
         isPlaying,
@@ -33,7 +33,7 @@ export default function miniPlayer() {
                         <div className="cover">
                             <div className="images">
                                 <img src={song.cover}
-                                     alt=""/>
+                                    alt="" />
                             </div>
                         </div>
                         {/*控制器*/}
@@ -59,8 +59,9 @@ export default function miniPlayer() {
                                         }}
                                     >
                                         <Slider value={currentTime}
-                                                onChange={SliderChange} max={duration}
-                                                disabled={false}/>
+                                            onChange={SliderChange}
+                                            max={duration}
+                                            disabled={false} />
                                     </ConfigProvider>
                                 </div>
                                 <div className="flex justify-between">
@@ -70,14 +71,18 @@ export default function miniPlayer() {
                             </div>
                             {/*控制器 - 按钮*/}
                             <div className="con-btn">
-                                <Shuffle size={28} onClick={handleShuffleClick}/>
-                                <SkipBack size={28} onClick={handlePrevClick}/>
+                                <Shuffle size={28}
+                                    onClick={handleShuffleClick} />
+                                <SkipBack size={28}
+                                    onClick={handlePrevClick} />
                                 <div onClick={handlePlayPauseClick}>
-                                    {isPlaying ? <PauseCircle size={45}/> :
-                                        <PlayCircle size={45}/>}
+                                    {isPlaying ? <PauseCircle size={45} /> :
+                                        <PlayCircle size={45} />}
                                 </div>
-                                <SkipForward size={28} onClick={handleNextClick}/>
-                                <Repeat size={28} onClick={handleLoopClick}/>
+                                <SkipForward size={28}
+                                    onClick={handleNextClick} />
+                                <Repeat size={28}
+                                    onClick={handleLoopClick} />
                             </div>
                         </div>
                     </div>

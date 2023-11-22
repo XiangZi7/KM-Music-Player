@@ -2,7 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path';
 import AutoImport from 'unplugin-auto-import/vite'
-
+// eslint
+import eslintPlugin from 'vite-plugin-eslint'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(),
@@ -16,8 +17,12 @@ export default defineConfig({
       dts: 'src/auto-import/imports.d.ts',
       // 解决eslint未定义变量
       eslintrc: {
-        enabled: true
+        enabled: false
       },
+    }),
+     // eslint
+     eslintPlugin({
+      include: ['src/**/*.js', 'src/**/*.jsx', 'src/*.js', 'src/*.jsx']
     }),
   ],
   resolve: {

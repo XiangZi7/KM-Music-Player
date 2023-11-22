@@ -1,17 +1,17 @@
 import Slider from "@/components/min-Player/slider.jsx";
-import {formatTime} from "@/utils/FormatTime.js";
-import {useContext} from "react";
+import { formatTime } from "@/utils/FormatTime.js";
+import { useContext } from "react";
 import MusicPlayerContext from '@/utils/PlayerContext.js';
-import {PauseCircleIcon} from "@/components/min-Player/PauseCircleIcon.jsx";
-import {PlayIcon} from "@/components/min-Player/PlayIcon.jsx";
-import {Button,Image} from "@nextui-org/react";
-import {PreviousIcon} from "@/components/min-Player/PreviousIcon.jsx";
-import {RepeatOneIcon} from "@/components/min-Player/RepeatOneIcon.jsx";
-import {NextIcon} from "@/components/min-Player/NextIcon.jsx";
-import {ShuffleIcon} from "@/components/min-Player/ShuffleIcon.jsx";
-import {BsFillVolumeUpFill} from 'react-icons/bs';
-import {BiSolidVolumeMute} from "react-icons/bi";
-import {MdLibraryMusic} from "react-icons/md";
+import { PauseCircleIcon } from "@/components/min-Player/PauseCircleIcon.jsx";
+import { PlayIcon } from "@/components/min-Player/PlayIcon.jsx";
+import { Button, Image } from "@nextui-org/react";
+import { PreviousIcon } from "@/components/min-Player/PreviousIcon.jsx";
+import { RepeatOneIcon } from "@/components/min-Player/RepeatOneIcon.jsx";
+import { NextIcon } from "@/components/min-Player/NextIcon.jsx";
+import { ShuffleIcon } from "@/components/min-Player/ShuffleIcon.jsx";
+import { BsFillVolumeUpFill } from 'react-icons/bs';
+import { BiSolidVolumeMute } from "react-icons/bi";
+import { MdLibraryMusic } from "react-icons/md";
 
 export default function App() {
     const {
@@ -69,7 +69,7 @@ export default function App() {
                         variant="light"
                         onClick={handleLoopClick}
                     >
-                        <RepeatOneIcon className="text-foreground/80"/>
+                        <RepeatOneIcon className="text-foreground/80" />
                     </Button>
                     <Button
                         isIconOnly
@@ -78,7 +78,7 @@ export default function App() {
                         variant="light"
                         onClick={handlePrevClick}
                     >
-                        <PreviousIcon/>
+                        <PreviousIcon />
                     </Button>
                     <Button
                         isIconOnly
@@ -87,7 +87,7 @@ export default function App() {
                         variant="light"
                         onClick={handlePlayPauseClick}
                     >
-                        {isPlaying ? <PauseCircleIcon size={45}/> : <PlayIcon size={45}/>}
+                        {isPlaying ? <PauseCircleIcon size={45} /> : <PlayIcon size={45} />}
                     </Button>
                     <Button
                         isIconOnly
@@ -96,7 +96,7 @@ export default function App() {
                         variant="light"
                         onClick={handleNextClick}
                     >
-                        <NextIcon/>
+                        <NextIcon />
                     </Button>
                     <Button
                         isIconOnly
@@ -105,13 +105,17 @@ export default function App() {
                         variant="light"
                         onClick={handleShuffleClick}
                     >
-                        <ShuffleIcon className="text-foreground/80"/>
+                        <ShuffleIcon className="text-foreground/80" />
                     </Button>
                 </div>
                 <div className="flex  items-center justify-center">
                     <p className="text-small text-foreground/50">{formatTime(currentTime)}</p> {/* 显示当前播放时间 */}
                     <div className="w-[800px] mx-3">
-                        <Slider min={0} max={duration} step={1} value={currentTime} onChange={SliderChange}/>
+                        <Slider min={0}
+                            max={duration}
+                            step={1}
+                            value={currentTime}
+                            onChange={SliderChange} />
                     </div>
                     <p className="text-small text-foreground/50">{formatTime(duration)}</p> {/* 显示歌曲时长 */}
                 </div>
@@ -126,11 +130,15 @@ export default function App() {
                         variant="light"
                         onClick={changeVolume}
                     >
-                        {volume == 0 ? <BiSolidVolumeMute size={20}/> : <BsFillVolumeUpFill size={20}/>}
+                        {volume == 0 ? <BiSolidVolumeMute size={20} /> : <BsFillVolumeUpFill size={20} />}
                     </Button>
                 </div>
                 <div className="w-[120px]">
-                    <Slider min={0} max={100} step={1} value={volume} onChange={SliderChangeVolume}/>
+                    <Slider min={0}
+                        max={100}
+                        step={1}
+                        value={volume}
+                        onChange={SliderChangeVolume} />
                 </div>
                 <Button
                     isIconOnly
@@ -139,7 +147,7 @@ export default function App() {
                     variant="light"
                     onClick={changeVolume}
                 >
-                    <MdLibraryMusic size={20}/>
+                    <MdLibraryMusic size={20} />
                 </Button>
             </div>
         </div>

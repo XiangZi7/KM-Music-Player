@@ -1,5 +1,5 @@
 import './Popular.scss'
-import {useRef, useEffect} from 'react'
+import { useRef, useEffect } from 'react'
 
 export default function App() {
     const cardsRef = useRef(null);
@@ -12,7 +12,7 @@ export default function App() {
     useEffect(() => {
         let timeout;
 
-        const handleMouseMove = ({x, y}) => {
+        const handleMouseMove = ({ x, y }) => {
             if (timeout) {
                 window.cancelAnimationFrame(timeout);
             }
@@ -62,13 +62,17 @@ export default function App() {
     ]
 
     return (
-        <div className="cards" ref={cardsRef}>
+        <div className="cards"
+            ref={cardsRef}>
             {arr.map((item, idx) => (
-                <div className={`card card__${idx + 1}`} key={item.id}>
-                    <div className="card__bg" style={{background: `url(${item.bg})`}}
-                         ref={(el) => (backgroundsRef.current[idx] = el)}></div>
-                    <img className="card__img" ref={(el) => (imagesRef.current[idx] = el)}
-                         src={item.img}/>
+                <div className={`card card__${idx + 1}`}
+                    key={item.id}>
+                    <div className="card__bg"
+                        style={{ background: `url(${item.bg})` }}
+                        ref={(el) => (backgroundsRef.current[idx] = el)}></div>
+                    <img className="card__img"
+                        ref={(el) => (imagesRef.current[idx] = el)}
+                        src={item.img} />
                     <div className="card__text">
                         <p className="card__title">{item.title}</p>
                     </div>
