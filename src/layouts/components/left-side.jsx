@@ -23,12 +23,9 @@ export default function LeftSide() {
         });
     }, []);
 
+    // 是否退出弹框
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const showModal = () => {
-        setIsModalOpen(true);
-    };
-
+    // logout
     const handleOk = () => {
         setIsModalOpen(false);
         httpGet("/logout").then(() => {
@@ -39,6 +36,7 @@ export default function LeftSide() {
 
     };
 
+    // 当LoginPopup组件完成登录 重新获取用户数据
     function RefreshUserInfo() {
         httpGet("login/status").then(({ data }) => {
             setUser(data.profile);
@@ -99,12 +97,12 @@ export default function LeftSide() {
                         ))}
                     </div>
                 ))}
-                {/*动态数据 用户歌单*/}
+                {/*动态数据*/}
                 {user && (
                     <div className="side-wrapper">
                         <div className="side-title">User Settings</div>
                         <div className="side-menu"
-                            onClick={showModal}>
+                            onClick={() => setIsModalOpen(true)}>
                             <div className="controls">
                                 <LogOut />
                                 <span>Log out</span>

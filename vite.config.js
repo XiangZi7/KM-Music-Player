@@ -1,15 +1,19 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+// AutoImport
 import AutoImport from "unplugin-auto-import/vite";
+// 代码压缩
 import viteCompression from "vite-plugin-compression";
-
+// Inspect
+import Inspect from "vite-plugin-inspect";
 // eslint
 import eslintPlugin from "vite-plugin-eslint";
 // https://vitejs.dev/config/
 export default defineConfig({
   base: "./",
   plugins: [
+    Inspect(),
     react(),
     AutoImport({
       // 解决eslint未定义变量

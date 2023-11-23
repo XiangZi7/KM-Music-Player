@@ -1,15 +1,14 @@
-import {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
     setPlaying,
     playNext,
     playPrevious,
     setLooping,
     setShuffling,
-} from "@/stores/modules/playerStore.js";
-import {httpGet} from '@/utils/http.js';
-import {createBilingualData} from '@/utils/parseLyrics.js';
-import {message} from 'antd';
+} from "@/stores/modules/playerStore";
+import { httpGet } from '@/utils/http';
+import { createBilingualData } from '@/utils/parseLyrics';
+import { message } from 'antd';
 
 const useMusicPlayer = () => {
     // 得到 Redux 中的数据
@@ -47,7 +46,7 @@ const useMusicPlayer = () => {
     useEffect(() => {
         audio.src = songs[currentIndex].src;
         setLyricList([]);
-        httpGet('/lyric', {id: songs[currentIndex].id}).then((data) => {
+        httpGet('/lyric', { id: songs[currentIndex].id }).then((data) => {
             const bilingualData = createBilingualData(data.lrc?.lyric, data.tlyric?.lyric);
             setLyricList(bilingualData);
         });
