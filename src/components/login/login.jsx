@@ -1,6 +1,6 @@
 import "./style.scss";
 import { httpGet, httpPost } from "@/utils/http.js";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Avatar, message } from "antd";
 
 // eslint-disable-next-line react/prop-types

@@ -170,17 +170,17 @@ const ChatApp = () => {
 
 
   // 获取chatGPT模型
-  // useEffect(() => {
-  //   axios.get(import.meta.env.VITE_API_AIURL + "/models").then(({ data }) => {
-  //     const arr = data.data.map((item) => {
-  //       return {
-  //         value: item.id,
-  //         label: item.id,
-  //       };
-  //     });
-  //     setModelList(arr);
-  //   });
-  // }, []);
+  useEffect(() => {
+    axios.get(import.meta.env.VITE_API_AIURL + "/models").then(({ data }) => {
+      const arr = data.data.map((item) => {
+        return {
+          value: item.id,
+          label: item.id,
+        };
+      });
+      setModelList(arr);
+    });
+  }, []);
 
   return (
     <>

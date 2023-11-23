@@ -1,17 +1,17 @@
 import "./style.scss";
-import { useSearchParams} from "react-router-dom";
-import {httpGet} from "@/utils/http";
-import {Avatar, Col, Row, Skeleton, Space, Tabs, Tag} from "antd";
+import { useSearchParams } from "react-router-dom";
+import { httpGet } from "@/utils/http";
+import { Avatar, Col, Row, Skeleton, Space, Tabs, Tag } from "antd";
 import {
     PlaySquareOutlined,
     FieldTimeOutlined,
     MessageOutlined,
 } from "@ant-design/icons";
-import {timestamp} from "@/utils/FormatTime";
+import { timestamp } from "@/utils/FormatTime";
 import MkTable from "@/components/Mk-Table/Mk-Table";
 import Comment from "@/components/comment/index";
 
-export default function playList() {
+export default function PlayList() {
     const [searchParams] = useSearchParams();
     const id = searchParams.get("id");
     const [isPlay, setIsPlay] = useState(false);
@@ -25,23 +25,23 @@ export default function playList() {
         {
             key: "1",
             label: "歌单",
-            children: <MkTable data={chapterList} style={{maxHeight: "55vh"}}/>,
+            children: <MkTable data={chapterList}
+                style={{ maxHeight: "55vh" }} />,
         },
         {
             key: "2",
             label: "评论",
-            children: <Comment data={commList}/>,
+            children: <Comment data={commList} />,
         },
     ];
     useEffect(() => {
         httpGet(`/comment/playlist?id=${id}&limit=30&offset=1`).then(
-            ({comments}) => {
+            ({ comments }) => {
                 setCommList(comments);
             }
         );
 
-        httpGet(`/playlist/detail?id=${id}`).then(({playlist}) => {
-            console.log(playlist);
+        httpGet(`/playlist/detail?id=${id}`).then(({ playlist }) => {
             setMvobj(playlist);
             const newData = playlist.tracks.map((item) => {
                 const names = item.ar.map((subItem) => subItem.name).join(",");
@@ -58,7 +58,7 @@ export default function playList() {
             });
             setChapterList(newData);
         });
-    }, []);
+    }, [id]);
 
     // tabs change
     const onChange = (key) => {
@@ -73,31 +73,34 @@ export default function playList() {
                         <Row>
                             <Col span={6}>
                                 <div className="cover">
-                                    <img src={plObj.coverImgUrl} alt=""/>
+                                    <img src={plObj.coverImgUrl}
+                                        alt="" />
 
                                 </div>
                             </Col>
                             <Col span={18}>
                                 <div className="details ml-10">
                                     <h2>
-                                        <PlaySquareOutlined/> {plObj.name}
+                                        <PlaySquareOutlined /> {plObj.name}
                                     </h2>
                                     <p className="des">
                                         {" "}
-                                        <Avatar src={plObj.creator.avatarUrl}/>{" "}
+                                        <Avatar src={plObj.creator.avatarUrl} />{" "}
                                         {plObj.creator.nickname}
                                     </p>
                                     <p className="des">
-                                        <FieldTimeOutlined/> {timestamp(plObj.createTime)}
+                                        <FieldTimeOutlined /> {timestamp(plObj.createTime)}
                                     </p>
                                     <p className="des">
-                                        <MessageOutlined/> {plObj.description}
+                                        <MessageOutlined /> {plObj.description}
                                     </p>
                                     <p>
-                                        <Space size={[0, 8]} wrap>
+                                        <Space size={[0, 8]}
+                                            wrap>
                                             {
                                                 plObj.tags.map((item) => (
-                                                    <Tag color="geekblue" key={item}>{item}</Tag>
+                                                    <Tag color="geekblue"
+                                                        key={item}>{item}</Tag>
                                                 ))
                                             }
                                         </Space>
@@ -108,11 +111,13 @@ export default function playList() {
                     )}
                     {/*歌单*/}
                     <div className="mt-20">
-                        <Tabs activeKey={tabActiveKey} items={items} onChange={onChange}/>
+                        <Tabs activeKey={tabActiveKey}
+                            items={items}
+                            onChange={onChange} />
                     </div>
                 </div>
             ) : (
-                <Skeleton/>
+                <Skeleton />
             )}
         </>
     );

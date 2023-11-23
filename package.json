@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint --ext .js,.jsx src",
+    "lint:fix": "eslint --fix --ext .js,.jsx src",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -25,6 +26,7 @@
     "redux-persist": "^6.0.0",
     "sass": "^1.69.5",
     "unplugin-auto-import": "^0.16.7",
+    "vite-plugin-compression": "^0.5.1",
     "vite-plugin-eslint": "^1.8.1"
   },
   "devDependencies": {
