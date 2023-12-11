@@ -33,9 +33,9 @@ const ChatApp = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "hello world",
+      content: "hello world",
       timestamp: new Date().getTime(),
-      sender: "robot",
+      role: "assistant",
     }, // 标记为自己发送的消息}
   ]);
   // 按钮状态
@@ -51,9 +51,9 @@ const ChatApp = () => {
       // 用户发送的消息
       const UserMessage = {
         id: messages.length + 1,
-        text: inputValue,
+        content: inputValue,
         timestamp: new Date().getTime(),
-        sender: "me",
+        role: "user",
       };
       // 更新消息状态
       setMessages([...messages, UserMessage]);
@@ -64,6 +64,12 @@ const ChatApp = () => {
       const data = JSON.stringify({
         model: currentModel,
         messages: [
+            ...messages.map(item=>{
+            return {
+              role:item.role,
+              content:item.content
+            }
+          }),
           {
             role: "user",
             content: inputValue,
@@ -100,9 +106,9 @@ const ChatApp = () => {
           // 新的机器人消息
           const newRobotData = {
             id: ids,
-            text: "",
+            content: "",
             timestamp: new Date().getTime(),
-            sender: "robot",
+            role: "assistant",
           };
           // 返回更新后的消息数组
           return [...prevmsg, newRobotData];
@@ -145,9 +151,9 @@ const ChatApp = () => {
                 // 更新最后一条机器人消息的文本
                 const newRobotData = {
                   id: prevMsg.id,
-                  text: results,
+                  content: results,
                   timestamp: currentTime,
-                  sender: "robot",
+                  role: "assistant",
                 };
                 // 滚动到底部
                 if (container) {
@@ -190,10 +196,10 @@ const ChatApp = () => {
           {messages.map((message, idx) => (
             <div
               key={idx}
-              className={`message ${message.sender === "me" ? "my-message" : "other-message"
+              className={`message ${message.role === "user" ? "my-message" : "other-message"
                 }`}
             >
-              {message.sender === "robot" && (
+              {message.role === "assistant" && (
                 <div className="flex items-center">
                   <img src="1.png"
                     className="mr-5"
@@ -204,7 +210,7 @@ const ChatApp = () => {
               <div className="message-bubble">
                 <ReactMarkdown
                   // eslint-disable-next-line react/no-children-prop
-                  children={message.text}
+                  children={message.content}
                   components={Code} />
                 <div className="timestamp">
                   {new Date(message.timestamp).toLocaleString()}
