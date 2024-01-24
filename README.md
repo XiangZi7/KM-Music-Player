@@ -43,3 +43,10 @@ GitHub：https://github.com/XiangZi7/KM-Music-Player/tree/uniapp
 
 
 <p align=center><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ae4bdf15b330499288031e4e3ba20e9e~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=548&h=979&e=png&b=ecf0f6" alt="image.png"  width="50%"width="50%"width="50%"/></p>
+
+### 捐赠 （❤
+
+如果觉得该项目能对你有帮助或喜欢 可投食
+
+![未标题-1](https://github.com/XiangZi7/KM-Music-Player/assets/67356803/4419c043-9079-441b-b026-3e39b6703b92)
+
