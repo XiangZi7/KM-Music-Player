@@ -39,3 +39,9 @@ https://colortop.netlify.app/
 
 
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b33912f950b24daf817cabf08fe95fcf~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=1913&h=952&s=1474529&e=png&b=3c1e3d)
+
+### 捐赠 （❤
+
+如果觉得该项目能对你有帮助或喜欢 可投食
+![未标题-1](https://github.com/XiangZi7/KM-Music-Player/assets/67356803/283eaed1-e97b-4e55-a182-dee4dc3f6ba3)
+
