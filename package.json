@@ -29,7 +29,8 @@
     "unplugin-auto-import": "^0.16.7",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-eslint": "^1.8.1",
-    "vite-plugin-inspect": "^0.7.42"
+    "vite-plugin-inspect": "^0.7.42",
+    "vue": "^3.4.21"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -39,7 +40,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "vite": "^5.0.2"
+    "vite": "^5.1.4"
   },
   "engines": {
     "node": ">=16 <21"
